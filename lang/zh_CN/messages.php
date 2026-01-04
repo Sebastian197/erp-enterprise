@@ -1,0 +1,82 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'success' => [
+        'created' => ':resource 已成功创建。',
+        'updated' => ':resource 已成功更新。',
+        'deleted' => ':resource 已成功删除。',
+        'saved' => '更改已成功保存。',
+        'sent' => '消息已成功发送。',
+        'restored' => ':resource 已成功恢复。',
+        'activated' => ':resource 已成功激活。',
+        'deactivated' => ':resource 已成功停用。',
+    ],
+
+    'errors' => [
+        'not_found' => '未找到 :resource。',
+        'server_error' => '发生内部服务器错误。请稍后重试。',
+        'validation_error' => '提供的数据无效。请检查您的输入。',
+        'forbidden' => '您没有权限访问此资源。',
+        'unauthorized' => '您必须登录才能执行此操作。',
+        'not_acceptable' => '请求格式不可接受。',
+        'conflict' => '此操作与现有数据冲突。',
+        'too_many_requests' => '请求过多。请放慢速度。',
+        'service_unavailable' => '服务暂时不可用。',
+    ],
+
+    'notifications' => [
+        'welcome' => '欢迎来到 :app！',
+        'user_created' => '已为您创建新的用户账户。',
+        'status_changed' => ':resource 的状态已更改。',
+        'password_reset' => '您的密码已成功重置。',
+        'password_changed' => '您的密码已成功更改。',
+        'profile_updated' => '您的个人资料已成功更新。',
+        'email_verified' => '您的电子邮件地址已验证。',
+        'assignment' => '您已被分配到 :resource。',
+    ],
+
+    'common' => [
+        'yes' => '是',
+        'no' => '否',
+        'cancel' => '取消',
+        'save' => '保存',
+        'delete' => '删除',
+        'edit' => '编辑',
+        'create' => '创建',
+        'update' => '更新',
+        'search' => '搜索',
+        'filter' => '筛选',
+        'actions' => '操作',
+        'loading' => '加载中...',
+        'confirm' => '确认',
+        'close' => '关闭',
+        'back' => '返回',
+        'next' => '下一个',
+        'previous' => '上一个',
+        'submit' => '提交',
+        'export' => '导出',
+        'import' => '导入',
+        'download' => '下载',
+        'upload' => '上传',
+        'view' => '查看',
+        'details' => '详情',
+        'select' => '选择',
+        'all' => '全部',
+        'none' => '无',
+        'refresh' => '刷新',
+        'reset' => '重置',
+        'clear' => '清除',
+        'apply' => '应用',
+    ],
+
+    'confirmations' => [
+        'delete' => '您确定要删除此 :resource 吗？',
+        'delete_multiple' => '您确定要删除这 :count 个项目吗？',
+        'restore' => '您确定要恢复此 :resource 吗？',
+        'deactivate' => '您确定要停用此 :resource 吗？',
+        'activate' => '您确定要激活此 :resource 吗？',
+        'cancel_action' => '您确定要取消吗？未保存的更改将丢失。',
+    ],
+];

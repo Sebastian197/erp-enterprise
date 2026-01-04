@@ -1,0 +1,82 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'success' => [
+        'created' => ':resource has been successfully created.',
+        'updated' => ':resource has been successfully updated.',
+        'deleted' => ':resource has been successfully deleted.',
+        'saved' => 'Changes have been successfully saved.',
+        'sent' => 'Message has been successfully sent.',
+        'restored' => ':resource has been successfully restored.',
+        'activated' => ':resource has been successfully activated.',
+        'deactivated' => ':resource has been successfully deactivated.',
+    ],
+
+    'errors' => [
+        'not_found' => ':resource not found.',
+        'server_error' => 'An internal server error occurred. Please try again later.',
+        'validation_error' => 'The provided data is invalid. Please check your input.',
+        'forbidden' => 'You do not have permission to access this resource.',
+        'unauthorized' => 'You must be logged in to perform this action.',
+        'not_acceptable' => 'The request format is not acceptable.',
+        'conflict' => 'This action conflicts with existing data.',
+        'too_many_requests' => 'Too many requests. Please slow down.',
+        'service_unavailable' => 'Service is temporarily unavailable.',
+    ],
+
+    'notifications' => [
+        'welcome' => 'Welcome to :app!',
+        'user_created' => 'A new user account has been created for you.',
+        'status_changed' => 'The status of :resource has been changed.',
+        'password_reset' => 'Your password has been successfully reset.',
+        'password_changed' => 'Your password has been successfully changed.',
+        'profile_updated' => 'Your profile has been successfully updated.',
+        'email_verified' => 'Your email address has been verified.',
+        'assignment' => 'You have been assigned to :resource.',
+    ],
+
+    'common' => [
+        'yes' => 'Yes',
+        'no' => 'No',
+        'cancel' => 'Cancel',
+        'save' => 'Save',
+        'delete' => 'Delete',
+        'edit' => 'Edit',
+        'create' => 'Create',
+        'update' => 'Update',
+        'search' => 'Search',
+        'filter' => 'Filter',
+        'actions' => 'Actions',
+        'loading' => 'Loading...',
+        'confirm' => 'Confirm',
+        'close' => 'Close',
+        'back' => 'Back',
+        'next' => 'Next',
+        'previous' => 'Previous',
+        'submit' => 'Submit',
+        'export' => 'Export',
+        'import' => 'Import',
+        'download' => 'Download',
+        'upload' => 'Upload',
+        'view' => 'View',
+        'details' => 'Details',
+        'select' => 'Select',
+        'all' => 'All',
+        'none' => 'None',
+        'refresh' => 'Refresh',
+        'reset' => 'Reset',
+        'clear' => 'Clear',
+        'apply' => 'Apply',
+    ],
+
+    'confirmations' => [
+        'delete' => 'Are you sure you want to delete this :resource?',
+        'delete_multiple' => 'Are you sure you want to delete these :count items?',
+        'restore' => 'Are you sure you want to restore this :resource?',
+        'deactivate' => 'Are you sure you want to deactivate this :resource?',
+        'activate' => 'Are you sure you want to activate this :resource?',
+        'cancel_action' => 'Are you sure you want to cancel? Unsaved changes will be lost.',
+    ],
+];

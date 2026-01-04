@@ -1,0 +1,82 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'success' => [
+        'created' => ':resource ha sido creado exitosamente.',
+        'updated' => ':resource ha sido actualizado exitosamente.',
+        'deleted' => ':resource ha sido eliminado exitosamente.',
+        'saved' => 'Los cambios se han guardado exitosamente.',
+        'sent' => 'El mensaje ha sido enviado exitosamente.',
+        'restored' => ':resource ha sido restaurado exitosamente.',
+        'activated' => ':resource ha sido activado exitosamente.',
+        'deactivated' => ':resource ha sido desactivado exitosamente.',
+    ],
+
+    'errors' => [
+        'not_found' => ':resource no encontrado.',
+        'server_error' => 'Ha ocurrido un error interno del servidor. Por favor, intente nuevamente más tarde.',
+        'validation_error' => 'Los datos proporcionados no son válidos. Por favor, verifique su entrada.',
+        'forbidden' => 'No tiene permiso para acceder a este recurso.',
+        'unauthorized' => 'Debe iniciar sesión para realizar esta acción.',
+        'not_acceptable' => 'El formato de la solicitud no es aceptable.',
+        'conflict' => 'Esta acción entra en conflicto con los datos existentes.',
+        'too_many_requests' => 'Demasiadas solicitudes. Por favor, reduzca la velocidad.',
+        'service_unavailable' => 'El servicio no está disponible temporalmente.',
+    ],
+
+    'notifications' => [
+        'welcome' => '¡Bienvenido a :app!',
+        'user_created' => 'Se ha creado una nueva cuenta de usuario para usted.',
+        'status_changed' => 'El estado de :resource ha sido cambiado.',
+        'password_reset' => 'Su contraseña ha sido restablecida exitosamente.',
+        'password_changed' => 'Su contraseña ha sido cambiada exitosamente.',
+        'profile_updated' => 'Su perfil ha sido actualizado exitosamente.',
+        'email_verified' => 'Su dirección de correo electrónico ha sido verificada.',
+        'assignment' => 'Ha sido asignado a :resource.',
+    ],
+
+    'common' => [
+        'yes' => 'Sí',
+        'no' => 'No',
+        'cancel' => 'Cancelar',
+        'save' => 'Guardar',
+        'delete' => 'Eliminar',
+        'edit' => 'Editar',
+        'create' => 'Crear',
+        'update' => 'Actualizar',
+        'search' => 'Buscar',
+        'filter' => 'Filtrar',
+        'actions' => 'Acciones',
+        'loading' => 'Cargando...',
+        'confirm' => 'Confirmar',
+        'close' => 'Cerrar',
+        'back' => 'Atrás',
+        'next' => 'Siguiente',
+        'previous' => 'Anterior',
+        'submit' => 'Enviar',
+        'export' => 'Exportar',
+        'import' => 'Importar',
+        'download' => 'Descargar',
+        'upload' => 'Cargar',
+        'view' => 'Ver',
+        'details' => 'Detalles',
+        'select' => 'Seleccionar',
+        'all' => 'Todos',
+        'none' => 'Ninguno',
+        'refresh' => 'Actualizar',
+        'reset' => 'Restablecer',
+        'clear' => 'Limpiar',
+        'apply' => 'Aplicar',
+    ],
+
+    'confirmations' => [
+        'delete' => '¿Está seguro de que desea eliminar este :resource?',
+        'delete_multiple' => '¿Está seguro de que desea eliminar estos :count elementos?',
+        'restore' => '¿Está seguro de que desea restaurar este :resource?',
+        'deactivate' => '¿Está seguro de que desea desactivar este :resource?',
+        'activate' => '¿Está seguro de que desea activar este :resource?',
+        'cancel_action' => '¿Está seguro de que desea cancelar? Se perderán los cambios no guardados.',
+    ],
+];

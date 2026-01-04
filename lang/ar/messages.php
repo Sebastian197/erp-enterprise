@@ -1,0 +1,82 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'success' => [
+        'created' => 'تم إنشاء :resource بنجاح.',
+        'updated' => 'تم تحديث :resource بنجاح.',
+        'deleted' => 'تم حذف :resource بنجاح.',
+        'saved' => 'تم حفظ التغييرات بنجاح.',
+        'sent' => 'تم إرسال الرسالة بنجاح.',
+        'restored' => 'تم استعادة :resource بنجاح.',
+        'activated' => 'تم تفعيل :resource بنجاح.',
+        'deactivated' => 'تم إلغاء تفعيل :resource بنجاح.',
+    ],
+
+    'errors' => [
+        'not_found' => 'لم يتم العثور على :resource.',
+        'server_error' => 'حدث خطأ داخلي في الخادم. يرجى المحاولة مرة أخرى لاحقاً.',
+        'validation_error' => 'البيانات المقدمة غير صالحة. يرجى التحقق من المدخلات.',
+        'forbidden' => 'ليس لديك إذن للوصول إلى هذا المورد.',
+        'unauthorized' => 'يجب عليك تسجيل الدخول لتنفيذ هذا الإجراء.',
+        'not_acceptable' => 'تنسيق الطلب غير مقبول.',
+        'conflict' => 'يتعارض هذا الإجراء مع البيانات الموجودة.',
+        'too_many_requests' => 'عدد كبير جداً من الطلبات. يرجى التباطؤ.',
+        'service_unavailable' => 'الخدمة غير متوفرة مؤقتاً.',
+    ],
+
+    'notifications' => [
+        'welcome' => 'مرحباً بك في :app!',
+        'user_created' => 'تم إنشاء حساب مستخدم جديد لك.',
+        'status_changed' => 'تم تغيير حالة :resource.',
+        'password_reset' => 'تمت إعادة تعيين كلمة المرور بنجاح.',
+        'password_changed' => 'تم تغيير كلمة المرور بنجاح.',
+        'profile_updated' => 'تم تحديث ملفك الشخصي بنجاح.',
+        'email_verified' => 'تم التحقق من عنوان بريدك الإلكتروني.',
+        'assignment' => 'تم تعيينك إلى :resource.',
+    ],
+
+    'common' => [
+        'yes' => 'نعم',
+        'no' => 'لا',
+        'cancel' => 'إلغاء',
+        'save' => 'حفظ',
+        'delete' => 'حذف',
+        'edit' => 'تحرير',
+        'create' => 'إنشاء',
+        'update' => 'تحديث',
+        'search' => 'بحث',
+        'filter' => 'تصفية',
+        'actions' => 'إجراءات',
+        'loading' => 'جارٍ التحميل...',
+        'confirm' => 'تأكيد',
+        'close' => 'إغلاق',
+        'back' => 'رجوع',
+        'next' => 'التالي',
+        'previous' => 'السابق',
+        'submit' => 'إرسال',
+        'export' => 'تصدير',
+        'import' => 'استيراد',
+        'download' => 'تنزيل',
+        'upload' => 'رفع',
+        'view' => 'عرض',
+        'details' => 'التفاصيل',
+        'select' => 'اختيار',
+        'all' => 'الكل',
+        'none' => 'لا شيء',
+        'refresh' => 'تحديث',
+        'reset' => 'إعادة تعيين',
+        'clear' => 'مسح',
+        'apply' => 'تطبيق',
+    ],
+
+    'confirmations' => [
+        'delete' => 'هل أنت متأكد من رغبتك في حذف :resource؟',
+        'delete_multiple' => 'هل أنت متأكد من رغبتك في حذف :count عنصر؟',
+        'restore' => 'هل أنت متأكد من رغبتك في استعادة :resource؟',
+        'deactivate' => 'هل أنت متأكد من رغبتك في إلغاء تفعيل :resource؟',
+        'activate' => 'هل أنت متأكد من رغبتك في تفعيل :resource؟',
+        'cancel_action' => 'هل أنت متأكد من رغبتك في الإلغاء؟ سيتم فقدان التغييرات غير المحفوظة.',
+    ],
+];

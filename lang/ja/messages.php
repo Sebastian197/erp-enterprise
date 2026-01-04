@@ -1,0 +1,82 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'success' => [
+        'created' => ':resource が正常に作成されました。',
+        'updated' => ':resource が正常に更新されました。',
+        'deleted' => ':resource が正常に削除されました。',
+        'saved' => '変更が正常に保存されました。',
+        'sent' => 'メッセージが正常に送信されました。',
+        'restored' => ':resource が正常に復元されました。',
+        'activated' => ':resource が正常に有効化されました。',
+        'deactivated' => ':resource が正常に無効化されました。',
+    ],
+
+    'errors' => [
+        'not_found' => ':resource が見つかりません。',
+        'server_error' => '内部サーバーエラーが発生しました。後ほど再度お試しください。',
+        'validation_error' => '入力されたデータが無効です。入力内容をご確認ください。',
+        'forbidden' => 'このリソースへのアクセス権限がありません。',
+        'unauthorized' => 'この操作を実行するにはログインが必要です。',
+        'not_acceptable' => 'リクエスト形式が受け付けられません。',
+        'conflict' => 'この操作は既存のデータと競合しています。',
+        'too_many_requests' => 'リクエストが多すぎます。しばらくお待ちください。',
+        'service_unavailable' => 'サービスが一時的に利用できません。',
+    ],
+
+    'notifications' => [
+        'welcome' => ':app へようこそ！',
+        'user_created' => '新しいユーザーアカウントが作成されました。',
+        'status_changed' => ':resource のステータスが変更されました。',
+        'password_reset' => 'パスワードが正常にリセットされました。',
+        'password_changed' => 'パスワードが正常に変更されました。',
+        'profile_updated' => 'プロフィールが正常に更新されました。',
+        'email_verified' => 'メールアドレスが確認されました。',
+        'assignment' => ':resource に割り当てられました。',
+    ],
+
+    'common' => [
+        'yes' => 'はい',
+        'no' => 'いいえ',
+        'cancel' => 'キャンセル',
+        'save' => '保存',
+        'delete' => '削除',
+        'edit' => '編集',
+        'create' => '作成',
+        'update' => '更新',
+        'search' => '検索',
+        'filter' => 'フィルター',
+        'actions' => '操作',
+        'loading' => '読み込み中...',
+        'confirm' => '確認',
+        'close' => '閉じる',
+        'back' => '戻る',
+        'next' => '次へ',
+        'previous' => '前へ',
+        'submit' => '送信',
+        'export' => 'エクスポート',
+        'import' => 'インポート',
+        'download' => 'ダウンロード',
+        'upload' => 'アップロード',
+        'view' => '表示',
+        'details' => '詳細',
+        'select' => '選択',
+        'all' => 'すべて',
+        'none' => 'なし',
+        'refresh' => '更新',
+        'reset' => 'リセット',
+        'clear' => 'クリア',
+        'apply' => '適用',
+    ],
+
+    'confirmations' => [
+        'delete' => 'この :resource を削除してもよろしいですか？',
+        'delete_multiple' => 'これらの :count 項目を削除してもよろしいですか？',
+        'restore' => 'この :resource を復元してもよろしいですか？',
+        'deactivate' => 'この :resource を無効化してもよろしいですか？',
+        'activate' => 'この :resource を有効化してもよろしいですか？',
+        'cancel_action' => 'キャンセルしてもよろしいですか？保存されていない変更は失われます。',
+    ],
+];

@@ -1,0 +1,27 @@
+/* Default Dark Theme */
+.theme-default-dark {
+    --color-primary: #60a5fa;
+    --color-secondary: #94a3b8;
+    --color-success: #4ade80;
+    --color-danger: #f87171;
+    --color-warning: #fbbf24;
+    --color-info: #38bdf8;
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #64748b;
+    --border-color: #334155;
+    --border-color-hover: #475569;
+    --sidebar-bg: #020617;
+    --sidebar-text: #cbd5e1;
+    --sidebar-hover: #1e293b;
+    --sidebar-active: #60a5fa;
+    --navbar-bg: #0f172a;
+    --navbar-text: #f1f5f9;
+    --navbar-border: #334155;
+    --card-bg: #1e293b;
+    --card-border: #334155;
+    --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+}
