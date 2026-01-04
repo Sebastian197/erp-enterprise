@@ -12,39 +12,54 @@
     "logout": "Abmelden"
   },
   "auth": {
-    "login": "Anmelden",
-    "register": "Registrieren",
-    "logout": "Abmelden",
-    "email": "E-Mail-Adresse",
-    "password": "Passwort",
-    "password_confirm": "Passwort Bestätigen",
-    "remember_me": "Angemeldet Bleiben",
-    "forgot_password": "Passwort Vergessen?",
-    "reset_password": "Passwort Zurücksetzen",
-    "send_reset_link": "Zurücksetzungslink Senden",
-    "reset_password_title": "Setzen Sie Ihr Passwort Zurück",
-    "login_title": "Bei Ihrem Konto Anmelden",
-    "login_button": "Anmelden",
-    "register_title": "Neues Konto Erstellen",
-    "register_button": "Registrieren",
-    "already_have_account": "Haben Sie bereits ein Konto?",
-    "dont_have_account": "Haben Sie noch kein Konto?",
-    "back_to_login": "Zurück zur Anmeldung",
-    "reset_link_sent": "Der Zurücksetzungslink wurde an Ihre E-Mail gesendet",
-    "password_reset_success": "Ihr Passwort wurde erfolgreich zurückgesetzt"
+    "welcome_message": "Willkommen bei ERP Enterprise",
+    "login": {
+      "title": "Bei Ihrem Konto Anmelden",
+      "email": "E-Mail-Adresse",
+      "email_placeholder": "Geben Sie Ihre E-Mail ein",
+      "password": "Passwort",
+      "password_placeholder": "Geben Sie Ihr Passwort ein",
+      "remember_me": "Angemeldet Bleiben",
+      "forgot_password": "Passwort Vergessen?",
+      "submit": "Anmelden"
+    },
+    "register": {
+      "title": "Neues Konto Erstellen",
+      "submit": "Registrieren"
+    },
+    "forgot_password": {
+      "title": "Passwort Zurücksetzen",
+      "submit": "Zurücksetzungslink Senden"
+    },
+    "reset_password": {
+      "title": "Setzen Sie Ihr Passwort Zurück",
+      "submit": "Passwort Zurücksetzen"
+    }
   },
   "dashboard": {
     "title": "Dashboard",
     "welcome": "Willkommen zurück, {name}!",
+    "subtitle": "Hier ist, was heute mit Ihrem System passiert.",
     "overview": "Übersicht",
-    "total_users": "Benutzer Gesamt",
-    "active_users": "Aktive Benutzer",
-    "total_groups": "Gruppen Gesamt",
-    "total_categories": "Kategorien Gesamt",
-    "recent_activity": "Letzte Aktivität",
-    "quick_actions": "Schnellaktionen",
     "statistics": "Statistiken",
-    "no_data": "Keine Daten verfügbar"
+    "no_data": "Keine Daten verfügbar",
+    "stats": {
+      "total_users": "Benutzer Gesamt",
+      "active_users": "Aktive Benutzer",
+      "total_groups": "Gruppen Gesamt",
+      "total_categories": "Kategorien Gesamt"
+    },
+    "quick_actions": {
+      "title": "Schnellaktionen",
+      "create_user": "Benutzer Erstellen",
+      "create_group": "Gruppe Erstellen",
+      "create_category": "Kategorie Erstellen",
+      "settings": "Einstellungen"
+    },
+    "recent_activity": {
+      "title": "Letzte Aktivität",
+      "subtitle": "Neueste Aktionen in Ihrem System"
+    }
   },
   "users": {
     "title": "Benutzer",
@@ -171,5 +186,9 @@
     "last": "Letzte",
     "next": "Weiter",
     "previous": "Vorherige"
+  },
+  "language_switcher": {
+    "label": "Sprache wechseln",
+    "select_language": "Sprache auswählen"
   }
 }

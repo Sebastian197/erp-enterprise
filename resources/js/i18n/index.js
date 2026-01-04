@@ -5,6 +5,7 @@
 
 import { createI18n } from 'vue-i18n';
 import { LOCALES } from '@/utils/constants';
+import enMessages from './locales/en.json';
 
 /**
  * Load locale messages
@@ -41,10 +42,9 @@ const getDefaultLocale = () => {
 };
 
 /**
- * Load initial locale synchronously
+ * Get default locale
  */
 const defaultLocale = getDefaultLocale();
-const initialMessages = await import(`./locales/${defaultLocale}.json`);
 
 /**
  * Create i18n instance
@@ -54,7 +54,7 @@ const i18n = createI18n({
     locale: defaultLocale,
     fallbackLocale: 'en',
     messages: {
-        [defaultLocale]: initialMessages.default || initialMessages,
+        en: enMessages,
     },
     globalInjection: true,
     missingWarn: false,

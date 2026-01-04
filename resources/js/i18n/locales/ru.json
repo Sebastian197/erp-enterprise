@@ -12,39 +12,54 @@
     "logout": "Выйти"
   },
   "auth": {
-    "login": "Войти",
-    "register": "Регистрация",
-    "logout": "Выйти",
-    "email": "Адрес электронной почты",
-    "password": "Пароль",
-    "password_confirm": "Подтвердите пароль",
-    "remember_me": "Запомнить меня",
-    "forgot_password": "Забыли пароль?",
-    "reset_password": "Сбросить пароль",
-    "send_reset_link": "Отправить ссылку для сброса",
-    "reset_password_title": "Сбросьте свой пароль",
-    "login_title": "Войдите в свою учетную запись",
-    "login_button": "Войти",
-    "register_title": "Создать новую учетную запись",
-    "register_button": "Зарегистрироваться",
-    "already_have_account": "Уже есть учетная запись?",
-    "dont_have_account": "Нет учетной записи?",
-    "back_to_login": "Вернуться к входу",
-    "reset_link_sent": "Ссылка для сброса пароля отправлена на вашу почту",
-    "password_reset_success": "Ваш пароль был успешно сброшен"
+    "welcome_message": "Добро пожаловать в ERP Enterprise",
+    "login": {
+      "title": "Войдите в свою учетную запись",
+      "email": "Адрес электронной почты",
+      "email_placeholder": "Введите ваш email",
+      "password": "Пароль",
+      "password_placeholder": "Введите ваш пароль",
+      "remember_me": "Запомнить меня",
+      "forgot_password": "Забыли пароль?",
+      "submit": "Войти"
+    },
+    "register": {
+      "title": "Создать новую учетную запись",
+      "submit": "Зарегистрироваться"
+    },
+    "forgot_password": {
+      "title": "Сбросить пароль",
+      "submit": "Отправить ссылку для сброса"
+    },
+    "reset_password": {
+      "title": "Сбросьте свой пароль",
+      "submit": "Сбросить пароль"
+    }
   },
   "dashboard": {
-    "title": "Панель управления",
+    "title": "Панель Управления",
     "welcome": "С возвращением, {name}!",
+    "subtitle": "Вот что происходит с вашей системой сегодня.",
     "overview": "Обзор",
-    "total_users": "Всего пользователей",
-    "active_users": "Активных пользователей",
-    "total_groups": "Всего групп",
-    "total_categories": "Всего категорий",
-    "recent_activity": "Недавняя активность",
-    "quick_actions": "Быстрые действия",
     "statistics": "Статистика",
-    "no_data": "Нет доступных данных"
+    "no_data": "Нет доступных данных",
+    "stats": {
+      "total_users": "Всего Пользователей",
+      "active_users": "Активных Пользователей",
+      "total_groups": "Всего Групп",
+      "total_categories": "Всего Категорий"
+    },
+    "quick_actions": {
+      "title": "Быстрые Действия",
+      "create_user": "Создать Пользователя",
+      "create_group": "Создать Группу",
+      "create_category": "Создать Категорию",
+      "settings": "Настройки"
+    },
+    "recent_activity": {
+      "title": "Недавняя Активность",
+      "subtitle": "Последние действия в вашей системе"
+    }
   },
   "users": {
     "title": "Пользователи",
@@ -171,5 +186,9 @@
     "last": "Последняя",
     "next": "Следующая",
     "previous": "Предыдущая"
+  },
+  "language_switcher": {
+    "label": "Переключить язык",
+    "select_language": "Выберите язык"
   }
 }

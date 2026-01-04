@@ -65,6 +65,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { LOCALES, STORAGE_KEYS } from '@/utils/constants';
+import { setI18nLocale } from '@/i18n';
 
 /**
  * LanguageSwitcher Component
@@ -99,17 +100,18 @@ const toggleDropdown = () => {
 /**
  * Change locale
  */
-const changeLocale = (code) => {
-  locale.value = code;
-  localStorage.setItem(STORAGE_KEYS.LOCALE, code);
+const changeLocale = async (code) => {
+  try {
+    // Load and set the new locale
+    await setI18nLocale(code);
 
-  // Update document direction for RTL languages
-  const localeData = availableLocales.value.find(l => l.code === code);
-  if (localeData) {
-    document.documentElement.dir = localeData.dir;
+    // Save to localStorage
+    localStorage.setItem(STORAGE_KEYS.LOCALE, code);
+
+    isOpen.value = false;
+  } catch (error) {
+    console.error('Failed to change locale:', error);
   }
-
-  isOpen.value = false;
 };
 
 /**

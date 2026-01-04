@@ -12,55 +12,70 @@
     "logout": "Déconnexion"
   },
   "auth": {
-    "login": "Connexion",
-    "register": "S'inscrire",
-    "logout": "Déconnexion",
-    "email": "Adresse Email",
-    "password": "Mot de Passe",
-    "password_confirm": "Confirmer le Mot de Passe",
-    "remember_me": "Se Souvenir de Moi",
-    "forgot_password": "Mot de Passe Oublié?",
-    "reset_password": "Réinitialiser le Mot de Passe",
-    "send_reset_link": "Envoyer le Lien de Réinitialisation",
-    "reset_password_title": "Réinitialisez Votre Mot de Passe",
-    "login_title": "Connectez-vous à Votre Compte",
-    "login_button": "Se Connecter",
-    "register_title": "Créer un Nouveau Compte",
-    "register_button": "S'inscrire",
-    "already_have_account": "Vous avez déjà un compte?",
-    "dont_have_account": "Vous n'avez pas de compte?",
-    "back_to_login": "Retour à la Connexion",
-    "reset_link_sent": "Le lien de réinitialisation a été envoyé à votre email",
-    "password_reset_success": "Votre mot de passe a été réinitialisé avec succès"
+    "welcome_message": "Bienvenue sur ERP Enterprise",
+    "login": {
+      "title": "Connectez-vous à votre compte",
+      "email": "Adresse e-mail",
+      "email_placeholder": "Entrez votre e-mail",
+      "password": "Mot de passe",
+      "password_placeholder": "Entrez votre mot de passe",
+      "remember_me": "Se souvenir de moi",
+      "forgot_password": "Mot de passe oublié?",
+      "submit": "Se connecter"
+    },
+    "register": {
+      "title": "Créer un nouveau compte",
+      "submit": "S'inscrire"
+    },
+    "forgot_password": {
+      "title": "Réinitialiser le mot de passe",
+      "submit": "Envoyer le lien de réinitialisation"
+    },
+    "reset_password": {
+      "title": "Réinitialisez votre mot de passe",
+      "submit": "Réinitialiser le mot de passe"
+    }
   },
   "dashboard": {
     "title": "Tableau de Bord",
-    "welcome": "Bienvenue, {name}!",
-    "overview": "Aperçu",
-    "total_users": "Utilisateurs Totaux",
-    "active_users": "Utilisateurs Actifs",
-    "total_groups": "Groupes Totaux",
-    "total_categories": "Catégories Totales",
-    "recent_activity": "Activité Récente",
-    "quick_actions": "Actions Rapides",
+    "welcome": "Bon retour, {name}!",
+    "subtitle": "Voici ce qui se passe avec votre système aujourd'hui.",
+    "overview": "Vue d'Ensemble",
     "statistics": "Statistiques",
-    "no_data": "Aucune donnée disponible"
+    "no_data": "Aucune donnée disponible",
+    "stats": {
+      "total_users": "Total des Utilisateurs",
+      "active_users": "Utilisateurs Actifs",
+      "total_groups": "Total des Groupes",
+      "total_categories": "Total des Catégories"
+    },
+    "quick_actions": {
+      "title": "Actions Rapides",
+      "create_user": "Créer un Utilisateur",
+      "create_group": "Créer un Groupe",
+      "create_category": "Créer une Catégorie",
+      "settings": "Paramètres"
+    },
+    "recent_activity": {
+      "title": "Activité Récente",
+      "subtitle": "Dernières actions dans votre système"
+    }
   },
   "users": {
     "title": "Utilisateurs",
-    "list": "Liste des Utilisateurs",
-    "create": "Créer un Utilisateur",
-    "edit": "Modifier l'Utilisateur",
-    "show": "Voir l'Utilisateur",
-    "delete": "Supprimer l'Utilisateur",
+    "list": "Liste des utilisateurs",
+    "create": "Créer un utilisateur",
+    "edit": "Modifier l'utilisateur",
+    "show": "Voir l'utilisateur",
+    "delete": "Supprimer l'utilisateur",
     "name": "Nom",
-    "email": "Email",
+    "email": "E-mail",
     "phone": "Téléphone",
     "status": "Statut",
     "role": "Rôle",
     "group": "Groupe",
     "created_at": "Créé le",
-    "updated_at": "Mis à Jour le",
+    "updated_at": "Mis à jour le",
     "actions": "Actions",
     "active": "Actif",
     "inactive": "Inactif",
@@ -69,8 +84,8 @@
     "filter": "Filtrer",
     "export": "Exporter",
     "import": "Importer",
-    "bulk_actions": "Actions en Lot",
-    "select_all": "Tout Sélectionner",
+    "bulk_actions": "Actions groupées",
+    "select_all": "Tout sélectionner",
     "user_created": "Utilisateur créé avec succès",
     "user_updated": "Utilisateur mis à jour avec succès",
     "user_deleted": "Utilisateur supprimé avec succès",
@@ -78,22 +93,22 @@
     "no_users": "Aucun utilisateur trouvé"
   },
   "profile": {
-    "title": "Mon Profil",
-    "edit_profile": "Modifier le Profil",
-    "change_password": "Changer le Mot de Passe",
-    "personal_info": "Informations Personnelles",
-    "contact_info": "Informations de Contact",
+    "title": "Mon profil",
+    "edit_profile": "Modifier le profil",
+    "change_password": "Changer le mot de passe",
+    "personal_info": "Informations personnelles",
+    "contact_info": "Coordonnées",
     "preferences": "Préférences",
     "security": "Sécurité",
-    "current_password": "Mot de Passe Actuel",
-    "new_password": "Nouveau Mot de Passe",
-    "confirm_new_password": "Confirmer le Nouveau Mot de Passe",
+    "current_password": "Mot de passe actuel",
+    "new_password": "Nouveau mot de passe",
+    "confirm_new_password": "Confirmer le nouveau mot de passe",
     "avatar": "Avatar",
-    "upload_avatar": "Télécharger l'Avatar",
-    "remove_avatar": "Supprimer l'Avatar",
+    "upload_avatar": "Télécharger l'avatar",
+    "remove_avatar": "Supprimer l'avatar",
     "language": "Langue",
     "theme": "Thème",
-    "timezone": "Fuseau Horaire",
+    "timezone": "Fuseau horaire",
     "profile_updated": "Profil mis à jour avec succès",
     "password_updated": "Mot de passe mis à jour avec succès"
   },
@@ -104,7 +119,7 @@
     "edit": "Modifier",
     "view": "Voir",
     "create": "Créer",
-    "update": "Mettre à Jour",
+    "update": "Mettre à jour",
     "search": "Rechercher",
     "filter": "Filtrer",
     "export": "Exporter",
@@ -135,41 +150,45 @@
     "info": "Information"
   },
   "validation": {
-    "required": "Ce champ est obligatoire",
-    "email": "Veuillez saisir une adresse email valide",
+    "required": "Ce champ est requis",
+    "email": "Veuillez entrer une adresse e-mail valide",
     "min": "La longueur minimale est de {min} caractères",
     "max": "La longueur maximale est de {max} caractères",
     "numeric": "Ce champ doit être numérique",
     "confirmed": "La confirmation ne correspond pas",
     "unique": "Cette valeur est déjà utilisée",
     "invalid": "Valeur invalide",
-    "password_strength": "Le mot de passe doit contenir au moins 8 caractères, incluant majuscules, minuscules et chiffres"
+    "password_strength": "Le mot de passe doit contenir au moins 8 caractères, dont des majuscules, des minuscules et des chiffres"
   },
   "errors": {
-    "403_title": "Accès Interdit",
+    "403_title": "Accès refusé",
     "403_message": "Vous n'avez pas la permission d'accéder à cette page.",
-    "404_title": "Page Non Trouvée",
+    "404_title": "Page non trouvée",
     "404_message": "La page que vous recherchez n'existe pas ou a été déplacée.",
-    "500_title": "Erreur du Serveur",
-    "500_message": "Quelque chose s'est mal passé de notre côté. Veuillez réessayer plus tard.",
-    "go_home": "Aller au Tableau de Bord",
+    "500_title": "Erreur serveur",
+    "500_message": "Une erreur s'est produite de notre côté. Veuillez réessayer plus tard.",
+    "go_home": "Aller au tableau de bord",
     "go_back": "Retour",
     "network_error": "Erreur réseau. Veuillez vérifier votre connexion.",
     "unknown_error": "Une erreur inattendue s'est produite."
   },
   "notifications": {
     "title": "Notifications",
-    "mark_all_read": "Tout Marquer comme Lu",
-    "clear_all": "Tout Effacer",
+    "mark_all_read": "Tout marquer comme lu",
+    "clear_all": "Tout effacer",
     "no_notifications": "Aucune notification",
-    "view_all": "Voir Toutes les Notifications"
+    "view_all": "Voir toutes les notifications"
   },
   "pagination": {
     "showing": "Affichage de {from} à {to} sur {total} résultats",
-    "per_page": "Par Page",
+    "per_page": "Par page",
     "first": "Premier",
     "last": "Dernier",
     "next": "Suivant",
     "previous": "Précédent"
+  },
+  "language_switcher": {
+    "label": "Changer de langue",
+    "select_language": "Sélectionner une langue"
   }
 }

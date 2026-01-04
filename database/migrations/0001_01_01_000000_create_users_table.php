@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('avatar')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
-            $table->foreignId('group_id')->nullable()->constrained('groups')->onDelete('set null');
+            $table->unsignedBigInteger('group_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

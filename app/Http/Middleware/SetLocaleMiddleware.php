@@ -73,8 +73,8 @@ class SetLocaleMiddleware
             }
         }
 
-        // 3. Check for locale in session
-        if ($request->session()->has('locale')) {
+        // 3. Check for locale in session (only if session is available)
+        if ($request->hasSession() && $request->session()->has('locale')) {
             $sessionLocale = $request->session()->get('locale');
             if (is_string($sessionLocale) && $this->isLocaleSupported($sessionLocale)) {
                 return $sessionLocale;

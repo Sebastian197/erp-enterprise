@@ -46,7 +46,7 @@ class AuthService
         }
 
         // Check if user is active
-        if ($user->status !== UserStatus::Active) {
+        if ($user->status !== UserStatus::ACTIVE) {
             throw new UnauthorizedException('Account is not active.');
         }
 

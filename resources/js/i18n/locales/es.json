@@ -12,39 +12,54 @@
     "logout": "Cerrar Sesión"
   },
   "auth": {
-    "login": "Iniciar Sesión",
-    "register": "Registrarse",
-    "logout": "Cerrar Sesión",
-    "email": "Correo Electrónico",
-    "password": "Contraseña",
-    "password_confirm": "Confirmar Contraseña",
-    "remember_me": "Recordarme",
-    "forgot_password": "¿Olvidó su contraseña?",
-    "reset_password": "Restablecer Contraseña",
-    "send_reset_link": "Enviar Enlace de Restablecimiento",
-    "reset_password_title": "Restablezca su Contraseña",
-    "login_title": "Inicie Sesión en su Cuenta",
-    "login_button": "Iniciar Sesión",
-    "register_title": "Crear Nueva Cuenta",
-    "register_button": "Registrarse",
-    "already_have_account": "¿Ya tiene una cuenta?",
-    "dont_have_account": "¿No tiene una cuenta?",
-    "back_to_login": "Volver al Inicio de Sesión",
-    "reset_link_sent": "El enlace de restablecimiento ha sido enviado a su correo",
-    "password_reset_success": "Su contraseña ha sido restablecida exitosamente"
+    "welcome_message": "Bienvenido a ERP Enterprise",
+    "login": {
+      "title": "Inicie Sesión en su Cuenta",
+      "email": "Correo Electrónico",
+      "email_placeholder": "Ingrese su correo",
+      "password": "Contraseña",
+      "password_placeholder": "Ingrese su contraseña",
+      "remember_me": "Recordarme",
+      "forgot_password": "¿Olvidó su contraseña?",
+      "submit": "Iniciar Sesión"
+    },
+    "register": {
+      "title": "Crear Nueva Cuenta",
+      "submit": "Registrarse"
+    },
+    "forgot_password": {
+      "title": "Restablecer Contraseña",
+      "submit": "Enviar Enlace"
+    },
+    "reset_password": {
+      "title": "Restablezca su Contraseña",
+      "submit": "Restablecer Contraseña"
+    }
   },
   "dashboard": {
     "title": "Tablero",
     "welcome": "¡Bienvenido de nuevo, {name}!",
+    "subtitle": "Esto es lo que está pasando con tu sistema hoy.",
     "overview": "Resumen",
-    "total_users": "Usuarios Totales",
-    "active_users": "Usuarios Activos",
-    "total_groups": "Grupos Totales",
-    "total_categories": "Categorías Totales",
-    "recent_activity": "Actividad Reciente",
-    "quick_actions": "Acciones Rápidas",
     "statistics": "Estadísticas",
-    "no_data": "No hay datos disponibles"
+    "no_data": "No hay datos disponibles",
+    "stats": {
+      "total_users": "Usuarios Totales",
+      "active_users": "Usuarios Activos",
+      "total_groups": "Grupos Totales",
+      "total_categories": "Categorías Totales"
+    },
+    "quick_actions": {
+      "title": "Acciones Rápidas",
+      "create_user": "Crear Usuario",
+      "create_group": "Crear Grupo",
+      "create_category": "Crear Categoría",
+      "settings": "Configuración"
+    },
+    "recent_activity": {
+      "title": "Actividad Reciente",
+      "subtitle": "Últimas acciones en tu sistema"
+    }
   },
   "users": {
     "title": "Usuarios",
@@ -69,12 +84,12 @@
     "filter": "Filtrar",
     "export": "Exportar",
     "import": "Importar",
-    "bulk_actions": "Acciones en Lote",
+    "bulk_actions": "Acciones Masivas",
     "select_all": "Seleccionar Todo",
     "user_created": "Usuario creado exitosamente",
     "user_updated": "Usuario actualizado exitosamente",
     "user_deleted": "Usuario eliminado exitosamente",
-    "confirm_delete": "¿Está seguro de que desea eliminar este usuario?",
+    "confirm_delete": "¿Está seguro de eliminar este usuario?",
     "no_users": "No se encontraron usuarios"
   },
   "profile": {
@@ -122,7 +137,7 @@
     "submit": "Enviar",
     "reset": "Restablecer",
     "clear": "Limpiar",
-    "all": "Todos",
+    "all": "Todo",
     "none": "Ninguno",
     "select": "Seleccionar",
     "actions": "Acciones",
@@ -136,14 +151,14 @@
   },
   "validation": {
     "required": "Este campo es obligatorio",
-    "email": "Por favor ingrese un correo electrónico válido",
+    "email": "Por favor ingrese un correo válido",
     "min": "La longitud mínima es {min} caracteres",
     "max": "La longitud máxima es {max} caracteres",
     "numeric": "Este campo debe ser numérico",
     "confirmed": "La confirmación no coincide",
     "unique": "Este valor ya está en uso",
     "invalid": "Valor inválido",
-    "password_strength": "La contraseña debe contener al menos 8 caracteres, incluyendo mayúsculas, minúsculas y números"
+    "password_strength": "La contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas y números"
   },
   "errors": {
     "403_title": "Acceso Prohibido",
@@ -151,7 +166,7 @@
     "404_title": "Página No Encontrada",
     "404_message": "La página que busca no existe o ha sido movida.",
     "500_title": "Error del Servidor",
-    "500_message": "Algo salió mal de nuestro lado. Por favor intente más tarde.",
+    "500_message": "Algo salió mal. Por favor intente de nuevo más tarde.",
     "go_home": "Ir al Tablero",
     "go_back": "Volver",
     "network_error": "Error de red. Por favor verifique su conexión.",
@@ -159,16 +174,16 @@
   },
   "notifications": {
     "title": "Notificaciones",
-    "mark_all_read": "Marcar Todo como Leído",
-    "clear_all": "Limpiar Todo",
+    "mark_all_read": "Marcar Todas como Leídas",
+    "clear_all": "Limpiar Todas",
     "no_notifications": "No hay notificaciones",
     "view_all": "Ver Todas las Notificaciones"
   },
   "pagination": {
     "showing": "Mostrando {from} a {to} de {total} resultados",
     "per_page": "Por Página",
-    "first": "Primero",
-    "last": "Último",
+    "first": "Primera",
+    "last": "Última",
     "next": "Siguiente",
     "previous": "Anterior"
   }

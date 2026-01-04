@@ -31,7 +31,7 @@ export const useAuthStore = defineStore('auth', () => {
         const storedToken = localStorage.getItem(STORAGE_KEYS.AUTH_TOKEN);
         const storedUser = localStorage.getItem(STORAGE_KEYS.AUTH_USER);
 
-        if (storedToken && storedUser) {
+        if (storedToken && storedUser && storedUser !== 'undefined' && storedUser !== 'null') {
             token.value = storedToken;
             try {
                 user.value = JSON.parse(storedUser);
@@ -39,6 +39,9 @@ export const useAuthStore = defineStore('auth', () => {
                 console.error('Failed to parse stored user:', e);
                 clearAuth();
             }
+        } else if (storedToken || storedUser) {
+            // Clear invalid data
+            clearAuth();
         }
     };
 
@@ -54,7 +57,7 @@ export const useAuthStore = defineStore('auth', () => {
 
             const response = await api.post(API_ENDPOINTS.AUTH.LOGIN, credentials);
 
-            const { token: authToken, user: userData } = response.data;
+            const { token: authToken, user: userData } = response.data.data;
 
             // Store auth data
             token.value = authToken;
@@ -130,11 +133,11 @@ export const useAuthStore = defineStore('auth', () => {
             error.value = null;
 
             const response = await api.get(API_ENDPOINTS.AUTH.ME);
-            user.value = response.data;
+            user.value = response.data.data;
 
-            localStorage.setItem(STORAGE_KEYS.AUTH_USER, JSON.stringify(response.data));
+            localStorage.setItem(STORAGE_KEYS.AUTH_USER, JSON.stringify(response.data.data));
 
-            return response.data;
+            return response.data.data;
         } catch (err) {
             error.value = err.message || 'Failed to fetch user';
             if (err.status === 401) {

@@ -1,85 +1,104 @@
 <template>
-  <div>
-    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-      {{ $t('auth.login.title') }}
-    </h2>
+  <div class="bg-white rounded-3xl shadow-2xl p-8">
+    <!-- Error Message -->
+    <transition
+      enter-active-class="transition duration-200 ease-out"
+      enter-from-class="opacity-0 -translate-y-2"
+      enter-to-class="opacity-100 translate-y-0"
+      leave-active-class="transition duration-150 ease-in"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 -translate-y-2"
+    >
+      <div
+        v-if="errorMessage"
+        class="mb-6 p-4 bg-danger-50 border border-danger-200 rounded-lg"
+      >
+        <div class="flex items-start">
+          <i class="fas fa-exclamation-circle text-danger-500 mr-2 mt-0.5"></i>
+          <p class="text-sm text-danger-700">{{ errorMessage }}</p>
+        </div>
+      </div>
+    </transition>
 
-    <form @submit.prevent="handleSubmit" class="space-y-4">
+    <form @submit.prevent="handleSubmit" class="space-y-5">
       <!-- Email Input -->
-      <Input
-        v-model="form.email"
-        type="email"
-        :label="$t('auth.login.email')"
-        :placeholder="$t('auth.login.email_placeholder')"
-        :error="errors.email"
-        icon="fas fa-envelope"
-        required
-        autocomplete="email"
-      />
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+          {{ $t('auth.login.email') }}
+        </label>
+        <input
+          id="email"
+          v-model="form.email"
+          type="email"
+          autocomplete="email"
+          :placeholder="$t('auth.login.email_placeholder')"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-gray-900 placeholder-gray-400"
+          :class="{ 'border-danger-500 focus:ring-danger-500': errors.email }"
+        />
+        <p v-if="errors.email" class="mt-1.5 text-sm text-danger-600">
+          {{ errors.email }}
+        </p>
+      </div>
 
       <!-- Password Input -->
-      <Input
-        v-model="form.password"
-        type="password"
-        :label="$t('auth.login.password')"
-        :placeholder="$t('auth.login.password_placeholder')"
-        :error="errors.password"
-        icon="fas fa-lock"
-        required
-        autocomplete="current-password"
-      />
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+          {{ $t('auth.login.password') }}
+        </label>
+        <div class="relative">
+          <input
+            id="password"
+            v-model="form.password"
+            :type="showPassword ? 'text' : 'password'"
+            autocomplete="current-password"
+            :placeholder="$t('auth.login.password_placeholder')"
+            class="w-full px-4 py-3 pr-11 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-gray-900 placeholder-gray-400"
+            :class="{ 'border-danger-500 focus:ring-danger-500': errors.password }"
+          />
+          <button
+            type="button"
+            @click="showPassword = !showPassword"
+            class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+          >
+            <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'" class="text-sm"></i>
+          </button>
+        </div>
+        <p v-if="errors.password" class="mt-1.5 text-sm text-danger-600">
+          {{ errors.password }}
+        </p>
+      </div>
 
       <!-- Remember Me & Forgot Password -->
       <div class="flex items-center justify-between">
-        <label class="flex items-center">
+        <label class="flex items-center cursor-pointer">
           <input
             v-model="form.remember"
             type="checkbox"
-            class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2"
+            class="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
           />
-          <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">
+          <span class="ml-2 text-sm text-gray-600">
             {{ $t('auth.login.remember_me') }}
           </span>
         </label>
 
         <router-link
           to="/auth/forgot-password"
-          class="text-sm text-primary hover:text-primary-dark transition-colors"
+          class="text-sm font-medium text-primary-600 hover:text-primary-700"
         >
           {{ $t('auth.login.forgot_password') }}
         </router-link>
       </div>
 
-      <!-- Error Message -->
-      <transition
-        enter-active-class="transition duration-200 ease-out"
-        enter-from-class="opacity-0 -translate-y-2"
-        enter-to-class="opacity-100 translate-y-0"
-      >
-        <div
-          v-if="errorMessage"
-          class="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg"
-        >
-          <div class="flex items-center">
-            <i class="fas fa-exclamation-circle text-red-600 dark:text-red-400 mr-2"></i>
-            <p class="text-sm text-red-600 dark:text-red-400">
-              {{ errorMessage }}
-            </p>
-          </div>
-        </div>
-      </transition>
-
       <!-- Submit Button -->
-      <Button
+      <button
         type="submit"
-        variant="primary"
-        size="lg"
-        :loading="loading"
         :disabled="loading"
-        full-width
+        class="w-full py-3 px-4 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg shadow-sm transition-all duration-200 flex items-center justify-center space-x-2"
+        :class="loading ? 'opacity-60 cursor-not-allowed' : 'hover:shadow-md'"
       >
-        {{ $t('auth.login.submit') }}
-      </Button>
+        <i v-if="loading" class="fas fa-spinner fa-spin"></i>
+        <span>{{ loading ? 'Iniciando sesión...' : $t('auth.login.submit') }}</span>
+      </button>
     </form>
   </div>
 </template>
@@ -88,21 +107,14 @@
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
-import Input from '@/components/ui/Input.vue';
-import Button from '@/components/ui/Button.vue';
-
-/**
- * Login Page
- * User authentication with email and password
- * Features: Form validation, error handling, remember me, loading state
- */
 
 const router = useRouter();
 const authStore = useAuthStore();
 
-// State
 const loading = ref(false);
+const showPassword = ref(false);
 const errorMessage = ref('');
+
 const form = reactive({
   email: '',
   password: '',
@@ -114,36 +126,30 @@ const errors = reactive({
   password: '',
 });
 
-/**
- * Validate form
- */
 const validateForm = () => {
   let isValid = true;
   errors.email = '';
   errors.password = '';
 
   if (!form.email) {
-    errors.email = 'Email is required';
+    errors.email = 'El correo electrónico es obligatorio';
     isValid = false;
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-    errors.email = 'Please enter a valid email';
+    errors.email = 'Por favor ingresa un correo válido';
     isValid = false;
   }
 
   if (!form.password) {
-    errors.password = 'Password is required';
+    errors.password = 'La contraseña es obligatoria';
     isValid = false;
   } else if (form.password.length < 8) {
-    errors.password = 'Password must be at least 8 characters';
+    errors.password = 'La contraseña debe tener al menos 8 caracteres';
     isValid = false;
   }
 
   return isValid;
 };
 
-/**
- * Handle form submission
- */
 const handleSubmit = async () => {
   errorMessage.value = '';
 
@@ -160,11 +166,10 @@ const handleSubmit = async () => {
       remember: form.remember,
     });
 
-    // Redirect to dashboard
     router.push('/dashboard');
   } catch (error) {
     console.error('Login error:', error);
-    errorMessage.value = error.response?.data?.message || 'Invalid email or password. Please try again.';
+    errorMessage.value = error.response?.data?.message || 'Credenciales inválidas. Por favor verifica tu correo y contraseña.';
   } finally {
     loading.value = false;
   }
