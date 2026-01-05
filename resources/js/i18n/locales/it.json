@@ -29,11 +29,23 @@
     },
     "forgot_password": {
       "title": "Reimposta Password",
-      "submit": "Invia Link di Reimpostazione"
+      "description": "Inserisci il tuo indirizzo email e ti invieremo un link per reimpostare la tua password.",
+      "email": "Indirizzo Email",
+      "email_placeholder": "Inserisci il tuo indirizzo email",
+      "submit": "Invia Link di Reimpostazione",
+      "back_to_login": "Torna al login"
     },
     "reset_password": {
       "title": "Reimposta la Tua Password",
-      "submit": "Reimposta Password"
+      "description": "Inserisci la tua nuova password qui sotto.",
+      "email": "Indirizzo Email",
+      "email_placeholder": "Inserisci il tuo indirizzo email",
+      "new_password": "Nuova Password",
+      "password_placeholder": "Inserisci la tua nuova password",
+      "confirm_password": "Conferma Password",
+      "confirm_password_placeholder": "Conferma la tua nuova password",
+      "submit": "Reimposta Password",
+      "back_to_login": "Torna al login"
     }
   },
   "dashboard": {
@@ -58,7 +70,19 @@
     },
     "recent_activity": {
       "title": "Attività Recente",
-      "subtitle": "Ultime azioni nel tuo sistema"
+      "subtitle": "Ultime azioni nel tuo sistema",
+      "columns": {
+        "user": "Utente",
+        "action": "Azione",
+        "description": "Descrizione",
+        "time": "Ora"
+      }
+    },
+    "time": {
+      "just_now": "Proprio ora",
+      "minutes_ago": "{count} minuti fa",
+      "hours_ago": "{count} ore fa",
+      "days_ago": "{count} giorni fa"
     }
   },
   "users": {
@@ -190,5 +214,108 @@
   "language_switcher": {
     "label": "Cambia lingua",
     "select_language": "Seleziona una lingua"
+  },
+  "theme_switcher": {
+    "label": "Cambia tema",
+    "light_mode": "Modalità Chiara",
+    "dark_mode": "Modalità Scura",
+    "dark": "Scuro",
+    "light": "Chiaro",
+    "system_mode": "Modalità Sistema"
+  },
+  "table": {
+    "no_data": "Nessun dato disponibile",
+    "no_results": "Nessun risultato trovato",
+    "loading": "Caricamento dati..."
+  },
+  "footer": {
+    "privacy": "Privacy",
+    "terms": "Termini",
+    "support": "Supporto",
+    "all_rights_reserved": "Tutti i diritti riservati"
+  },
+  "sidebar": {
+    "label": "Menu di navigazione",
+    "online": "Online",
+    "navigation": "Navigazione principale",
+    "expand": "Espandi menu",
+    "bars": "Menu",
+    "close": "Chiudi menu"
+  },
+  "menu": {
+    "dashboard": "Dashboard",
+    "users": "Utenti",
+    "groups": "Gruppi",
+    "categories": "Categorie",
+    "roles": "Ruoli",
+    "settings": "Impostazioni"
+  },
+  "navbar": {
+    "toggle_menu": "Attiva/disattiva menu",
+    "search_placeholder": "Cerca...",
+    "search": "Cerca",
+    "user_menu": "Menu utente",
+    "my_profile": "Il Mio Profilo",
+    "settings": "Impostazioni",
+    "logout": "Disconnetti",
+    "logging_out": "Disconnessione..."
+  },
+  "ai_assistant": {
+    "title": "Assistente IA",
+    "subtitle": "Sono qui per aiutarti",
+    "input_placeholder": "Scrivi la tua domanda qui...",
+    "welcome": "Ciao! Sono il tuo assistente IA.",
+    "available_features": "Funzionalità disponibili",
+    "ask_more": "Sentiti libero di chiedermi qualsiasi cosa su questa pagina!",
+    "help": {
+      "dashboard": {
+        "title": "Aiuto Dashboard",
+        "description": "Questa è la tua dashboard principale dove puoi vedere una panoramica di tutte le attività e statistiche del sistema.",
+        "feature1": "Visualizza statistiche e metriche in tempo reale",
+        "feature2": "Accedi ad azioni rapide per attività comuni",
+        "feature3": "Monitora attività recenti ed eventi"
+      },
+      "users": {
+        "title": "Gestione Utenti",
+        "description": "Gestisci tutti gli utenti nel sistema, inclusa la creazione, modifica ed eliminazione di account utente.",
+        "feature1": "Creare e gestire account utente",
+        "feature2": "Assegnare ruoli e permessi agli utenti",
+        "feature3": "Visualizzare attività e stato degli utenti"
+      },
+      "groups": {
+        "title": "Gestione Gruppi",
+        "description": "Organizza gli utenti in gruppi per una gestione più facile e l'assegnazione di permessi.",
+        "feature1": "Creare e gestire gruppi di utenti",
+        "feature2": "Assegnare più utenti ai gruppi"
+      },
+      "categories": {
+        "title": "Gestione Categorie",
+        "description": "Gestisci le categorie per organizzare i tuoi contenuti e risorse.",
+        "feature1": "Creare e modificare categorie",
+        "feature2": "Organizzare il contenuto gerarchicamente"
+      },
+      "roles": {
+        "title": "Ruoli e Permessi",
+        "description": "Definisci ruoli e assegna permessi per controllare cosa possono fare gli utenti nel sistema.",
+        "feature1": "Creare ruoli personalizzati con permessi specifici",
+        "feature2": "Assegnare ruoli a utenti e gruppi"
+      },
+      "settings": {
+        "title": "Impostazioni Sistema",
+        "description": "Configura impostazioni e preferenze a livello di sistema.",
+        "feature1": "Gestire la configurazione dell'applicazione",
+        "feature2": "Personalizzare il comportamento del sistema"
+      },
+      "default": {
+        "title": "Aiuto Generale",
+        "description": "Sono qui per aiutarti a navigare e utilizzare il sistema in modo efficace. Chiedimi qualsiasi cosa!"
+      }
+    },
+    "response": {
+      "how_to": "Per eseguire questa azione, controlla le opzioni disponibili in questa pagina. Posso fornire indicazioni più specifiche se mi dici cosa stai cercando di realizzare.",
+      "help": "Sono qui per aiutare! Puoi chiedermi qualsiasi funzionalità di questa pagina, come eseguire azioni specifiche o domande generali sul sistema.",
+      "thanks": "Prego! Se hai bisogno di qualcos'altro, fammelo sapere.",
+      "default": "Capisco la tua domanda. Potresti fornire più dettagli così posso aiutarti meglio?"
+    }
   }
 }

@@ -2,9 +2,12 @@
   <aside
     :class="[
       'fixed top-0 left-0 h-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 z-40',
-      collapsed ? 'w-20' : 'w-64',
-      collapsed && 'lg:translate-x-0',
-      !collapsed && 'translate-x-0',
+      // Desktop behavior
+      'lg:translate-x-0',
+      collapsed ? 'lg:w-20' : 'lg:w-64',
+      // Mobile/Tablet behavior
+      'w-64',
+      collapsed ? '-translate-x-full lg:translate-x-0' : 'translate-x-0',
     ]"
     :aria-label="$t('sidebar.label')"
   >
@@ -181,19 +184,6 @@
       </template>
     </nav>
 
-    <!-- Collapse Toggle Button -->
-    <div class="p-4 border-t border-gray-200 dark:border-gray-700">
-      <button
-        @click="$emit('toggle')"
-        class="w-full flex items-center justify-center space-x-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-        :aria-label="collapsed ? $t('sidebar.expand') : $t('sidebar.collapse')"
-      >
-        <i :class="collapsed ? 'fas fa-chevron-right' : 'fas fa-chevron-left'"></i>
-        <span v-if="!collapsed" class="text-sm font-medium">
-          {{ $t('sidebar.collapse') }}
-        </span>
-      </button>
-    </div>
   </aside>
 </template>
 

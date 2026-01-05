@@ -29,11 +29,23 @@
     },
     "forgot_password": {
       "title": "Passwort Zurücksetzen",
-      "submit": "Zurücksetzungslink Senden"
+      "description": "Geben Sie Ihre E-Mail-Adresse ein und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.",
+      "email": "E-Mail-Adresse",
+      "email_placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
+      "submit": "Zurücksetzungslink Senden",
+      "back_to_login": "Zurück zur Anmeldung"
     },
     "reset_password": {
       "title": "Setzen Sie Ihr Passwort Zurück",
-      "submit": "Passwort Zurücksetzen"
+      "description": "Geben Sie unten Ihr neues Passwort ein.",
+      "email": "E-Mail-Adresse",
+      "email_placeholder": "Geben Sie Ihre E-Mail-Adresse ein",
+      "new_password": "Neues Passwort",
+      "password_placeholder": "Geben Sie Ihr neues Passwort ein",
+      "confirm_password": "Passwort Bestätigen",
+      "confirm_password_placeholder": "Bestätigen Sie Ihr neues Passwort",
+      "submit": "Passwort Zurücksetzen",
+      "back_to_login": "Zurück zur Anmeldung"
     }
   },
   "dashboard": {
@@ -58,7 +70,19 @@
     },
     "recent_activity": {
       "title": "Letzte Aktivität",
-      "subtitle": "Neueste Aktionen in Ihrem System"
+      "subtitle": "Neueste Aktionen in Ihrem System",
+      "columns": {
+        "user": "Benutzer",
+        "action": "Aktion",
+        "description": "Beschreibung",
+        "time": "Zeit"
+      }
+    },
+    "time": {
+      "just_now": "Gerade eben",
+      "minutes_ago": "Vor {count} Minuten",
+      "hours_ago": "Vor {count} Stunden",
+      "days_ago": "Vor {count} Tagen"
     }
   },
   "users": {
@@ -190,5 +214,108 @@
   "language_switcher": {
     "label": "Sprache wechseln",
     "select_language": "Sprache auswählen"
+  },
+  "theme_switcher": {
+    "label": "Thema wechseln",
+    "light_mode": "Heller Modus",
+    "dark_mode": "Dunkler Modus",
+    "dark": "Dunkel",
+    "light": "Hell",
+    "system_mode": "Systemmodus"
+  },
+  "table": {
+    "no_data": "Keine Daten verfügbar",
+    "no_results": "Keine Ergebnisse gefunden",
+    "loading": "Daten werden geladen..."
+  },
+  "footer": {
+    "privacy": "Datenschutz",
+    "terms": "Bedingungen",
+    "support": "Support",
+    "all_rights_reserved": "Alle Rechte vorbehalten"
+  },
+  "sidebar": {
+    "label": "Navigationsmenü",
+    "online": "Online",
+    "navigation": "Hauptnavigation",
+    "expand": "Menü erweitern",
+    "bars": "Menü",
+    "close": "Menü schließen"
+  },
+  "menu": {
+    "dashboard": "Dashboard",
+    "users": "Benutzer",
+    "groups": "Gruppen",
+    "categories": "Kategorien",
+    "roles": "Rollen",
+    "settings": "Einstellungen"
+  },
+  "navbar": {
+    "toggle_menu": "Menü umschalten",
+    "search_placeholder": "Suchen...",
+    "search": "Suchen",
+    "user_menu": "Benutzermenü",
+    "my_profile": "Mein Profil",
+    "settings": "Einstellungen",
+    "logout": "Abmelden",
+    "logging_out": "Abmelden..."
+  },
+  "ai_assistant": {
+    "title": "KI-Assistent",
+    "subtitle": "Ich bin hier, um Ihnen zu helfen",
+    "input_placeholder": "Geben Sie hier Ihre Frage ein...",
+    "welcome": "Hallo! Ich bin Ihr KI-Assistent.",
+    "available_features": "Verfügbare Funktionen",
+    "ask_more": "Fragen Sie mich gerne alles über diese Seite!",
+    "help": {
+      "dashboard": {
+        "title": "Dashboard-Hilfe",
+        "description": "Dies ist Ihr Haupt-Dashboard, wo Sie eine Übersicht aller Systemaktivitäten und Statistiken sehen können.",
+        "feature1": "Echtzeit-Statistiken und Metriken anzeigen",
+        "feature2": "Schnellzugriff auf häufige Aufgaben",
+        "feature3": "Überwachen Sie aktuelle Aktivitäten und Ereignisse"
+      },
+      "users": {
+        "title": "Benutzerverwaltung",
+        "description": "Verwalten Sie alle Benutzer im System, einschließlich Erstellen, Bearbeiten und Löschen von Benutzerkonten.",
+        "feature1": "Benutzerkonten erstellen und verwalten",
+        "feature2": "Rollen und Berechtigungen für Benutzer zuweisen",
+        "feature3": "Benutzeraktivität und Status anzeigen"
+      },
+      "groups": {
+        "title": "Gruppenverwaltung",
+        "description": "Organisieren Sie Benutzer in Gruppen für einfachere Verwaltung und Berechtigungszuweisung.",
+        "feature1": "Benutzergruppen erstellen und verwalten",
+        "feature2": "Mehrere Benutzer zu Gruppen zuweisen"
+      },
+      "categories": {
+        "title": "Kategorienverwaltung",
+        "description": "Verwalten Sie Kategorien, um Ihre Inhalte und Ressourcen zu organisieren.",
+        "feature1": "Kategorien erstellen und bearbeiten",
+        "feature2": "Inhalte hierarchisch organisieren"
+      },
+      "roles": {
+        "title": "Rollen & Berechtigungen",
+        "description": "Definieren Sie Rollen und weisen Sie Berechtigungen zu, um zu kontrollieren, was Benutzer im System tun können.",
+        "feature1": "Benutzerdefinierte Rollen mit spezifischen Berechtigungen erstellen",
+        "feature2": "Rollen für Benutzer und Gruppen zuweisen"
+      },
+      "settings": {
+        "title": "Systemeinstellungen",
+        "description": "Konfigurieren Sie systemweite Einstellungen und Präferenzen.",
+        "feature1": "Anwendungskonfiguration verwalten",
+        "feature2": "Systemverhalten anpassen"
+      },
+      "default": {
+        "title": "Allgemeine Hilfe",
+        "description": "Ich bin hier, um Ihnen zu helfen, das System effektiv zu navigieren und zu nutzen. Fragen Sie mich alles!"
+      }
+    },
+    "response": {
+      "how_to": "Um diese Aktion auszuführen, überprüfen Sie bitte die verfügbaren Optionen auf dieser Seite. Ich kann spezifischere Anleitung geben, wenn Sie mir sagen, was Sie erreichen möchten.",
+      "help": "Ich bin hier, um zu helfen! Sie können mich über jede Funktion auf dieser Seite fragen, wie man bestimmte Aktionen ausführt oder allgemeine Fragen zum System stellen.",
+      "thanks": "Gern geschehen! Wenn Sie etwas anderes brauchen, lassen Sie es mich einfach wissen.",
+      "default": "Ich verstehe Ihre Frage. Könnten Sie mehr Details angeben, damit ich Ihnen besser helfen kann?"
+    }
   }
 }

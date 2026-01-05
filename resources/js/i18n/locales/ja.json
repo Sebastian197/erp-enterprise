@@ -29,11 +29,23 @@
     },
     "forgot_password": {
       "title": "パスワードリセット",
-      "submit": "リセットリンクを送信"
+      "description": "メールアドレスを入力してください。パスワードリセット用のリンクをお送りします。",
+      "email": "メールアドレス",
+      "email_placeholder": "メールアドレスを入力してください",
+      "submit": "リセットリンクを送信",
+      "back_to_login": "ログインに戻る"
     },
     "reset_password": {
       "title": "パスワードをリセット",
-      "submit": "パスワードをリセット"
+      "description": "以下に新しいパスワードを入力してください。",
+      "email": "メールアドレス",
+      "email_placeholder": "メールアドレスを入力してください",
+      "new_password": "新しいパスワード",
+      "password_placeholder": "新しいパスワードを入力してください",
+      "confirm_password": "パスワードの確認",
+      "confirm_password_placeholder": "新しいパスワードを確認してください",
+      "submit": "パスワードをリセット",
+      "back_to_login": "ログインに戻る"
     }
   },
   "dashboard": {
@@ -58,7 +70,19 @@
     },
     "recent_activity": {
       "title": "最近のアクティビティ",
-      "subtitle": "システム内の最新のアクション"
+      "subtitle": "システム内の最新のアクション",
+      "columns": {
+        "user": "ユーザー",
+        "action": "アクション",
+        "description": "説明",
+        "time": "時間"
+      }
+    },
+    "time": {
+      "just_now": "たった今",
+      "minutes_ago": "{count}分前",
+      "hours_ago": "{count}時間前",
+      "days_ago": "{count}日前"
     }
   },
   "users": {
@@ -190,5 +214,108 @@
   "language_switcher": {
     "label": "言語を切り替える",
     "select_language": "言語を選択"
+  },
+  "theme_switcher": {
+    "label": "テーマを切り替える",
+    "light_mode": "ライトモード",
+    "dark_mode": "ダークモード",
+    "dark": "ダーク",
+    "light": "ライト",
+    "system_mode": "システムモード"
+  },
+  "table": {
+    "no_data": "データがありません",
+    "no_results": "結果が見つかりません",
+    "loading": "データを読み込んでいます..."
+  },
+  "footer": {
+    "privacy": "プライバシー",
+    "terms": "利用規約",
+    "support": "サポート",
+    "all_rights_reserved": "全著作権所有"
+  },
+  "sidebar": {
+    "label": "ナビゲーションメニュー",
+    "online": "オンライン",
+    "navigation": "メインナビゲーション",
+    "expand": "メニューを展開",
+    "bars": "メニュー",
+    "close": "メニューを閉じる"
+  },
+  "menu": {
+    "dashboard": "ダッシュボード",
+    "users": "ユーザー",
+    "groups": "グループ",
+    "categories": "カテゴリー",
+    "roles": "ロール",
+    "settings": "設定"
+  },
+  "navbar": {
+    "toggle_menu": "メニュー切り替え",
+    "search_placeholder": "検索...",
+    "search": "検索",
+    "user_menu": "ユーザーメニュー",
+    "my_profile": "マイプロフィール",
+    "settings": "設定",
+    "logout": "ログアウト",
+    "logging_out": "ログアウト中..."
+  },
+  "ai_assistant": {
+    "title": "AIアシスタント",
+    "subtitle": "お手伝いいたします",
+    "input_placeholder": "ここに質問を入力してください...",
+    "welcome": "こんにちは！私はあなたのAIアシスタントです。",
+    "available_features": "利用可能な機能",
+    "ask_more": "このページについて何でもお気軽にお尋ねください！",
+    "help": {
+      "dashboard": {
+        "title": "ダッシュボードのヘルプ",
+        "description": "これはメインダッシュボードで、すべてのシステム活動と統計の概要を表示できます。",
+        "feature1": "リアルタイムの統計と指標を表示",
+        "feature2": "一般的なタスクのクイックアクションにアクセス",
+        "feature3": "最近のアクティビティとイベントを監視"
+      },
+      "users": {
+        "title": "ユーザー管理",
+        "description": "ユーザーアカウントの作成、編集、削除など、システム内のすべてのユーザーを管理します。",
+        "feature1": "ユーザーアカウントの作成と管理",
+        "feature2": "ユーザーに役割と権限を割り当てる",
+        "feature3": "ユーザーの活動とステータスを表示"
+      },
+      "groups": {
+        "title": "グループ管理",
+        "description": "より簡単な管理と権限の割り当てのために、ユーザーをグループに整理します。",
+        "feature1": "ユーザーグループの作成と管理",
+        "feature2": "複数のユーザーをグループに割り当てる"
+      },
+      "categories": {
+        "title": "カテゴリー管理",
+        "description": "コンテンツとリソースを整理するためにカテゴリーを管理します。",
+        "feature1": "カテゴリーの作成と編集",
+        "feature2": "コンテンツを階層的に整理"
+      },
+      "roles": {
+        "title": "役割と権限",
+        "description": "役割を定義し、ユーザーがシステムで実行できることを制御する権限を割り当てます。",
+        "feature1": "特定の権限を持つカスタム役割を作成",
+        "feature2": "ユーザーとグループに役割を割り当てる"
+      },
+      "settings": {
+        "title": "システム設定",
+        "description": "システム全体の設定と環境設定を構成します。",
+        "feature1": "アプリケーション構成の管理",
+        "feature2": "システムの動作をカスタマイズ"
+      },
+      "default": {
+        "title": "一般的なヘルプ",
+        "description": "システムを効果的にナビゲートして使用できるようにお手伝いします。何でもお尋ねください！"
+      }
+    },
+    "response": {
+      "how_to": "このアクションを実行するには、このページで利用可能なオプションを確認してください。達成しようとしていることを教えていただければ、より具体的なガイダンスを提供できます。",
+      "help": "お手伝いします！このページの機能、特定のアクションの実行方法、またはシステムに関する一般的な質問について質問できます。",
+      "thanks": "どういたしまして！他に何か必要なことがあれば、お知らせください。",
+      "default": "ご質問を理解しました。より良いサポートができるよう、詳細を教えていただけますか？"
+    }
   }
 }

@@ -2,10 +2,10 @@
   <header class="h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between px-4 lg:px-6 sticky top-0 z-30">
     <!-- Left Section -->
     <div class="flex items-center space-x-4">
-      <!-- Mobile Menu Toggle -->
+      <!-- Menu Toggle -->
       <button
         @click="$emit('toggle-sidebar')"
-        class="lg:hidden text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+        class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
         :aria-label="$t('navbar.toggle_menu')"
       >
         <i class="fas fa-bars text-xl"></i>

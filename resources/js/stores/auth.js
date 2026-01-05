@@ -7,6 +7,7 @@ import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import api from '@/utils/api';
 import { API_ENDPOINTS, STORAGE_KEYS } from '@/utils/constants';
+import { setI18nLocale } from '@/i18n';
 
 export const useAuthStore = defineStore('auth', () => {
     // State
@@ -65,6 +66,9 @@ export const useAuthStore = defineStore('auth', () => {
 
             localStorage.setItem(STORAGE_KEYS.AUTH_TOKEN, authToken);
             localStorage.setItem(STORAGE_KEYS.AUTH_USER, JSON.stringify(userData));
+
+            // Fetch and apply user preferences (locale, theme, etc.)
+            await fetchAndApplyPreferences();
 
             return userData;
         } catch (err) {
@@ -330,6 +334,54 @@ export const useAuthStore = defineStore('auth', () => {
         }
     };
 
+    /**
+     * Fetch and apply user preferences (locale, theme, etc.)
+     * @returns {Promise<object>} User preferences
+     */
+    const fetchAndApplyPreferences = async () => {
+        try {
+            // Check if there's a locale in localStorage (user might have changed it before login)
+            const localStorageLocale = localStorage.getItem(STORAGE_KEYS.LOCALE);
+
+            const response = await api.get(API_ENDPOINTS.PREFERENCES.SHOW);
+            const preferences = response.data.data;
+
+            // Determine which locale to use
+            let localeToApply = preferences?.locale || 'en';
+
+            // If localStorage has a different locale than backend,
+            // prefer localStorage (it's the most recent user choice) and update backend
+            if (localStorageLocale && localStorageLocale !== localeToApply) {
+                try {
+                    await api.put(API_ENDPOINTS.PREFERENCES.LOCALE, {
+                        locale: localStorageLocale,
+                    });
+                    localeToApply = localStorageLocale;
+                } catch (updateErr) {
+                    console.error('Failed to update backend with localStorage locale:', updateErr);
+                }
+            }
+
+            // Apply locale preference
+            if (localeToApply) {
+                await setI18nLocale(localeToApply);
+                localStorage.setItem(STORAGE_KEYS.LOCALE, localeToApply);
+            }
+
+            // Apply theme preference if exists
+            if (preferences && preferences.theme) {
+                // Theme will be handled by theme switcher component
+                localStorage.setItem(STORAGE_KEYS.THEME, preferences.theme);
+            }
+
+            return preferences;
+        } catch (err) {
+            console.error('Failed to fetch user preferences:', err);
+            // Don't throw error - preferences are optional
+            return null;
+        }
+    };
+
     // Initialize on store creation
     init();
 
@@ -364,6 +416,7 @@ export const useAuthStore = defineStore('auth', () => {
         can,
         clearAuth,
         refreshToken,
+        fetchAndApplyPreferences,
     };
 }, {
     persist: {

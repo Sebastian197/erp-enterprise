@@ -29,11 +29,23 @@
     },
     "forgot_password": {
       "title": "Redefinir Senha",
-      "submit": "Enviar Link de Redefinição"
+      "description": "Digite seu endereço de email e enviaremos um link para redefinir sua senha.",
+      "email": "Endereço de Email",
+      "email_placeholder": "Digite seu endereço de email",
+      "submit": "Enviar Link de Redefinição",
+      "back_to_login": "Voltar ao login"
     },
     "reset_password": {
       "title": "Redefina Sua Senha",
-      "submit": "Redefinir Senha"
+      "description": "Digite sua nova senha abaixo.",
+      "email": "Endereço de Email",
+      "email_placeholder": "Digite seu endereço de email",
+      "new_password": "Nova Senha",
+      "password_placeholder": "Digite sua nova senha",
+      "confirm_password": "Confirmar Senha",
+      "confirm_password_placeholder": "Confirme sua nova senha",
+      "submit": "Redefinir Senha",
+      "back_to_login": "Voltar ao login"
     }
   },
   "dashboard": {
@@ -58,7 +70,19 @@
     },
     "recent_activity": {
       "title": "Atividade Recente",
-      "subtitle": "Últimas ações no seu sistema"
+      "subtitle": "Últimas ações no seu sistema",
+      "columns": {
+        "user": "Usuário",
+        "action": "Ação",
+        "description": "Descrição",
+        "time": "Hora"
+      }
+    },
+    "time": {
+      "just_now": "Agora mesmo",
+      "minutes_ago": "{count} minutos atrás",
+      "hours_ago": "{count} horas atrás",
+      "days_ago": "{count} dias atrás"
     }
   },
   "users": {
@@ -190,5 +214,108 @@
   "language_switcher": {
     "label": "Trocar idioma",
     "select_language": "Selecione um idioma"
+  },
+  "theme_switcher": {
+    "label": "Trocar tema",
+    "light_mode": "Modo Claro",
+    "dark_mode": "Modo Escuro",
+    "dark": "Escuro",
+    "light": "Claro",
+    "system_mode": "Modo Sistema"
+  },
+  "table": {
+    "no_data": "Nenhum dado disponível",
+    "no_results": "Nenhum resultado encontrado",
+    "loading": "Carregando dados..."
+  },
+  "footer": {
+    "privacy": "Privacidade",
+    "terms": "Termos",
+    "support": "Suporte",
+    "all_rights_reserved": "Todos os direitos reservados"
+  },
+  "sidebar": {
+    "label": "Menu de navegação",
+    "online": "Online",
+    "navigation": "Navegação principal",
+    "expand": "Expandir menu",
+    "bars": "Menu",
+    "close": "Fechar menu"
+  },
+  "menu": {
+    "dashboard": "Painel",
+    "users": "Usuários",
+    "groups": "Grupos",
+    "categories": "Categorias",
+    "roles": "Funções",
+    "settings": "Configurações"
+  },
+  "navbar": {
+    "toggle_menu": "Alternar menu",
+    "search_placeholder": "Pesquisar...",
+    "search": "Pesquisar",
+    "user_menu": "Menu do usuário",
+    "my_profile": "Meu Perfil",
+    "settings": "Configurações",
+    "logout": "Sair",
+    "logging_out": "Saindo..."
+  },
+  "ai_assistant": {
+    "title": "Assistente IA",
+    "subtitle": "Estou aqui para ajudar",
+    "input_placeholder": "Digite sua pergunta aqui...",
+    "welcome": "Olá! Sou seu assistente de IA.",
+    "available_features": "Recursos disponíveis",
+    "ask_more": "Sinta-se à vontade para me perguntar qualquer coisa sobre esta página!",
+    "help": {
+      "dashboard": {
+        "title": "Ajuda do Painel",
+        "description": "Este é o seu painel principal onde você pode ver uma visão geral de todas as atividades e estatísticas do sistema.",
+        "feature1": "Ver estatísticas e métricas em tempo real",
+        "feature2": "Acessar ações rápidas para tarefas comuns",
+        "feature3": "Monitorar atividade recente e eventos"
+      },
+      "users": {
+        "title": "Gestão de Utilizadores",
+        "description": "Gerencie todos os usuários no sistema, incluindo criar, editar e excluir contas de usuário.",
+        "feature1": "Criar e gerenciar contas de usuário",
+        "feature2": "Atribuir funções e permissões aos usuários",
+        "feature3": "Ver atividade e status dos usuários"
+      },
+      "groups": {
+        "title": "Gestão de Grupos",
+        "description": "Organize usuários em grupos para facilitar a gestão e atribuição de permissões.",
+        "feature1": "Criar e gerenciar grupos de usuários",
+        "feature2": "Atribuir vários usuários aos grupos"
+      },
+      "categories": {
+        "title": "Gestão de Categorias",
+        "description": "Gerencie categorias para organizar seu conteúdo e recursos.",
+        "feature1": "Criar e editar categorias",
+        "feature2": "Organizar conteúdo hierarquicamente"
+      },
+      "roles": {
+        "title": "Funções e Permissões",
+        "description": "Defina funções e atribua permissões para controlar o que os usuários podem fazer no sistema.",
+        "feature1": "Criar funções personalizadas com permissões específicas",
+        "feature2": "Atribuir funções a usuários e grupos"
+      },
+      "settings": {
+        "title": "Configurações do Sistema",
+        "description": "Configure definições e preferências em todo o sistema.",
+        "feature1": "Gerenciar configuração da aplicação",
+        "feature2": "Personalizar comportamento do sistema"
+      },
+      "default": {
+        "title": "Ajuda Geral",
+        "description": "Estou aqui para ajudá-lo a navegar e usar o sistema de forma eficaz. Pergunte-me qualquer coisa!"
+      }
+    },
+    "response": {
+      "how_to": "Para realizar esta ação, verifique as opções disponíveis nesta página. Posso fornecer orientação mais específica se você me disser o que está tentando realizar.",
+      "help": "Estou aqui para ajudar! Você pode me perguntar sobre qualquer recurso nesta página, como realizar ações específicas ou perguntas gerais sobre o sistema.",
+      "thanks": "De nada! Se precisar de mais alguma coisa, me avise.",
+      "default": "Entendo sua pergunta. Você poderia fornecer mais detalhes para que eu possa ajudá-lo melhor?"
+    }
   }
 }

@@ -29,11 +29,23 @@
     },
     "forgot_password": {
       "title": "Restablecer Contraseña",
-      "submit": "Enviar Enlace"
+      "description": "Ingrese su correo electrónico y le enviaremos un enlace para restablecer su contraseña.",
+      "email": "Correo Electrónico",
+      "email_placeholder": "Ingrese su correo electrónico",
+      "submit": "Enviar Enlace",
+      "back_to_login": "Volver al inicio de sesión"
     },
     "reset_password": {
       "title": "Restablezca su Contraseña",
-      "submit": "Restablecer Contraseña"
+      "description": "Ingrese su nueva contraseña a continuación.",
+      "email": "Correo Electrónico",
+      "email_placeholder": "Ingrese su correo electrónico",
+      "new_password": "Nueva Contraseña",
+      "password_placeholder": "Ingrese su nueva contraseña",
+      "confirm_password": "Confirmar Contraseña",
+      "confirm_password_placeholder": "Confirme su nueva contraseña",
+      "submit": "Restablecer Contraseña",
+      "back_to_login": "Volver al inicio de sesión"
     }
   },
   "dashboard": {
@@ -58,7 +70,19 @@
     },
     "recent_activity": {
       "title": "Actividad Reciente",
-      "subtitle": "Últimas acciones en tu sistema"
+      "subtitle": "Últimas acciones en tu sistema",
+      "columns": {
+        "user": "Usuario",
+        "action": "Acción",
+        "description": "Descripción",
+        "time": "Tiempo"
+      }
+    },
+    "time": {
+      "just_now": "Justo ahora",
+      "minutes_ago": "{count} minutos atrás",
+      "hours_ago": "{count} horas atrás",
+      "days_ago": "{count} días atrás"
     }
   },
   "users": {
@@ -186,5 +210,112 @@
     "last": "Última",
     "next": "Siguiente",
     "previous": "Anterior"
+  },
+  "language_switcher": {
+    "label": "Cambiar idioma",
+    "select_language": "Selecciona un idioma"
+  },
+  "theme_switcher": {
+    "label": "Cambiar tema",
+    "light_mode": "Modo Claro",
+    "dark_mode": "Modo Oscuro",
+    "dark": "Oscuro",
+    "light": "Claro",
+    "system_mode": "Modo Sistema"
+  },
+  "table": {
+    "no_data": "No hay datos disponibles",
+    "no_results": "No se encontraron resultados",
+    "loading": "Cargando datos..."
+  },
+  "footer": {
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "support": "Soporte",
+    "all_rights_reserved": "Todos los derechos reservados"
+  },
+  "sidebar": {
+    "label": "Menú de navegación",
+    "online": "En línea",
+    "navigation": "Navegación principal",
+    "expand": "Expandir menú",
+    "bars": "Menú",
+    "close": "Cerrar menú"
+  },
+  "menu": {
+    "dashboard": "Tablero",
+    "users": "Usuarios",
+    "groups": "Grupos",
+    "categories": "Categorías",
+    "roles": "Roles",
+    "settings": "Configuración"
+  },
+  "navbar": {
+    "toggle_menu": "Alternar menú",
+    "search_placeholder": "Buscar...",
+    "search": "Buscar",
+    "user_menu": "Menú de usuario",
+    "my_profile": "Mi Perfil",
+    "settings": "Configuración",
+    "logout": "Cerrar Sesión",
+    "logging_out": "Cerrando sesión..."
+  },
+  "ai_assistant": {
+    "title": "Asistente IA",
+    "subtitle": "Estoy aquí para ayudarte",
+    "input_placeholder": "Escribe tu pregunta aquí...",
+    "welcome": "¡Hola! Soy tu asistente de IA.",
+    "available_features": "Funciones disponibles",
+    "ask_more": "¡Siéntete libre de preguntarme cualquier cosa sobre esta página!",
+    "help": {
+      "dashboard": {
+        "title": "Ayuda del Tablero",
+        "description": "Este es tu tablero principal donde puedes ver una vista general de todas las actividades y estadísticas del sistema.",
+        "feature1": "Ver estadísticas y métricas en tiempo real",
+        "feature2": "Acceder a acciones rápidas para tareas comunes",
+        "feature3": "Monitorear actividad reciente y eventos"
+      },
+      "users": {
+        "title": "Gestión de Usuarios",
+        "description": "Administra todos los usuarios del sistema, incluyendo crear, editar y eliminar cuentas de usuario.",
+        "feature1": "Crear y administrar cuentas de usuario",
+        "feature2": "Asignar roles y permisos a usuarios",
+        "feature3": "Ver actividad y estado de usuarios"
+      },
+      "groups": {
+        "title": "Gestión de Grupos",
+        "description": "Organiza usuarios en grupos para una gestión más fácil y asignación de permisos.",
+        "feature1": "Crear y administrar grupos de usuarios",
+        "feature2": "Asignar múltiples usuarios a grupos"
+      },
+      "categories": {
+        "title": "Gestión de Categorías",
+        "description": "Administra categorías para organizar tu contenido y recursos.",
+        "feature1": "Crear y editar categorías",
+        "feature2": "Organizar contenido jerárquicamente"
+      },
+      "roles": {
+        "title": "Roles y Permisos",
+        "description": "Define roles y asigna permisos para controlar qué pueden hacer los usuarios en el sistema.",
+        "feature1": "Crear roles personalizados con permisos específicos",
+        "feature2": "Asignar roles a usuarios y grupos"
+      },
+      "settings": {
+        "title": "Configuración del Sistema",
+        "description": "Configura ajustes y preferencias de todo el sistema.",
+        "feature1": "Administrar configuración de la aplicación",
+        "feature2": "Personalizar comportamiento del sistema"
+      },
+      "default": {
+        "title": "Ayuda General",
+        "description": "Estoy aquí para ayudarte a navegar y usar el sistema de manera efectiva. ¡Pregúntame lo que sea!"
+      }
+    },
+    "response": {
+      "how_to": "Para realizar esta acción, por favor revisa las opciones disponibles en esta página. Puedo proporcionarte orientación más específica si me dices qué estás tratando de lograr.",
+      "help": "¡Estoy aquí para ayudar! Puedes preguntarme sobre cualquier función en esta página, cómo realizar acciones específicas, o preguntas generales sobre el sistema.",
+      "thanks": "¡De nada! Si necesitas algo más, solo házmelo saber.",
+      "default": "Entiendo tu pregunta. ¿Podrías proporcionar más detalles para que pueda ayudarte mejor?"
+    }
   }
 }

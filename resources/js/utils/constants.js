@@ -29,7 +29,12 @@ export const API_ENDPOINTS = {
         UPDATE: '/profile',
         PASSWORD: '/profile/password',
         AVATAR: '/profile/avatar',
-        PREFERENCES: '/profile/preferences',
+    },
+    PREFERENCES: {
+        SHOW: '/preferences',
+        UPDATE: '/preferences',
+        LOCALE: '/preferences/locale',
+        THEME: '/preferences/theme',
     },
     GROUPS: {
         INDEX: '/groups',

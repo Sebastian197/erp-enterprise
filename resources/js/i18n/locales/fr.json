@@ -29,11 +29,23 @@
     },
     "forgot_password": {
       "title": "Réinitialiser le mot de passe",
-      "submit": "Envoyer le lien de réinitialisation"
+      "description": "Entrez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+      "email": "Adresse e-mail",
+      "email_placeholder": "Entrez votre adresse e-mail",
+      "submit": "Envoyer le lien de réinitialisation",
+      "back_to_login": "Retour à la connexion"
     },
     "reset_password": {
       "title": "Réinitialisez votre mot de passe",
-      "submit": "Réinitialiser le mot de passe"
+      "description": "Entrez votre nouveau mot de passe ci-dessous.",
+      "email": "Adresse e-mail",
+      "email_placeholder": "Entrez votre adresse e-mail",
+      "new_password": "Nouveau mot de passe",
+      "password_placeholder": "Entrez votre nouveau mot de passe",
+      "confirm_password": "Confirmer le mot de passe",
+      "confirm_password_placeholder": "Confirmez votre nouveau mot de passe",
+      "submit": "Réinitialiser le mot de passe",
+      "back_to_login": "Retour à la connexion"
     }
   },
   "dashboard": {
@@ -58,7 +70,19 @@
     },
     "recent_activity": {
       "title": "Activité Récente",
-      "subtitle": "Dernières actions dans votre système"
+      "subtitle": "Dernières actions dans votre système",
+      "columns": {
+        "user": "Utilisateur",
+        "action": "Action",
+        "description": "Description",
+        "time": "Heure"
+      }
+    },
+    "time": {
+      "just_now": "À l'instant",
+      "minutes_ago": "Il y a {count} minutes",
+      "hours_ago": "Il y a {count} heures",
+      "days_ago": "Il y a {count} jours"
     }
   },
   "users": {
@@ -190,5 +214,108 @@
   "language_switcher": {
     "label": "Changer de langue",
     "select_language": "Sélectionner une langue"
+  },
+  "theme_switcher": {
+    "label": "Changer de thème",
+    "light_mode": "Mode Clair",
+    "dark_mode": "Mode Sombre",
+    "dark": "Sombre",
+    "light": "Clair",
+    "system_mode": "Mode Système"
+  },
+  "table": {
+    "no_data": "Aucune donnée disponible",
+    "no_results": "Aucun résultat trouvé",
+    "loading": "Chargement des données..."
+  },
+  "footer": {
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "support": "Support",
+    "all_rights_reserved": "Tous droits réservés"
+  },
+  "sidebar": {
+    "label": "Menu de navigation",
+    "online": "En ligne",
+    "navigation": "Navigation principale",
+    "expand": "Développer le menu",
+    "bars": "Menu",
+    "close": "Fermer le menu"
+  },
+  "menu": {
+    "dashboard": "Tableau de Bord",
+    "users": "Utilisateurs",
+    "groups": "Groupes",
+    "categories": "Catégories",
+    "roles": "Rôles",
+    "settings": "Paramètres"
+  },
+  "navbar": {
+    "toggle_menu": "Basculer le menu",
+    "search_placeholder": "Rechercher...",
+    "search": "Rechercher",
+    "user_menu": "Menu utilisateur",
+    "my_profile": "Mon Profil",
+    "settings": "Paramètres",
+    "logout": "Déconnexion",
+    "logging_out": "Déconnexion en cours..."
+  },
+  "ai_assistant": {
+    "title": "Assistant IA",
+    "subtitle": "Je suis là pour vous aider",
+    "input_placeholder": "Tapez votre question ici...",
+    "welcome": "Bonjour ! Je suis votre assistant IA.",
+    "available_features": "Fonctionnalités disponibles",
+    "ask_more": "N'hésitez pas à me poser des questions sur cette page !",
+    "help": {
+      "dashboard": {
+        "title": "Aide du Tableau de Bord",
+        "description": "Voici votre tableau de bord principal où vous pouvez voir un aperçu de toutes les activités et statistiques du système.",
+        "feature1": "Voir les statistiques et métriques en temps réel",
+        "feature2": "Accéder aux actions rapides pour les tâches courantes",
+        "feature3": "Surveiller l'activité récente et les événements"
+      },
+      "users": {
+        "title": "Gestion des Utilisateurs",
+        "description": "Gérez tous les utilisateurs du système, y compris la création, la modification et la suppression de comptes utilisateur.",
+        "feature1": "Créer et gérer les comptes utilisateur",
+        "feature2": "Attribuer des rôles et des permissions aux utilisateurs",
+        "feature3": "Voir l'activité et le statut des utilisateurs"
+      },
+      "groups": {
+        "title": "Gestion des Groupes",
+        "description": "Organisez les utilisateurs en groupes pour une gestion plus facile et l'attribution de permissions.",
+        "feature1": "Créer et gérer des groupes d'utilisateurs",
+        "feature2": "Attribuer plusieurs utilisateurs aux groupes"
+      },
+      "categories": {
+        "title": "Gestion des Catégories",
+        "description": "Gérez les catégories pour organiser votre contenu et vos ressources.",
+        "feature1": "Créer et modifier des catégories",
+        "feature2": "Organiser le contenu de manière hiérarchique"
+      },
+      "roles": {
+        "title": "Rôles et Permissions",
+        "description": "Définissez les rôles et attribuez des permissions pour contrôler ce que les utilisateurs peuvent faire dans le système.",
+        "feature1": "Créer des rôles personnalisés avec des permissions spécifiques",
+        "feature2": "Attribuer des rôles aux utilisateurs et aux groupes"
+      },
+      "settings": {
+        "title": "Paramètres Système",
+        "description": "Configurez les paramètres et préférences à l'échelle du système.",
+        "feature1": "Gérer la configuration de l'application",
+        "feature2": "Personnaliser le comportement du système"
+      },
+      "default": {
+        "title": "Aide Générale",
+        "description": "Je suis là pour vous aider à naviguer et à utiliser le système efficacement. Posez-moi n'importe quelle question !"
+      }
+    },
+    "response": {
+      "how_to": "Pour effectuer cette action, veuillez vérifier les options disponibles sur cette page. Je peux fournir des conseils plus spécifiques si vous me dites ce que vous essayez d'accomplir.",
+      "help": "Je suis là pour aider ! Vous pouvez me poser des questions sur n'importe quelle fonctionnalité de cette page, comment effectuer des actions spécifiques ou des questions générales sur le système.",
+      "thanks": "De rien ! Si vous avez besoin d'autre chose, faites-le moi savoir.",
+      "default": "Je comprends votre question. Pourriez-vous fournir plus de détails pour que je puisse mieux vous aider ?"
+    }
   }
 }
