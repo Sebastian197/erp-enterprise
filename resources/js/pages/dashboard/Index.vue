@@ -150,6 +150,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import { useAuthStore } from '@/stores/auth';
 import Widget from '@/components/dashboard/Widget.vue';
 import Card from '@/components/ui/Card.vue';
@@ -165,6 +166,7 @@ import { API_ENDPOINTS } from '@/utils/constants';
 
 const router = useRouter();
 const authStore = useAuthStore();
+const { t } = useI18n();
 
 // State
 const loading = ref(true);
@@ -184,12 +186,12 @@ const userName = computed(() => authStore.userName);
 const can = (permission) => authStore.can(permission);
 
 // Table columns
-const activityColumns = [
-  { key: 'user', label: 'User', sortable: false },
-  { key: 'action', label: 'Action', sortable: false },
-  { key: 'description', label: 'Description', sortable: false },
-  { key: 'timestamp', label: 'Time', sortable: false },
-];
+const activityColumns = computed(() => [
+  { key: 'user', label: t('dashboard.recent_activity.columns.user'), sortable: false },
+  { key: 'action', label: t('dashboard.recent_activity.columns.action'), sortable: false },
+  { key: 'description', label: t('dashboard.recent_activity.columns.description'), sortable: false },
+  { key: 'timestamp', label: t('dashboard.recent_activity.columns.time'), sortable: false },
+]);
 
 /**
  * Fetch dashboard stats
@@ -231,9 +233,15 @@ const formatDate = (date) => {
   const now = new Date();
   const diff = Math.floor((now - d) / 1000); // seconds
 
-  if (diff < 60) return 'Just now';
-  if (diff < 3600) return `${Math.floor(diff / 60)} minutes ago`;
-  if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`;
+  if (diff < 60) return t('dashboard.time.just_now');
+  if (diff < 3600) {
+    const minutes = Math.floor(diff / 60);
+    return t('dashboard.time.minutes_ago', { count: minutes });
+  }
+  if (diff < 86400) {
+    const hours = Math.floor(diff / 3600);
+    return t('dashboard.time.hours_ago', { count: hours });
+  }
 
   return d.toLocaleDateString();
 };

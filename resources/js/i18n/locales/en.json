@@ -29,11 +29,23 @@
     },
     "forgot_password": {
       "title": "Reset Password",
-      "submit": "Send Reset Link"
+      "description": "Enter your email address and we'll send you a link to reset your password.",
+      "email": "Email Address",
+      "email_placeholder": "Enter your email address",
+      "submit": "Send Reset Link",
+      "back_to_login": "Back to login"
     },
     "reset_password": {
       "title": "Reset Your Password",
-      "submit": "Reset Password"
+      "description": "Enter your new password below.",
+      "email": "Email Address",
+      "email_placeholder": "Enter your email address",
+      "new_password": "New Password",
+      "password_placeholder": "Enter your new password",
+      "confirm_password": "Confirm Password",
+      "confirm_password_placeholder": "Confirm your new password",
+      "submit": "Reset Password",
+      "back_to_login": "Back to login"
     }
   },
   "dashboard": {
@@ -58,7 +70,19 @@
     },
     "recent_activity": {
       "title": "Recent Activity",
-      "subtitle": "Latest actions in your system"
+      "subtitle": "Latest actions in your system",
+      "columns": {
+        "user": "User",
+        "action": "Action",
+        "description": "Description",
+        "time": "Time"
+      }
+    },
+    "time": {
+      "just_now": "Just now",
+      "minutes_ago": "{count} minutes ago",
+      "hours_ago": "{count} hours ago",
+      "days_ago": "{count} days ago"
     }
   },
   "users": {
@@ -186,5 +210,112 @@
     "last": "Last",
     "next": "Next",
     "previous": "Previous"
+  },
+  "language_switcher": {
+    "label": "Switch language",
+    "select_language": "Select a language"
+  },
+  "theme_switcher": {
+    "label": "Switch theme",
+    "light_mode": "Light Mode",
+    "dark_mode": "Dark Mode",
+    "dark": "Dark",
+    "light": "Light",
+    "system_mode": "System Mode"
+  },
+  "table": {
+    "no_data": "No data available",
+    "no_results": "No results found",
+    "loading": "Loading data..."
+  },
+  "footer": {
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "support": "Support",
+    "all_rights_reserved": "All rights reserved"
+  },
+  "sidebar": {
+    "label": "Navigation menu",
+    "online": "Online",
+    "navigation": "Main navigation",
+    "expand": "Expand menu",
+    "bars": "Menu",
+    "close": "Close menu"
+  },
+  "menu": {
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "groups": "Groups",
+    "categories": "Categories",
+    "roles": "Roles",
+    "settings": "Settings"
+  },
+  "navbar": {
+    "toggle_menu": "Toggle menu",
+    "search_placeholder": "Search...",
+    "search": "Search",
+    "user_menu": "User menu",
+    "my_profile": "My Profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "logging_out": "Logging out..."
+  },
+  "ai_assistant": {
+    "title": "AI Assistant",
+    "subtitle": "I'm here to help you",
+    "input_placeholder": "Type your question here...",
+    "welcome": "Hello! I'm your AI assistant.",
+    "available_features": "Available features",
+    "ask_more": "Feel free to ask me anything about this page!",
+    "help": {
+      "dashboard": {
+        "title": "Dashboard Help",
+        "description": "This is your main dashboard where you can see an overview of all system activities and statistics.",
+        "feature1": "View real-time statistics and metrics",
+        "feature2": "Access quick actions for common tasks",
+        "feature3": "Monitor recent activity and events"
+      },
+      "users": {
+        "title": "User Management",
+        "description": "Manage all users in the system, including creating, editing, and deleting user accounts.",
+        "feature1": "Create and manage user accounts",
+        "feature2": "Assign roles and permissions to users",
+        "feature3": "View user activity and status"
+      },
+      "groups": {
+        "title": "Group Management",
+        "description": "Organize users into groups for easier management and permission assignment.",
+        "feature1": "Create and manage user groups",
+        "feature2": "Assign multiple users to groups"
+      },
+      "categories": {
+        "title": "Category Management",
+        "description": "Manage categories to organize your content and resources.",
+        "feature1": "Create and edit categories",
+        "feature2": "Organize content hierarchically"
+      },
+      "roles": {
+        "title": "Roles & Permissions",
+        "description": "Define roles and assign permissions to control what users can do in the system.",
+        "feature1": "Create custom roles with specific permissions",
+        "feature2": "Assign roles to users and groups"
+      },
+      "settings": {
+        "title": "System Settings",
+        "description": "Configure system-wide settings and preferences.",
+        "feature1": "Manage application configuration",
+        "feature2": "Customize system behavior"
+      },
+      "default": {
+        "title": "General Help",
+        "description": "I'm here to help you navigate and use the system effectively. Ask me anything!"
+      }
+    },
+    "response": {
+      "how_to": "To perform this action, please check the available options on this page. I can provide more specific guidance if you tell me what you're trying to accomplish.",
+      "help": "I'm here to help! You can ask me about any feature on this page, how to perform specific actions, or general questions about the system.",
+      "thanks": "You're welcome! If you need anything else, just let me know.",
+      "default": "I understand your question. Could you provide more details so I can assist you better?"
+    }
   }
 }

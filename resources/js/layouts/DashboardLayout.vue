@@ -58,8 +58,14 @@
       </div>
 
       <!-- Page Content -->
-      <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 dark:bg-gray-900 p-4 lg:p-6">
-        <router-view v-slot="{ Component }">
+      <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 dark:bg-gray-900 p-4 lg:p-6 relative">
+        <!-- Naval Background with low intensity -->
+        <div class="dashboard-naval-background">
+          <NavalBackground intensity="low" />
+        </div>
+
+        <div class="relative z-10">
+          <router-view v-slot="{ Component }">
           <transition
             mode="out-in"
             enter-active-class="transition duration-200 ease-out"
@@ -72,6 +78,7 @@
             <component :is="Component" />
           </transition>
         </router-view>
+        </div>
       </main>
 
       <!-- Footer -->
@@ -103,6 +110,7 @@ import { useI18n } from 'vue-i18n';
 import Sidebar from '@/components/dashboard/Sidebar.vue';
 import Navbar from '@/components/dashboard/Navbar.vue';
 import Footer from '@/components/dashboard/Footer.vue';
+import NavalBackground from '@/components/common/NavalBackground.vue';
 import { STORAGE_KEYS } from '@/utils/constants';
 
 /**
@@ -142,13 +150,6 @@ const breadcrumbs = computed(() => {
 const toggleSidebar = () => {
   sidebarCollapsed.value = !sidebarCollapsed.value;
   localStorage.setItem(STORAGE_KEYS.SIDEBAR_COLLAPSED, sidebarCollapsed.value ? '1' : '0');
-
-  // On mobile, always collapse after clicking
-  if (isMobile.value) {
-    setTimeout(() => {
-      sidebarCollapsed.value = true;
-    }, 300);
-  }
 };
 
 /**
@@ -204,5 +205,17 @@ watch(() => route.path, () => {
 .transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dashboard naval background */
+.dashboard-naval-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
 }
 </style>

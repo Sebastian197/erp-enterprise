@@ -29,11 +29,23 @@
     },
     "forgot_password": {
       "title": "重置密码",
-      "submit": "发送重置链接"
+      "description": "输入您的电子邮箱地址，我们将向您发送重置密码的链接。",
+      "email": "电子邮箱",
+      "email_placeholder": "请输入您的电子邮箱地址",
+      "submit": "发送重置链接",
+      "back_to_login": "返回登录"
     },
     "reset_password": {
       "title": "重置您的密码",
-      "submit": "重置密码"
+      "description": "在下方输入您的新密码。",
+      "email": "电子邮箱",
+      "email_placeholder": "请输入您的电子邮箱地址",
+      "new_password": "新密码",
+      "password_placeholder": "请输入您的新密码",
+      "confirm_password": "确认密码",
+      "confirm_password_placeholder": "请确认您的新密码",
+      "submit": "重置密码",
+      "back_to_login": "返回登录"
     }
   },
   "dashboard": {
@@ -58,7 +70,19 @@
     },
     "recent_activity": {
       "title": "最近活动",
-      "subtitle": "系统中的最新操作"
+      "subtitle": "系统中的最新操作",
+      "columns": {
+        "user": "用户",
+        "action": "操作",
+        "description": "描述",
+        "time": "时间"
+      }
+    },
+    "time": {
+      "just_now": "刚刚",
+      "minutes_ago": "{count} 分钟前",
+      "hours_ago": "{count} 小时前",
+      "days_ago": "{count} 天前"
     }
   },
   "users": {
@@ -190,5 +214,108 @@
   "language_switcher": {
     "label": "切换语言",
     "select_language": "选择语言"
+  },
+  "theme_switcher": {
+    "label": "切换主题",
+    "light_mode": "浅色模式",
+    "dark_mode": "深色模式",
+    "dark": "深色",
+    "light": "浅色",
+    "system_mode": "系统模式"
+  },
+  "table": {
+    "no_data": "暂无数据",
+    "no_results": "未找到结果",
+    "loading": "正在加载数据..."
+  },
+  "footer": {
+    "privacy": "隐私",
+    "terms": "条款",
+    "support": "支持",
+    "all_rights_reserved": "版权所有"
+  },
+  "sidebar": {
+    "label": "导航菜单",
+    "online": "在线",
+    "navigation": "主导航",
+    "expand": "展开菜单",
+    "bars": "菜单",
+    "close": "关闭菜单"
+  },
+  "menu": {
+    "dashboard": "仪表板",
+    "users": "用户",
+    "groups": "组",
+    "categories": "分类",
+    "roles": "角色",
+    "settings": "设置"
+  },
+  "navbar": {
+    "toggle_menu": "切换菜单",
+    "search_placeholder": "搜索...",
+    "search": "搜索",
+    "user_menu": "用户菜单",
+    "my_profile": "我的个人资料",
+    "settings": "设置",
+    "logout": "登出",
+    "logging_out": "正在登出..."
+  },
+  "ai_assistant": {
+    "title": "AI 助手",
+    "subtitle": "我在这里帮助您",
+    "input_placeholder": "在这里输入您的问题...",
+    "welcome": "您好！我是您的 AI 助手。",
+    "available_features": "可用功能",
+    "ask_more": "随时问我关于此页面的任何问题！",
+    "help": {
+      "dashboard": {
+        "title": "仪表板帮助",
+        "description": "这是您的主仪表板，您可以在此处查看所有系统活动和统计信息的概览。",
+        "feature1": "查看实时统计和指标",
+        "feature2": "访问常见任务的快速操作",
+        "feature3": "监控最近的活动和事件"
+      },
+      "users": {
+        "title": "用户管理",
+        "description": "管理系统中的所有用户，包括创建、编辑和删除用户帐户。",
+        "feature1": "创建和管理用户帐户",
+        "feature2": "为用户分配角色和权限",
+        "feature3": "查看用户活动和状态"
+      },
+      "groups": {
+        "title": "组管理",
+        "description": "将用户组织成组，以便更轻松地管理和分配权限。",
+        "feature1": "创建和管理用户组",
+        "feature2": "将多个用户分配到组"
+      },
+      "categories": {
+        "title": "类别管理",
+        "description": "管理类别以组织您的内容和资源。",
+        "feature1": "创建和编辑类别",
+        "feature2": "分层组织内容"
+      },
+      "roles": {
+        "title": "角色和权限",
+        "description": "定义角色并分配权限以控制用户在系统中可以做什么。",
+        "feature1": "创建具有特定权限的自定义角色",
+        "feature2": "为用户和组分配角色"
+      },
+      "settings": {
+        "title": "系统设置",
+        "description": "配置系统范围的设置和首选项。",
+        "feature1": "管理应用程序配置",
+        "feature2": "自定义系统行为"
+      },
+      "default": {
+        "title": "常规帮助",
+        "description": "我在这里帮助您有效地导航和使用系统。问我任何问题！"
+      }
+    },
+    "response": {
+      "how_to": "要执行此操作，请检查此页面上的可用选项。如果您告诉我您想要完成什么，我可以提供更具体的指导。",
+      "help": "我在这里提供帮助！您可以询问我有关此页面上的任何功能、如何执行特定操作或有关系统的一般问题。",
+      "thanks": "不客气！如果您需要其他帮助，请告诉我。",
+      "default": "我理解您的问题。您能提供更多详细信息以便我更好地帮助您吗？"
+    }
   }
 }

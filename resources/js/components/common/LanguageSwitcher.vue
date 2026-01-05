@@ -64,8 +64,10 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { LOCALES, STORAGE_KEYS } from '@/utils/constants';
+import { LOCALES, STORAGE_KEYS, API_ENDPOINTS } from '@/utils/constants';
 import { setI18nLocale } from '@/i18n';
+import { useAuthStore } from '@/stores/auth';
+import api from '@/utils/api';
 
 /**
  * LanguageSwitcher Component
@@ -74,6 +76,7 @@ import { setI18nLocale } from '@/i18n';
  */
 
 const { locale } = useI18n();
+const authStore = useAuthStore();
 
 // State
 const isOpen = ref(false);
@@ -107,6 +110,22 @@ const changeLocale = async (code) => {
 
     // Save to localStorage
     localStorage.setItem(STORAGE_KEYS.LOCALE, code);
+
+    // Check if user is authenticated by verifying token in localStorage
+    const hasToken = !!localStorage.getItem(STORAGE_KEYS.AUTH_TOKEN);
+    const isAuth = authStore.isAuthenticated || hasToken;
+
+    // Save to backend if user is authenticated
+    if (isAuth) {
+      try {
+        await api.put(API_ENDPOINTS.PREFERENCES.LOCALE, {
+          locale: code,
+        });
+      } catch (error) {
+        console.error('Failed to save locale preference to backend:', error);
+        // Continue anyway since localStorage is updated
+      }
+    }
 
     isOpen.value = false;
   } catch (error) {

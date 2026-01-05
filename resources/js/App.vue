@@ -36,26 +36,28 @@ onMounted(() => {
   }
 
   // Connect to WebSocket if authenticated
-  if (authStore.isAuthenticated) {
-    connect();
-    listenToNotifications();
-  }
+  // Disabled temporarily - uncomment when WebSocket features are needed
+  // if (authStore.isAuthenticated) {
+  //   connect();
+  //   listenToNotifications();
+  // }
 });
 
 /**
  * Watch authentication state and manage WebSocket connection
+ * Disabled temporarily - uncomment when WebSocket features are needed
  */
-watch(
-  () => authStore.isAuthenticated,
-  (isAuthenticated) => {
-    if (isAuthenticated) {
-      connect();
-      listenToNotifications();
-    } else {
-      disconnect();
-    }
-  }
-);
+// watch(
+//   () => authStore.isAuthenticated,
+//   (isAuthenticated) => {
+//     if (isAuthenticated) {
+//       connect();
+//       listenToNotifications();
+//     } else {
+//       disconnect();
+//     }
+//   }
+// );
 </script>
 
 <style>
