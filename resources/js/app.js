@@ -17,6 +17,9 @@ import './bootstrap';
 // Import global styles
 import '../css/app.css';
 
+// Import Font Awesome
+import '@fortawesome/fontawesome-free/css/all.css';
+
 /**
  * Create and configure Pinia store
  */
@@ -35,6 +38,19 @@ app.use(pinia);           // State management
 app.use(router);          // Routing
 app.use(i18n);            // Internationalization
 app.use(MotionPlugin);    // Animations
+
+/**
+ * Initialize locale from storage
+ */
+import { setI18nLocale } from './i18n';
+import { STORAGE_KEYS } from './utils/constants';
+
+const savedLocale = localStorage.getItem(STORAGE_KEYS.LOCALE);
+if (savedLocale && savedLocale !== 'en') {
+    setI18nLocale(savedLocale).catch(err => {
+        console.error('Failed to load saved locale:', err);
+    });
+}
 
 /**
  * Global error handler

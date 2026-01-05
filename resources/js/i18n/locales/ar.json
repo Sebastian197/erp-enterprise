@@ -12,39 +12,54 @@
     "logout": "تسجيل الخروج"
   },
   "auth": {
-    "login": "تسجيل الدخول",
-    "register": "التسجيل",
-    "logout": "تسجيل الخروج",
-    "email": "عنوان البريد الإلكتروني",
-    "password": "كلمة المرور",
-    "password_confirm": "تأكيد كلمة المرور",
-    "remember_me": "تذكرني",
-    "forgot_password": "نسيت كلمة المرور؟",
-    "reset_password": "إعادة تعيين كلمة المرور",
-    "send_reset_link": "إرسال رابط إعادة التعيين",
-    "reset_password_title": "إعادة تعيين كلمة المرور",
-    "login_title": "تسجيل الدخول إلى حسابك",
-    "login_button": "تسجيل الدخول",
-    "register_title": "إنشاء حساب جديد",
-    "register_button": "التسجيل",
-    "already_have_account": "هل لديك حساب بالفعل؟",
-    "dont_have_account": "ليس لديك حساب؟",
-    "back_to_login": "العودة إلى تسجيل الدخول",
-    "reset_link_sent": "تم إرسال رابط إعادة التعيين إلى بريدك الإلكتروني",
-    "password_reset_success": "تم إعادة تعيين كلمة المرور بنجاح"
+    "welcome_message": "مرحباً بك في ERP Enterprise",
+    "login": {
+      "title": "تسجيل الدخول إلى حسابك",
+      "email": "عنوان البريد الإلكتروني",
+      "email_placeholder": "أدخل بريدك الإلكتروني",
+      "password": "كلمة المرور",
+      "password_placeholder": "أدخل كلمة المرور",
+      "remember_me": "تذكرني",
+      "forgot_password": "نسيت كلمة المرور؟",
+      "submit": "تسجيل الدخول"
+    },
+    "register": {
+      "title": "إنشاء حساب جديد",
+      "submit": "التسجيل"
+    },
+    "forgot_password": {
+      "title": "إعادة تعيين كلمة المرور",
+      "submit": "إرسال رابط إعادة التعيين"
+    },
+    "reset_password": {
+      "title": "إعادة تعيين كلمة المرور",
+      "submit": "إعادة تعيين كلمة المرور"
+    }
   },
   "dashboard": {
     "title": "لوحة التحكم",
     "welcome": "مرحباً بعودتك، {name}!",
+    "subtitle": "إليك ما يحدث في نظامك اليوم.",
     "overview": "نظرة عامة",
-    "total_users": "إجمالي المستخدمين",
-    "active_users": "المستخدمون النشطون",
-    "total_groups": "إجمالي المجموعات",
-    "total_categories": "إجمالي الفئات",
-    "recent_activity": "النشاط الأخير",
-    "quick_actions": "إجراءات سريعة",
     "statistics": "الإحصائيات",
-    "no_data": "لا توجد بيانات متاحة"
+    "no_data": "لا توجد بيانات متاحة",
+    "stats": {
+      "total_users": "إجمالي المستخدمين",
+      "active_users": "المستخدمون النشطون",
+      "total_groups": "إجمالي المجموعات",
+      "total_categories": "إجمالي الفئات"
+    },
+    "quick_actions": {
+      "title": "إجراءات سريعة",
+      "create_user": "إنشاء مستخدم",
+      "create_group": "إنشاء مجموعة",
+      "create_category": "إنشاء فئة",
+      "settings": "الإعدادات"
+    },
+    "recent_activity": {
+      "title": "النشاط الأخير",
+      "subtitle": "آخر الإجراءات في نظامك"
+    }
   },
   "users": {
     "title": "المستخدمون",
@@ -171,5 +186,9 @@
     "last": "الأخير",
     "next": "التالي",
     "previous": "السابق"
+  },
+  "language_switcher": {
+    "label": "تبديل اللغة",
+    "select_language": "اختر لغة"
   }
 }

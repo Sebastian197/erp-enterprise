@@ -12,39 +12,54 @@
     "logout": "Disconnetti"
   },
   "auth": {
-    "login": "Accedi",
-    "register": "Registrati",
-    "logout": "Disconnetti",
-    "email": "Indirizzo Email",
-    "password": "Password",
-    "password_confirm": "Conferma Password",
-    "remember_me": "Ricordami",
-    "forgot_password": "Password Dimenticata?",
-    "reset_password": "Reimposta Password",
-    "send_reset_link": "Invia Link di Reimpostazione",
-    "reset_password_title": "Reimposta la Tua Password",
-    "login_title": "Accedi al Tuo Account",
-    "login_button": "Accedi",
-    "register_title": "Crea Nuovo Account",
-    "register_button": "Registrati",
-    "already_have_account": "Hai già un account?",
-    "dont_have_account": "Non hai un account?",
-    "back_to_login": "Torna al Login",
-    "reset_link_sent": "Il link di reimpostazione è stato inviato alla tua email",
-    "password_reset_success": "La tua password è stata reimpostata con successo"
+    "welcome_message": "Benvenuti in ERP Enterprise",
+    "login": {
+      "title": "Accedi al Tuo Account",
+      "email": "Indirizzo Email",
+      "email_placeholder": "Inserisci la tua email",
+      "password": "Password",
+      "password_placeholder": "Inserisci la tua password",
+      "remember_me": "Ricordami",
+      "forgot_password": "Password Dimenticata?",
+      "submit": "Accedi"
+    },
+    "register": {
+      "title": "Crea Nuovo Account",
+      "submit": "Registrati"
+    },
+    "forgot_password": {
+      "title": "Reimposta Password",
+      "submit": "Invia Link di Reimpostazione"
+    },
+    "reset_password": {
+      "title": "Reimposta la Tua Password",
+      "submit": "Reimposta Password"
+    }
   },
   "dashboard": {
     "title": "Dashboard",
     "welcome": "Bentornato, {name}!",
+    "subtitle": "Ecco cosa sta succedendo con il tuo sistema oggi.",
     "overview": "Panoramica",
-    "total_users": "Utenti Totali",
-    "active_users": "Utenti Attivi",
-    "total_groups": "Gruppi Totali",
-    "total_categories": "Categorie Totali",
-    "recent_activity": "Attività Recente",
-    "quick_actions": "Azioni Rapide",
     "statistics": "Statistiche",
-    "no_data": "Nessun dato disponibile"
+    "no_data": "Nessun dato disponibile",
+    "stats": {
+      "total_users": "Utenti Totali",
+      "active_users": "Utenti Attivi",
+      "total_groups": "Gruppi Totali",
+      "total_categories": "Categorie Totali"
+    },
+    "quick_actions": {
+      "title": "Azioni Rapide",
+      "create_user": "Crea Utente",
+      "create_group": "Crea Gruppo",
+      "create_category": "Crea Categoria",
+      "settings": "Impostazioni"
+    },
+    "recent_activity": {
+      "title": "Attività Recente",
+      "subtitle": "Ultime azioni nel tuo sistema"
+    }
   },
   "users": {
     "title": "Utenti",
@@ -171,5 +186,9 @@
     "last": "Ultima",
     "next": "Avanti",
     "previous": "Precedente"
+  },
+  "language_switcher": {
+    "label": "Cambia lingua",
+    "select_language": "Seleziona una lingua"
   }
 }

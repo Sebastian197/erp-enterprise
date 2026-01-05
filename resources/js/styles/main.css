@@ -3,8 +3,6 @@
  * Global application styles with Tailwind CSS
  */
 
-@import 'tailwindcss';
-
 /* Custom CSS variables for themes */
 :root {
     /* Default Light Theme Colors */

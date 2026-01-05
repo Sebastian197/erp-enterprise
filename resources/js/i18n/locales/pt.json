@@ -12,39 +12,54 @@
     "logout": "Sair"
   },
   "auth": {
-    "login": "Entrar",
-    "register": "Registrar",
-    "logout": "Sair",
-    "email": "Endereço de Email",
-    "password": "Senha",
-    "password_confirm": "Confirmar Senha",
-    "remember_me": "Lembrar-me",
-    "forgot_password": "Esqueceu a Senha?",
-    "reset_password": "Redefinir Senha",
-    "send_reset_link": "Enviar Link de Redefinição",
-    "reset_password_title": "Redefina Sua Senha",
-    "login_title": "Entre na Sua Conta",
-    "login_button": "Entrar",
-    "register_title": "Criar Nova Conta",
-    "register_button": "Registrar",
-    "already_have_account": "Já tem uma conta?",
-    "dont_have_account": "Não tem uma conta?",
-    "back_to_login": "Voltar ao Login",
-    "reset_link_sent": "O link de redefinição foi enviado para seu email",
-    "password_reset_success": "Sua senha foi redefinida com sucesso"
+    "welcome_message": "Bem-vindo ao ERP Enterprise",
+    "login": {
+      "title": "Entre na Sua Conta",
+      "email": "Endereço de Email",
+      "email_placeholder": "Digite seu email",
+      "password": "Senha",
+      "password_placeholder": "Digite sua senha",
+      "remember_me": "Lembrar-me",
+      "forgot_password": "Esqueceu a Senha?",
+      "submit": "Entrar"
+    },
+    "register": {
+      "title": "Criar Nova Conta",
+      "submit": "Registrar"
+    },
+    "forgot_password": {
+      "title": "Redefinir Senha",
+      "submit": "Enviar Link de Redefinição"
+    },
+    "reset_password": {
+      "title": "Redefina Sua Senha",
+      "submit": "Redefinir Senha"
+    }
   },
   "dashboard": {
     "title": "Painel",
     "welcome": "Bem-vindo de volta, {name}!",
+    "subtitle": "Aqui está o que está acontecendo com o seu sistema hoje.",
     "overview": "Visão Geral",
-    "total_users": "Usuários Totais",
-    "active_users": "Usuários Ativos",
-    "total_groups": "Grupos Totais",
-    "total_categories": "Categorias Totais",
-    "recent_activity": "Atividade Recente",
-    "quick_actions": "Ações Rápidas",
     "statistics": "Estatísticas",
-    "no_data": "Nenhum dado disponível"
+    "no_data": "Nenhum dado disponível",
+    "stats": {
+      "total_users": "Usuários Totais",
+      "active_users": "Usuários Ativos",
+      "total_groups": "Grupos Totais",
+      "total_categories": "Categorias Totais"
+    },
+    "quick_actions": {
+      "title": "Ações Rápidas",
+      "create_user": "Criar Usuário",
+      "create_group": "Criar Grupo",
+      "create_category": "Criar Categoria",
+      "settings": "Configurações"
+    },
+    "recent_activity": {
+      "title": "Atividade Recente",
+      "subtitle": "Últimas ações no seu sistema"
+    }
   },
   "users": {
     "title": "Usuários",
@@ -171,5 +186,9 @@
     "last": "Último",
     "next": "Próximo",
     "previous": "Anterior"
+  },
+  "language_switcher": {
+    "label": "Trocar idioma",
+    "select_language": "Selecione um idioma"
   }
 }

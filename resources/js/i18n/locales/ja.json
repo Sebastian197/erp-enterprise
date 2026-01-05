@@ -12,39 +12,54 @@
     "logout": "ログアウト"
   },
   "auth": {
-    "login": "ログイン",
-    "register": "登録",
-    "logout": "ログアウト",
-    "email": "メールアドレス",
-    "password": "パスワード",
-    "password_confirm": "パスワード確認",
-    "remember_me": "ログイン状態を保持",
-    "forgot_password": "パスワードをお忘れですか？",
-    "reset_password": "パスワードリセット",
-    "send_reset_link": "リセットリンクを送信",
-    "reset_password_title": "パスワードをリセット",
-    "login_title": "アカウントにログイン",
-    "login_button": "ログイン",
-    "register_title": "新規アカウント作成",
-    "register_button": "登録",
-    "already_have_account": "既にアカウントをお持ちですか？",
-    "dont_have_account": "アカウントをお持ちでないですか？",
-    "back_to_login": "ログインに戻る",
-    "reset_link_sent": "リセットリンクがメールに送信されました",
-    "password_reset_success": "パスワードが正常にリセットされました"
+    "welcome_message": "ERP Enterpriseへようこそ",
+    "login": {
+      "title": "アカウントにログイン",
+      "email": "メールアドレス",
+      "email_placeholder": "メールアドレスを入力してください",
+      "password": "パスワード",
+      "password_placeholder": "パスワードを入力してください",
+      "remember_me": "ログイン状態を保持",
+      "forgot_password": "パスワードをお忘れですか？",
+      "submit": "ログイン"
+    },
+    "register": {
+      "title": "新規アカウント作成",
+      "submit": "登録"
+    },
+    "forgot_password": {
+      "title": "パスワードリセット",
+      "submit": "リセットリンクを送信"
+    },
+    "reset_password": {
+      "title": "パスワードをリセット",
+      "submit": "パスワードをリセット"
+    }
   },
   "dashboard": {
     "title": "ダッシュボード",
     "welcome": "おかえりなさい、{name}さん！",
+    "subtitle": "本日のシステムの状況です。",
     "overview": "概要",
-    "total_users": "総ユーザー数",
-    "active_users": "アクティブユーザー",
-    "total_groups": "総グループ数",
-    "total_categories": "総カテゴリー数",
-    "recent_activity": "最近のアクティビティ",
-    "quick_actions": "クイックアクション",
     "statistics": "統計",
-    "no_data": "データがありません"
+    "no_data": "データがありません",
+    "stats": {
+      "total_users": "総ユーザー数",
+      "active_users": "アクティブユーザー",
+      "total_groups": "総グループ数",
+      "total_categories": "総カテゴリー数"
+    },
+    "quick_actions": {
+      "title": "クイックアクション",
+      "create_user": "ユーザー作成",
+      "create_group": "グループ作成",
+      "create_category": "カテゴリー作成",
+      "settings": "設定"
+    },
+    "recent_activity": {
+      "title": "最近のアクティビティ",
+      "subtitle": "システム内の最新のアクション"
+    }
   },
   "users": {
     "title": "ユーザー",
@@ -171,5 +186,9 @@
     "last": "最後",
     "next": "次へ",
     "previous": "前へ"
+  },
+  "language_switcher": {
+    "label": "言語を切り替える",
+    "select_language": "言語を選択"
   }
 }

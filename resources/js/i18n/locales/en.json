@@ -12,39 +12,54 @@
     "logout": "Logout"
   },
   "auth": {
-    "login": "Login",
-    "register": "Register",
-    "logout": "Logout",
-    "email": "Email Address",
-    "password": "Password",
-    "password_confirm": "Confirm Password",
-    "remember_me": "Remember Me",
-    "forgot_password": "Forgot Password?",
-    "reset_password": "Reset Password",
-    "send_reset_link": "Send Password Reset Link",
-    "reset_password_title": "Reset Your Password",
-    "login_title": "Sign In to Your Account",
-    "login_button": "Sign In",
-    "register_title": "Create New Account",
-    "register_button": "Register",
-    "already_have_account": "Already have an account?",
-    "dont_have_account": "Don't have an account?",
-    "back_to_login": "Back to Login",
-    "reset_link_sent": "Password reset link has been sent to your email",
-    "password_reset_success": "Your password has been reset successfully"
+    "welcome_message": "Welcome to ERP Enterprise",
+    "login": {
+      "title": "Sign In to Your Account",
+      "email": "Email Address",
+      "email_placeholder": "Enter your email",
+      "password": "Password",
+      "password_placeholder": "Enter your password",
+      "remember_me": "Remember Me",
+      "forgot_password": "Forgot Password?",
+      "submit": "Sign In"
+    },
+    "register": {
+      "title": "Create New Account",
+      "submit": "Register"
+    },
+    "forgot_password": {
+      "title": "Reset Password",
+      "submit": "Send Reset Link"
+    },
+    "reset_password": {
+      "title": "Reset Your Password",
+      "submit": "Reset Password"
+    }
   },
   "dashboard": {
     "title": "Dashboard",
     "welcome": "Welcome back, {name}!",
+    "subtitle": "Here's what's happening with your system today.",
     "overview": "Overview",
-    "total_users": "Total Users",
-    "active_users": "Active Users",
-    "total_groups": "Total Groups",
-    "total_categories": "Total Categories",
-    "recent_activity": "Recent Activity",
-    "quick_actions": "Quick Actions",
     "statistics": "Statistics",
-    "no_data": "No data available"
+    "no_data": "No data available",
+    "stats": {
+      "total_users": "Total Users",
+      "active_users": "Active Users",
+      "total_groups": "Total Groups",
+      "total_categories": "Total Categories"
+    },
+    "quick_actions": {
+      "title": "Quick Actions",
+      "create_user": "Create User",
+      "create_group": "Create Group",
+      "create_category": "Create Category",
+      "settings": "Settings"
+    },
+    "recent_activity": {
+      "title": "Recent Activity",
+      "subtitle": "Latest actions in your system"
+    }
   },
   "users": {
     "title": "Users",

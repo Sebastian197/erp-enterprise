@@ -108,18 +108,24 @@ export const useThemeStore = defineStore('theme', () => {
      * @param {string} theme - Theme ID
      */
     const loadThemeCSS = (theme) => {
-        // Remove existing theme link
-        const existingLink = document.querySelector('link[data-theme-css]');
-        if (existingLink) {
-            existingLink.remove();
+        // Apply theme colors via CSS variables
+        // Theme colors come from the backend and are applied dynamically
+        // No need to load separate CSS files
+        if (customTheme.value && customTheme.value.colors) {
+            applyThemeColors(customTheme.value.colors);
         }
+    };
 
-        // Add new theme link
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = `/resources/js/styles/themes/${theme}.css`;
-        link.setAttribute('data-theme-css', 'true');
-        document.head.appendChild(link);
+    /**
+     * Apply theme colors to document root
+     */
+    const applyThemeColors = (colors) => {
+        const root = document.documentElement;
+        if (colors) {
+            Object.entries(colors).forEach(([key, value]) => {
+                root.style.setProperty(`--color-${key}`, value);
+            });
+        }
     };
 
     /**
