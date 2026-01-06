@@ -71,9 +71,11 @@ const getConnectionColor = (opacity) => createRGBA(themeColors.value.primary, op
 const getMouseFillColor = () => createRGBA(themeColors.value.primary, 0.4);
 const getMouseStrokeColor = () => createRGBA(themeColors.value.secondary, 0.8);
 const getMouseConnectionColor = (opacity) => createRGBA(themeColors.value.secondary, opacity);
-const getGridColor = () => createRGBA(themeColors.value.primary, 0.03);
-const getWaveColor1 = () => createRGBA(themeColors.value.primary, 0.3);
-const getWaveColor2 = () => createRGBA(themeColors.value.secondary, 0.2);
+
+// Computed properties for CSS v-bind
+const getGridColor = computed(() => createRGBA(themeColors.value.primary, 0.03));
+const getWaveColor1 = computed(() => createRGBA(themeColors.value.primary, 0.3));
+const getWaveColor2 = computed(() => createRGBA(themeColors.value.secondary, 0.2));
 
 class NavalElement {
   constructor(type, x, y, canvas) {

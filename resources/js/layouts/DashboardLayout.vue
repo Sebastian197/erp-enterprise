@@ -150,6 +150,9 @@ const breadcrumbs = computed(() => {
 const toggleSidebar = () => {
   sidebarCollapsed.value = !sidebarCollapsed.value;
   localStorage.setItem(STORAGE_KEYS.SIDEBAR_COLLAPSED, sidebarCollapsed.value ? '1' : '0');
+
+  // Emit custom event for same-window components
+  window.dispatchEvent(new CustomEvent('sidebar-toggle'));
 };
 
 /**
@@ -214,7 +217,7 @@ watch(() => route.path, () => {
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.4;
+  opacity: 0.3;
   pointer-events: none;
   z-index: 0;
 }

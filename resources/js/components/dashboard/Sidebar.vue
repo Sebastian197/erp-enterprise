@@ -30,7 +30,7 @@
         >
           <span
             v-if="!collapsed"
-            class="text-xl font-bold text-themed-primary"
+            class="text-xl font-bold text-sidebar"
           >
             {{ appName }}
           </span>
@@ -73,10 +73,10 @@
           leave-to-class="opacity-0"
         >
           <div v-if="!collapsed" class="flex-1 min-w-0">
-            <p class="text-sm font-semibold text-themed-primary truncate">
+            <p class="text-sm font-semibold text-sidebar truncate">
               {{ userName }}
             </p>
-            <p class="text-xs text-themed-muted truncate">
+            <p class="text-xs text-sidebar opacity-75 truncate">
               {{ userEmail }}
             </p>
           </div>

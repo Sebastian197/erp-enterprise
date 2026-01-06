@@ -69,22 +69,25 @@ export const useThemeStore = defineStore('theme', () => {
 
     /**
      * Set theme
-     * @param {string} theme - Theme ID
+     * @param {string|object} theme - Theme ID or theme object from backend
      * @param {boolean} syncToBackend - Whether to sync to backend (default: true)
      */
     const setTheme = async (theme, syncToBackend = true) => {
-        if (!Object.values(THEMES).includes(theme)) {
+        // Handle theme object from backend (extract slug)
+        const themeSlug = typeof theme === 'object' && theme !== null ? theme.slug : theme;
+
+        if (!Object.values(THEMES).includes(themeSlug)) {
             console.error('Invalid theme:', theme);
             return;
         }
 
-        currentTheme.value = theme;
-        localStorage.setItem(STORAGE_KEYS.THEME, theme);
-        applyTheme(theme);
+        currentTheme.value = themeSlug;
+        localStorage.setItem(STORAGE_KEYS.THEME, themeSlug);
+        applyTheme(themeSlug);
 
         // Sync to backend if user is authenticated
         if (syncToBackend) {
-            await syncThemeToBackend(theme);
+            await syncThemeToBackend(themeSlug);
         }
     };
 
