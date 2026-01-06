@@ -1,8 +1,8 @@
 <template>
-  <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-4 px-4 lg:px-6 overflow-x-hidden">
+  <footer class="bg-navbar border-t border-navbar py-4 px-4 lg:px-6 overflow-x-hidden">
     <div class="flex flex-col md:flex-row items-center justify-between space-y-2 md:space-y-0 max-w-full">
       <!-- Copyright -->
-      <div class="text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">
+      <div class="text-sm text-themed-secondary text-center md:text-left">
         {{ copyrightText }}
       </div>
 
@@ -10,21 +10,21 @@
       <div class="flex items-center space-x-4 text-sm">
         <a
           href="/privacy"
-          class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors"
+          class="text-themed-secondary hover:text-primary transition-colors"
         >
           {{ $t('footer.privacy') }}
         </a>
-        <span class="text-gray-300 dark:text-gray-700">|</span>
+        <span class="text-muted">|</span>
         <a
           href="/terms"
-          class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors"
+          class="text-themed-secondary hover:text-primary transition-colors"
         >
           {{ $t('footer.terms') }}
         </a>
-        <span class="text-gray-300 dark:text-gray-700">|</span>
+        <span class="text-muted">|</span>
         <a
           href="/support"
-          class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors"
+          class="text-themed-secondary hover:text-primary transition-colors"
         >
           {{ $t('footer.support') }}
         </a>
@@ -32,7 +32,7 @@
 
       <!-- Version & AI Assistant Button -->
       <div class="flex items-center space-x-4">
-        <div class="text-sm text-gray-500 dark:text-gray-500">
+        <div class="text-sm text-muted">
           {{ versionText }}
         </div>
 

@@ -18,10 +18,10 @@
             v-model="searchQuery"
             type="text"
             :placeholder="$t('navbar.search_placeholder')"
-            class="w-64 pl-10 pr-4 py-2 rounded-lg bg-input border-input border-input-focus text-input focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+            class="w-64 pl-10 pr-4 py-2 rounded-lg bg-input border border-input text-input focus:outline-none focus:ring-2 focus:ring-primary focus:border-input-focus transition-all"
             @keyup.enter="handleSearch"
           />
-          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-muted"></i>
         </div>
       </div>
     </div>
@@ -72,7 +72,7 @@
           <span class="hidden lg:block text-sm font-medium text-navbar">
             {{ userName }}
           </span>
-          <i class="hidden lg:block fas fa-chevron-down text-xs text-gray-400"></i>
+          <i class="hidden lg:block fas fa-chevron-down text-xs text-muted"></i>
         </button>
 
         <!-- User Dropdown Menu -->
@@ -121,7 +121,7 @@
 
             <button
               @click="handleLogout"
-              class="w-full flex items-center space-x-3 px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+              class="w-full flex items-center space-x-3 px-4 py-2 text-sm text-danger hover:bg-danger/10 transition-colors"
               :disabled="loggingOut"
             >
               <i class="fas fa-sign-out-alt w-4"></i>

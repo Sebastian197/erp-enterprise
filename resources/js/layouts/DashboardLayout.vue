@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
+  <div class="min-h-screen bg-themed-secondary flex">
     <!-- Sidebar -->
     <Sidebar
       :collapsed="sidebarCollapsed"
@@ -18,37 +18,37 @@
       />
 
       <!-- Breadcrumbs -->
-      <div class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 lg:px-6 py-3">
+      <div class="bg-navbar border-b border-navbar px-4 lg:px-6 py-3">
         <nav class="flex items-center space-x-2 text-sm" aria-label="Breadcrumb">
           <router-link
             to="/dashboard"
-            class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors"
+            class="text-themed-secondary hover:text-primary transition-colors"
           >
             <i class="fas fa-home"></i>
           </router-link>
 
           <template v-if="breadcrumbs.length > 0">
-            <span class="text-gray-400 dark:text-gray-600">/</span>
+            <span class="text-muted">/</span>
 
             <template v-for="(crumb, index) in breadcrumbs" :key="index">
               <router-link
                 v-if="crumb.to && index < breadcrumbs.length - 1"
                 :to="crumb.to"
-                class="text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors"
+                class="text-themed-secondary hover:text-primary transition-colors"
               >
                 {{ crumb.label }}
               </router-link>
 
               <span
                 v-else
-                class="text-gray-900 dark:text-white font-medium"
+                class="text-themed-primary font-medium"
               >
                 {{ crumb.label }}
               </span>
 
               <span
                 v-if="index < breadcrumbs.length - 1"
-                class="text-gray-400 dark:text-gray-600"
+                class="text-muted"
               >
                 /
               </span>
@@ -58,7 +58,7 @@
       </div>
 
       <!-- Page Content -->
-      <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 dark:bg-gray-900 p-4 lg:p-6 relative">
+      <main class="flex-1 overflow-x-hidden overflow-y-auto bg-themed-secondary p-4 lg:p-6 relative">
         <!-- Naval Background with low intensity -->
         <div class="dashboard-naval-background">
           <NavalBackground intensity="low" />

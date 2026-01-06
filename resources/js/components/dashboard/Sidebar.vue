@@ -58,7 +58,7 @@
             </span>
           </div>
           <span
-            class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white dark:border-gray-800 rounded-full"
+            class="absolute bottom-0 right-0 w-3 h-3 bg-success border-2 border-sidebar rounded-full"
             :title="$t('sidebar.online')"
           ></span>
         </div>
@@ -101,7 +101,7 @@
               'flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all duration-200',
               isActive
                 ? 'bg-sidebar-active text-white shadow-md'
-                : 'text-sidebar bg-sidebar-hover',
+                : 'text-sidebar hover:bg-sidebar-hover',
             ]"
             :title="collapsed ? item.name : ''"
           >
@@ -127,7 +127,7 @@
             @click="toggleSubmenu(item.route)"
             :class="[
               'w-full flex items-center justify-between space-x-3 px-3 py-2.5 rounded-lg transition-all duration-200',
-              'text-sidebar bg-sidebar-hover',
+              'text-sidebar hover:bg-sidebar-hover',
             ]"
           >
             <div class="flex items-center space-x-3">
