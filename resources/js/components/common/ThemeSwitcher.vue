@@ -148,15 +148,15 @@ const toggleDropdown = () => {
 /**
  * Toggle dark mode
  */
-const toggleDarkMode = () => {
-  themeStore.toggleDarkMode();
+const toggleDarkMode = async () => {
+  await themeStore.toggleDarkMode();
 };
 
 /**
  * Select theme
  */
-const selectTheme = (themeId) => {
-  themeStore.setTheme(themeId);
+const selectTheme = async (themeId) => {
+  await themeStore.setTheme(themeId);
   isOpen.value = false;
 };
 

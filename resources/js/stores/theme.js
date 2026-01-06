@@ -62,8 +62,9 @@ export const useThemeStore = defineStore('theme', () => {
     /**
      * Set theme
      * @param {string} theme - Theme ID
+     * @param {boolean} syncToBackend - Whether to sync to backend (default: true)
      */
-    const setTheme = (theme) => {
+    const setTheme = async (theme, syncToBackend = true) => {
         if (!Object.values(THEMES).includes(theme)) {
             console.error('Invalid theme:', theme);
             return;
@@ -72,6 +73,44 @@ export const useThemeStore = defineStore('theme', () => {
         currentTheme.value = theme;
         localStorage.setItem(STORAGE_KEYS.THEME, theme);
         applyTheme(theme);
+
+        // Sync to backend if user is authenticated
+        if (syncToBackend) {
+            await syncThemeToBackend(theme);
+        }
+    };
+
+    /**
+     * Sync theme to backend
+     * @param {string} theme - Theme ID
+     */
+    const syncThemeToBackend = async (theme) => {
+        try {
+            // Check if user is authenticated
+            const hasToken = !!localStorage.getItem(STORAGE_KEYS.AUTH_TOKEN);
+            if (!hasToken) {
+                return; // Skip backend sync for non-authenticated users
+            }
+
+            // Get numeric theme_id from mapping
+            const { THEME_ID_MAP } = await import('@/utils/constants');
+            const themeId = THEME_ID_MAP[theme];
+            if (!themeId) {
+                console.warn('Theme ID mapping not found for:', theme);
+                return;
+            }
+
+            // Import API dynamically to avoid circular dependency
+            const { default: api } = await import('@/utils/api');
+            const { API_ENDPOINTS } = await import('@/utils/constants');
+
+            await api.put(API_ENDPOINTS.PREFERENCES.THEME, {
+                theme_id: themeId,
+            });
+        } catch (error) {
+            console.error('Failed to save theme preference to backend:', error);
+            // Don't throw - localStorage is already updated, backend sync is optional enhancement
+        }
     };
 
     /**
@@ -131,9 +170,9 @@ export const useThemeStore = defineStore('theme', () => {
     /**
      * Toggle dark mode
      */
-    const toggleDarkMode = () => {
+    const toggleDarkMode = async () => {
         const newTheme = isDark.value ? THEMES.DEFAULT_LIGHT : THEMES.DEFAULT_DARK;
-        setTheme(newTheme);
+        await setTheme(newTheme);
     };
 
     /**
@@ -236,6 +275,7 @@ export const useThemeStore = defineStore('theme', () => {
         // Actions
         setTheme,
         applyTheme,
+        syncThemeToBackend,
         toggleDarkMode,
         setCustomTheme,
         loadCustomTheme,

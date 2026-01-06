@@ -128,6 +128,25 @@ export const THEME_METADATA = {
 };
 
 /**
+ * Theme ID mapping - maps frontend theme strings to backend numeric IDs
+ * These IDs correspond to the themes table in the database
+ */
+export const THEME_ID_MAP = {
+    'default-light': 1,
+    'default-dark': 2,
+    'blue-ocean': 3,
+    'purple-dream': 4,
+    'green-nature': 5,
+    'orange-sunset': 6,
+    'red-fire': 7,
+    'gray-professional': 8,
+    'teal-modern': 9,
+    'pink-soft': 10,
+    'high-contrast': 11,
+    'custom': 12,
+};
+
+/**
  * User roles
  */
 export const ROLES = {
