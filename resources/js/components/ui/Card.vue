@@ -1,23 +1,23 @@
 <template>
   <div
     :class="[
-      'bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 transition-all duration-200',
+      'bg-card rounded-lg shadow-card border-card transition-all duration-200',
       hoverable && 'hover:shadow-lg hover:-translate-y-0.5',
     ]"
   >
     <!-- Card Header -->
     <div
       v-if="title || subtitle || $slots.header || collapsible"
-      class="px-6 py-4 border-b border-gray-200 dark:border-gray-700"
+      class="px-6 py-4 border-b border-themed"
     >
       <div class="flex items-center justify-between">
         <!-- Header Content -->
         <div class="flex-1">
           <slot name="header">
-            <h3 v-if="title" class="text-lg font-semibold text-gray-900 dark:text-white">
+            <h3 v-if="title" class="text-lg font-semibold text-themed-primary">
               {{ title }}
             </h3>
-            <p v-if="subtitle" class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+            <p v-if="subtitle" class="mt-1 text-sm text-themed-muted">
               {{ subtitle }}
             </p>
           </slot>
@@ -27,7 +27,7 @@
         <button
           v-if="collapsible"
           @click="toggleCollapse"
-          class="ml-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+          class="ml-4 text-themed-muted hover:text-themed-secondary transition-colors"
           :aria-label="isCollapsed ? $t('card.expand') : $t('card.collapse')"
         >
           <i
@@ -52,9 +52,9 @@
       <div v-if="!isCollapsed" class="px-6 py-4">
         <!-- Loading State -->
         <div v-if="loading" class="space-y-3">
-          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
-          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-5/6"></div>
-          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-4/6"></div>
+          <div class="h-4 bg-themed-tertiary rounded animate-pulse"></div>
+          <div class="h-4 bg-themed-tertiary rounded animate-pulse w-5/6"></div>
+          <div class="h-4 bg-themed-tertiary rounded animate-pulse w-4/6"></div>
         </div>
 
         <!-- Content -->
@@ -67,7 +67,7 @@
     <!-- Card Footer -->
     <div
       v-if="$slots.footer && !isCollapsed"
-      class="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50"
+      class="px-6 py-4 border-t border-themed bg-themed-tertiary"
     >
       <slot name="footer"></slot>
     </div>

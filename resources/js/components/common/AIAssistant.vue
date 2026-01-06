@@ -1,15 +1,16 @@
 <template>
   <transition
-    enter-active-class="modal-backdrop-enter"
-    leave-active-class="modal-backdrop-leave"
+    enter-active-class="backdrop-enter-active"
+    leave-active-class="backdrop-leave-active"
   >
     <div
       v-if="isOpen"
-      class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+      style="z-index: 9998;"
       @click="handleBackdropClick"
     >
       <!-- Naval Background -->
-      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
         <NavalBackground intensity="medium" />
       </div>
 
@@ -22,7 +23,8 @@
         <div
           v-if="isOpen"
           ref="modalContent"
-          class="relative bg-white/98 dark:bg-gray-800/98 backdrop-blur-2xl rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] w-full max-w-2xl max-h-[85vh] flex flex-col border border-white/30 dark:border-gray-700/30 ring-1 ring-black/5 dark:ring-white/5"
+          class="relative bg-white/98 dark:bg-gray-800/98 backdrop-blur-xl rounded-2xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col border border-gray-200/50 dark:border-gray-700/50 overflow-hidden"
+          style="z-index: 9999;"
           @click.stop
         >
         <!-- Header -->
@@ -47,24 +49,44 @@
         <!-- Messages -->
         <div
           ref="messagesContainer"
-          class="flex-1 overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-transparent via-gray-50/30 to-transparent dark:via-gray-900/30"
+          class="flex-1 overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-transparent via-gray-50/30 to-transparent dark:via-gray-900/30 custom-scrollbar"
         >
           <div
             v-for="(message, index) in messages"
             :key="index"
-            class="flex"
+            class="flex message-item"
             :class="message.type === 'user' ? 'justify-end' : 'justify-start'"
+            :style="{ '--message-index': index }"
           >
             <div
-              class="max-w-[80%] rounded-2xl px-5 py-3.5 shadow-sm"
-              :class="
+              :class="[
+                'rounded-2xl px-5 py-3.5 shadow-sm transition-all duration-300 hover:shadow-md',
                 message.type === 'user'
-                  ? 'bg-gradient-to-br from-primary to-primary-600 text-white shadow-primary/20'
-                  : 'bg-white/80 dark:bg-gray-700/80 text-gray-900 dark:text-white backdrop-blur-sm border border-gray-200/50 dark:border-gray-600/50'
-              "
+                  ? 'max-w-[80%] bg-gradient-to-br from-primary to-primary-600 text-white shadow-primary/20 hover:shadow-primary/30'
+                  : message.isWelcome
+                  ? 'w-full bg-white/80 dark:bg-gray-700/80 text-gray-900 dark:text-white backdrop-blur-sm border border-gray-200/50 dark:border-gray-600/50'
+                  : 'max-w-[80%] bg-white/80 dark:bg-gray-700/80 text-gray-900 dark:text-white backdrop-blur-sm border border-gray-200/50 dark:border-gray-600/50 hover:border-gray-300/70 dark:hover:border-gray-500/70'
+              ]"
             >
-              <p class="text-sm whitespace-pre-wrap">{{ message.content }}</p>
-              <span class="text-xs opacity-70 mt-1 block">{{ message.time }}</span>
+              <!-- Typewriter effect for welcome message -->
+              <div v-if="message.isWelcome && message.typing" class="text-sm whitespace-pre-wrap">
+                <span :id="`typed-text-${index}`"></span>
+                <span class="typed-cursor">|</span>
+              </div>
+              <!-- Regular message -->
+              <div v-else>
+                <p class="text-sm whitespace-pre-wrap">{{ message.content }}</p>
+                <div class="mt-3 pt-2 border-t border-gray-200/30 dark:border-gray-600/30 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs opacity-70">{{ message.date }}</span>
+                    <span class="text-xs opacity-70 font-semibold">{{ message.time }}</span>
+                  </div>
+                  <div class="flex items-center justify-center">
+                    <i class="fas fa-globe-americas text-xs opacity-50 mr-1"></i>
+                    <span class="text-xs opacity-60">{{ message.timezone }}</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -106,10 +128,12 @@
 </template>
 
 <script setup>
-import { ref, computed, nextTick, watch } from 'vue';
+import { ref, computed, nextTick, watch, reactive } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';
+import Typed from 'typed.js';
 import NavalBackground from '@/components/common/NavalBackground.vue';
+import { searchKnowledge, formatKnowledgeResponse, getKnowledgeForLanguage } from '@/utils/aiKnowledge';
 
 const props = defineProps({
   modelValue: {
@@ -121,7 +145,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue']);
 
 const route = useRoute();
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const isOpen = computed({
   get: () => props.modelValue,
@@ -133,6 +157,7 @@ const userInput = ref('');
 const isTyping = ref(false);
 const messagesContainer = ref(null);
 const modalContent = ref(null);
+let typedInstance = null;
 
 /**
  * Get contextual help based on current route
@@ -220,23 +245,91 @@ const formatHelpMessage = (context) => {
 };
 
 /**
+ * Get user's locale and timezone
+ */
+const getUserLocale = () => {
+  return navigator.language || navigator.userLanguage || 'es-ES';
+};
+
+const getUserTimezone = () => {
+  return Intl.DateTimeFormat().resolvedOptions().timeZone;
+};
+
+/**
  * Add message to chat
  */
-const addMessage = (content, type = 'assistant') => {
-  messages.value.push({
+const addMessage = (content, type = 'assistant', isWelcome = false) => {
+  const now = new Date();
+  const userLocale = getUserLocale();
+  const userTimezone = getUserTimezone();
+
+  // Create reactive message object
+  const message = reactive({
     content,
     type,
-    time: new Date().toLocaleTimeString('es-ES', {
+    date: now.toLocaleDateString(userLocale, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      timeZone: userTimezone,
+    }),
+    time: now.toLocaleTimeString(userLocale, {
       hour: '2-digit',
       minute: '2-digit',
+      second: '2-digit',
+      timeZone: userTimezone,
     }),
+    timezone: userTimezone,
+    isWelcome,
+    typing: isWelcome, // Only welcome messages have typing effect initially
   });
+
+  const messageIndex = messages.value.length;
+  messages.value.push(message);
 
   nextTick(() => {
     if (messagesContainer.value) {
       messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
     }
+
+    // Initialize typewriter effect for welcome message
+    if (isWelcome) {
+      initTypewriter(content, message, messageIndex);
+    }
   });
+};
+
+/**
+ * Initialize typewriter effect
+ */
+const initTypewriter = (content, message, index) => {
+  // Destroy previous instance if exists
+  if (typedInstance) {
+    typedInstance.destroy();
+  }
+
+  // Wait a bit before starting the typewriter effect
+  setTimeout(() => {
+    const element = document.getElementById(`typed-text-${index}`);
+    if (element) {
+      typedInstance = new Typed(`#typed-text-${index}`, {
+        strings: [content],
+        typeSpeed: 15,
+        backSpeed: 0,
+        showCursor: false,
+        onComplete: () => {
+          // Mark typing as complete
+          message.typing = false;
+          nextTick(() => {
+            if (messagesContainer.value) {
+              messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
+            }
+          });
+        },
+      });
+    }
+  }, 300); // Delay start for better UX
 };
 
 /**
@@ -262,31 +355,87 @@ const sendMessage = async () => {
 };
 
 /**
- * Generate AI response
+ * Get current module from route
+ */
+const getCurrentModule = () => {
+  const path = route.path;
+  if (path.includes('/users')) return 'users';
+  if (path.includes('/groups')) return 'groups';
+  if (path.includes('/categories')) return 'categories';
+  if (path.includes('/roles')) return 'roles';
+  if (path.includes('/profile')) return 'profile';
+  if (path.includes('/settings')) return 'settings';
+  return 'dashboard';
+};
+
+/**
+ * Generate AI response using knowledge base
  */
 const generateResponse = (message) => {
   const lowerMessage = message.toLowerCase();
+  const currentModule = getCurrentModule();
+  const knowledge = getKnowledgeForLanguage(locale.value);
 
-  // Common questions
+  // Check if greeting
+  if (lowerMessage.includes('hola') || lowerMessage.includes('hi') ||
+      lowerMessage.includes('hello') || lowerMessage.includes('buenos días')) {
+    return `¡Hola! 👋 Soy tu asistente de IA para ${knowledge.general.name}. Estoy aquí para ayudarte a entender y usar todas las funcionalidades del sistema. ¿En qué puedo ayudarte hoy?`;
+  }
+
+  // Check if thanks
+  if (lowerMessage.includes('gracias') || lowerMessage.includes('thanks') ||
+      lowerMessage.includes('thank you')) {
+    return '¡De nada! 😊 Si tienes más preguntas sobre el sistema, no dudes en preguntar. Estoy aquí para ayudarte.';
+  }
+
+  // Check if asking about system in general
+  if (lowerMessage.includes('qué es este sistema') || lowerMessage.includes('qué hace') ||
+      lowerMessage.includes('para qué sirve')) {
+    return `**${knowledge.general.name}** es un ${knowledge.general.description}\n\n**Funcionalidades principales:**\n${knowledge.general.mainFeatures.map((f, i) => `${i + 1}. ${f}`).join('\n')}\n\n¿Te gustaría saber más sobre alguna funcionalidad específica?`;
+  }
+
+  // Search in knowledge base
+  const knowledgeResult = searchKnowledge(message, currentModule, locale.value);
+
+  // Debug: log the search result
+  console.log('AI Search:', { query: message, module: currentModule, locale: locale.value, result: knowledgeResult });
+
+  if (knowledgeResult) {
+    const formattedResponse = formatKnowledgeResponse(knowledgeResult);
+    if (formattedResponse) {
+      // Vary the ending messages
+      const endings = [
+        '\n\n💡 ¿Necesitas ayuda con algo más?',
+        '\n\n¿Te gustaría saber algo más?',
+        '\n\n¿Hay algo más en lo que pueda ayudarte?',
+        '\n\n¿Tienes alguna otra pregunta?',
+      ];
+      const randomEnding = endings[Math.floor(Math.random() * endings.length)];
+      return formattedResponse + randomEnding;
+    }
+  }
+
+  // If asking "how" questions
   if (lowerMessage.includes('cómo') || lowerMessage.includes('como')) {
-    return t('ai_assistant.response.how_to');
+    const module = knowledge.modules[currentModule];
+    if (module && Object.keys(module.howTo || {}).length > 0) {
+      const howToTasks = Object.keys(module.howTo);
+      return `En **${module.name}**, puedo ayudarte con:\n\n${howToTasks.map((task, i) => `${i + 1}. Cómo ${task}`).join('\n')}\n\n¿Sobre cuál te gustaría saber más?`;
+    }
   }
 
-  if (lowerMessage.includes('qué') || lowerMessage.includes('que')) {
-    const context = getContextualHelp();
-    return formatHelpMessage(context);
+  // If asking "what" questions
+  if (lowerMessage.includes('qué puedo') || lowerMessage.includes('que puedo') ||
+      lowerMessage.includes('funciones') || lowerMessage.includes('características')) {
+    const module = knowledge.modules[currentModule];
+    if (module) {
+      return `En **${module.name}**, puedes:\n\n${module.features.map((f, i) => `${i + 1}. ${f}`).join('\n')}\n\n¿Te gustaría saber cómo hacer algo específico?`;
+    }
   }
 
-  if (lowerMessage.includes('ayuda') || lowerMessage.includes('help')) {
-    return t('ai_assistant.response.help');
-  }
-
-  if (lowerMessage.includes('gracias') || lowerMessage.includes('thanks')) {
-    return t('ai_assistant.response.thanks');
-  }
-
-  // Default response
-  return t('ai_assistant.response.default');
+  // Default contextual response
+  const module = knowledge.modules[currentModule];
+  return `Estoy aquí para ayudarte con **${module.name}**. Puedes preguntarme sobre:\n\n• Qué funcionalidades están disponibles\n• Cómo realizar tareas específicas\n• Información sobre ${knowledge.general.name}\n\n¿En qué puedo ayudarte específicamente?`;
 };
 
 /**
@@ -312,28 +461,58 @@ watch(isOpen, (newValue) => {
   if (newValue && messages.value.length === 0) {
     const context = getContextualHelp();
     const welcomeMessage = t('ai_assistant.welcome') + '\n\n' + formatHelpMessage(context);
-    addMessage(welcomeMessage);
+    addMessage(welcomeMessage, 'assistant', true); // Mark as welcome message for typewriter effect
+  }
+});
+
+/**
+ * Cleanup on component unmount
+ */
+watch(isOpen, (newValue) => {
+  if (!newValue && typedInstance) {
+    typedInstance.destroy();
+    typedInstance = null;
   }
 });
 </script>
 
 <style scoped>
-/* Custom scrollbar */
-.overflow-y-auto::-webkit-scrollbar {
-  width: 6px;
+/* Custom scrollbar - Professional gradient style */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
 }
 
-.overflow-y-auto::-webkit-scrollbar-track {
+.custom-scrollbar::-webkit-scrollbar-track {
   background: transparent;
+  margin: 8px 0;
 }
 
-.overflow-y-auto::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(99, 102, 241, 0.3) 0%, rgba(168, 85, 247, 0.5) 100%);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.3s ease;
 }
 
-.dark .overflow-y-auto::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.2);
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(99, 102, 241, 0.5) 0%, rgba(168, 85, 247, 0.7) 100%);
+  background-clip: padding-box;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(165, 180, 252, 0.3) 0%, rgba(216, 180, 254, 0.5) 100%);
+  background-clip: padding-box;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(165, 180, 252, 0.5) 0%, rgba(216, 180, 254, 0.7) 100%);
+  background-clip: padding-box;
+}
+
+/* Smooth scroll behavior */
+.custom-scrollbar {
+  scroll-behavior: smooth;
 }
 
 /* Animations */
@@ -364,68 +543,50 @@ watch(isOpen, (newValue) => {
   animation: spin-slow 8s linear infinite;
 }
 
-/* Glassmorphism effect */
-.backdrop-blur-xl {
-  backdrop-filter: blur(20px);
-}
-
 /* ============================================
-   Professional Modal Animations
-   Smooth, Symmetric, and Noticeable
+   Professional Modal Animations - Ultra Smooth
    ============================================ */
 
-/* Backdrop Animations - Smooth fade and blur */
-.modal-backdrop {
-  backdrop-filter: blur(0px);
+/* Backdrop Animations - Simple and smooth */
+.backdrop-enter-active {
+  animation: backdrop-fade-in 0.3s ease-out;
 }
 
-.modal-backdrop-enter {
-  animation: backdrop-enter 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+.backdrop-leave-active {
+  animation: backdrop-fade-out 0.25s ease-in;
 }
 
-.modal-backdrop-leave {
-  animation: backdrop-leave 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes backdrop-enter {
-  0% {
+@keyframes backdrop-fade-in {
+  from {
     opacity: 0;
-    backdrop-filter: blur(0px);
   }
-  100% {
+  to {
     opacity: 1;
-    backdrop-filter: blur(4px);
   }
 }
 
-@keyframes backdrop-leave {
-  0% {
+@keyframes backdrop-fade-out {
+  from {
     opacity: 1;
-    backdrop-filter: blur(4px);
   }
-  100% {
+  to {
     opacity: 0;
-    backdrop-filter: blur(0px);
   }
 }
 
-/* Modal Content Animations - Smooth elastic effect */
+/* Modal Content Animations - Smooth without jumps */
 .modal-content-enter {
-  animation: modal-content-enter 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: modal-content-enter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .modal-content-leave {
-  animation: modal-content-leave 0.5s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+  animation: modal-content-leave 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53);
 }
 
 @keyframes modal-content-enter {
   0% {
     opacity: 0;
-    transform: scale(0.85) translateY(-40px);
-  }
-  60% {
-    opacity: 1;
-    transform: scale(1.02) translateY(5px);
+    transform: scale(0.95) translateY(-20px);
   }
   100% {
     opacity: 1;
@@ -440,7 +601,58 @@ watch(isOpen, (newValue) => {
   }
   100% {
     opacity: 0;
-    transform: scale(0.88) translateY(30px);
+    transform: scale(0.95) translateY(-20px);
+  }
+}
+
+/* Message items animation - Smooth fade in */
+.message-item {
+  animation: message-fade-in 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) backwards;
+  animation-delay: calc(var(--message-index, 0) * 50ms);
+}
+
+@keyframes message-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optimize rendering performance */
+.modal-content-enter,
+.modal-content-leave,
+.message-item {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Responsive adjustments */
+@media (max-height: 700px) {
+  .max-h-\[85vh\] {
+    max-height: 90vh;
+  }
+}
+
+/* Typewriter cursor animation */
+.typed-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  opacity: 1;
+  animation: blink 0.7s infinite;
+  font-weight: 300;
+  color: currentColor;
+}
+
+@keyframes blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
   }
 }
 </style>

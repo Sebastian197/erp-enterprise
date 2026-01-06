@@ -1,27 +1,54 @@
 /* Default Dark Theme */
 .theme-default-dark {
+    /* Status colors */
     --color-primary: #60a5fa;
     --color-secondary: #94a3b8;
     --color-success: #4ade80;
     --color-danger: #f87171;
     --color-warning: #fbbf24;
     --color-info: #38bdf8;
+
+    /* Hover states */
+    --color-primary-dark: #3b82f6;
+    --color-secondary-dark: #64748b;
+
+    /* Backgrounds */
     --bg-primary: #0f172a;
     --bg-secondary: #1e293b;
     --bg-tertiary: #334155;
+
+    /* Text */
     --text-primary: #f1f5f9;
     --text-secondary: #cbd5e1;
     --text-muted: #64748b;
+
+    /* Borders */
     --border-color: #334155;
     --border-color-hover: #475569;
+
+    /* Sidebar */
     --sidebar-bg: #020617;
     --sidebar-text: #cbd5e1;
     --sidebar-hover: #1e293b;
     --sidebar-active: #60a5fa;
+
+    /* Navbar */
     --navbar-bg: #0f172a;
     --navbar-text: #f1f5f9;
     --navbar-border: #334155;
+
+    /* Card */
     --card-bg: #1e293b;
     --card-border: #334155;
     --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+
+    /* Inputs */
+    --input-bg: #1e293b;
+    --input-border: #475569;
+    --input-focus-border: #60a5fa;
+    --input-text: #f1f5f9;
+
+    /* Effects */
+    --button-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+    --transition-speed: 0.3s;
 }

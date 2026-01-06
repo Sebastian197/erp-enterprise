@@ -1,2 +1,54 @@
 /* Red Fire Theme */
-.theme-red-fire { --color-primary: #dc2626; --color-secondary: #ef4444; --color-success: #22c55e; --color-danger: #b91c1c; --color-warning: #f59e0b; --color-info: #0ea5e9; --bg-primary: #ffffff; --bg-secondary: #fef2f2; --bg-tertiary: #fee2e2; --text-primary: #7f1d1d; --text-secondary: #991b1b; --text-muted: #b91c1c; --border-color: #fecaca; --border-color-hover: #fca5a5; --sidebar-bg: #7f1d1d; --sidebar-text: #fecaca; --sidebar-hover: #991b1b; --sidebar-active: #dc2626; --navbar-bg: #ffffff; --navbar-text: #7f1d1d; --navbar-border: #fecaca; --card-bg: #ffffff; --card-border: #fecaca; --card-shadow: 0 1px 3px 0 rgb(220 38 38 / 0.1); }
+.theme-red-fire {
+    /* Status colors */
+    --color-primary: #dc2626;
+    --color-secondary: #ef4444;
+    --color-success: #22c55e;
+    --color-danger: #b91c1c;
+    --color-warning: #f59e0b;
+    --color-info: #0ea5e9;
+
+    /* Hover states */
+    --color-primary-dark: #b91c1c;
+    --color-secondary-dark: #dc2626;
+
+    /* Backgrounds */
+    --bg-primary: #ffffff;
+    --bg-secondary: #fef2f2;
+    --bg-tertiary: #fee2e2;
+
+    /* Text */
+    --text-primary: #7f1d1d;
+    --text-secondary: #991b1b;
+    --text-muted: #b91c1c;
+
+    /* Borders */
+    --border-color: #fecaca;
+    --border-color-hover: #fca5a5;
+
+    /* Sidebar */
+    --sidebar-bg: #7f1d1d;
+    --sidebar-text: #fecaca;
+    --sidebar-hover: #991b1b;
+    --sidebar-active: #dc2626;
+
+    /* Navbar */
+    --navbar-bg: #ffffff;
+    --navbar-text: #7f1d1d;
+    --navbar-border: #fecaca;
+
+    /* Card */
+    --card-bg: #ffffff;
+    --card-border: #fecaca;
+    --card-shadow: 0 1px 3px 0 rgb(220 38 38 / 0.1);
+
+    /* Inputs */
+    --input-bg: #ffffff;
+    --input-border: #fca5a5;
+    --input-focus-border: #dc2626;
+    --input-text: #7f1d1d;
+
+    /* Effects */
+    --button-shadow: 0 1px 2px 0 rgb(220 38 38 / 0.05);
+    --transition-speed: 0.3s;
+}

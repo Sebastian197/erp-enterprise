@@ -1,2 +1,54 @@
 /* Orange Sunset Theme */
-.theme-orange-sunset { --color-primary: #ea580c; --color-secondary: #f97316; --color-success: #22c55e; --color-danger: #dc2626; --color-warning: #fbbf24; --color-info: #0ea5e9; --bg-primary: #ffffff; --bg-secondary: #fff7ed; --bg-tertiary: #ffedd5; --text-primary: #7c2d12; --text-secondary: #9a3412; --text-muted: #c2410c; --border-color: #fed7aa; --border-color-hover: #fdba74; --sidebar-bg: #7c2d12; --sidebar-text: #fed7aa; --sidebar-hover: #9a3412; --sidebar-active: #ea580c; --navbar-bg: #ffffff; --navbar-text: #7c2d12; --navbar-border: #fed7aa; --card-bg: #ffffff; --card-border: #fed7aa; --card-shadow: 0 1px 3px 0 rgb(234 88 12 / 0.1); }
+.theme-orange-sunset {
+    /* Status colors */
+    --color-primary: #ea580c;
+    --color-secondary: #f97316;
+    --color-success: #22c55e;
+    --color-danger: #dc2626;
+    --color-warning: #fbbf24;
+    --color-info: #0ea5e9;
+
+    /* Hover states */
+    --color-primary-dark: #c2410c;
+    --color-secondary-dark: #ea580c;
+
+    /* Backgrounds */
+    --bg-primary: #ffffff;
+    --bg-secondary: #fff7ed;
+    --bg-tertiary: #ffedd5;
+
+    /* Text */
+    --text-primary: #7c2d12;
+    --text-secondary: #9a3412;
+    --text-muted: #c2410c;
+
+    /* Borders */
+    --border-color: #fed7aa;
+    --border-color-hover: #fdba74;
+
+    /* Sidebar */
+    --sidebar-bg: #7c2d12;
+    --sidebar-text: #fed7aa;
+    --sidebar-hover: #9a3412;
+    --sidebar-active: #ea580c;
+
+    /* Navbar */
+    --navbar-bg: #ffffff;
+    --navbar-text: #7c2d12;
+    --navbar-border: #fed7aa;
+
+    /* Card */
+    --card-bg: #ffffff;
+    --card-border: #fed7aa;
+    --card-shadow: 0 1px 3px 0 rgb(234 88 12 / 0.1);
+
+    /* Inputs */
+    --input-bg: #ffffff;
+    --input-border: #fdba74;
+    --input-focus-border: #ea580c;
+    --input-text: #7c2d12;
+
+    /* Effects */
+    --button-shadow: 0 1px 2px 0 rgb(234 88 12 / 0.05);
+    --transition-speed: 0.3s;
+}

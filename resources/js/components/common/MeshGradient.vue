@@ -17,6 +17,10 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useThemeStore } from '@/stores/theme';
+import { PARTICLE_COLORS, createRGBA } from '@/utils/constants';
+
 /**
  * MeshGradient Component
  * Creates a beautiful fluid mesh gradient background
@@ -29,6 +33,28 @@ defineProps({
     default: true,
   },
 });
+
+// Theme store
+const themeStore = useThemeStore();
+
+// Computed theme colors
+const themeColors = computed(() => {
+  const theme = themeStore.currentTheme;
+  return PARTICLE_COLORS[theme] || PARTICLE_COLORS['default-light'];
+});
+
+// Gradient color helpers - creating rgba strings for v-bind in CSS
+const gradientColor1 = computed(() => createRGBA(themeColors.value.primary, 0.6));
+const gradientColor2 = computed(() => createRGBA(themeColors.value.primary, 0.4));
+const gradientColor3 = computed(() => createRGBA(themeColors.value.primary, 0.2));
+const gradientColor4 = computed(() => createRGBA(themeColors.value.secondary, 0.5));
+const gradientColor5 = computed(() => createRGBA(themeColors.value.secondary, 0.3));
+const gradientColor6 = computed(() => createRGBA(themeColors.value.secondary, 0.15));
+const gradientColor7 = computed(() => createRGBA(themeColors.value.tertiary, 0.5));
+const gradientColor8 = computed(() => createRGBA(themeColors.value.tertiary, 0.3));
+const gradientColor9 = computed(() => createRGBA(themeColors.value.tertiary, 0.15));
+const gradientColor10 = computed(() => createRGBA(themeColors.value.primary, 0.7));
+const gradientColor11 = computed(() => createRGBA(themeColors.value.primary, 0.4));
 </script>
 
 <style scoped>
@@ -72,9 +98,9 @@ defineProps({
   left: -15%;
   background: radial-gradient(
     circle,
-    rgba(59, 130, 246, 0.6) 0%,
-    rgba(37, 99, 235, 0.4) 30%,
-    rgba(29, 78, 216, 0.2) 60%,
+    v-bind(gradientColor1) 0%,
+    v-bind(gradientColor2) 30%,
+    v-bind(gradientColor3) 60%,
     transparent 100%
   );
   animation: float-1 25s ease-in-out infinite;
@@ -87,9 +113,9 @@ defineProps({
   right: -10%;
   background: radial-gradient(
     circle,
-    rgba(96, 165, 250, 0.5) 0%,
-    rgba(59, 130, 246, 0.3) 30%,
-    rgba(37, 99, 235, 0.15) 60%,
+    v-bind(gradientColor4) 0%,
+    v-bind(gradientColor5) 30%,
+    v-bind(gradientColor6) 60%,
     transparent 100%
   );
   animation: float-2 20s ease-in-out infinite;
@@ -102,9 +128,9 @@ defineProps({
   left: 15%;
   background: radial-gradient(
     circle,
-    rgba(29, 78, 216, 0.7) 0%,
-    rgba(30, 64, 175, 0.4) 30%,
-    rgba(30, 58, 138, 0.2) 60%,
+    v-bind(gradientColor10) 0%,
+    v-bind(gradientColor11) 30%,
+    v-bind(gradientColor3) 60%,
     transparent 100%
   );
   animation: float-3 30s ease-in-out infinite;
@@ -117,9 +143,9 @@ defineProps({
   right: -5%;
   background: radial-gradient(
     circle,
-    rgba(147, 197, 253, 0.5) 0%,
-    rgba(96, 165, 250, 0.3) 30%,
-    rgba(59, 130, 246, 0.15) 60%,
+    v-bind(gradientColor7) 0%,
+    v-bind(gradientColor8) 30%,
+    v-bind(gradientColor9) 60%,
     transparent 100%
   );
   animation: float-4 22s ease-in-out infinite;
@@ -140,7 +166,7 @@ defineProps({
   left: 25%;
   background: radial-gradient(
     ellipse,
-    rgba(59, 130, 246, 0.4) 0%,
+    v-bind(gradientColor2) 0%,
     transparent 70%
   );
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
@@ -154,7 +180,7 @@ defineProps({
   right: 20%;
   background: radial-gradient(
     ellipse,
-    rgba(96, 165, 250, 0.3) 0%,
+    v-bind(gradientColor5) 0%,
     transparent 70%
   );
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
@@ -168,7 +194,7 @@ defineProps({
   left: 40%;
   background: radial-gradient(
     ellipse,
-    rgba(37, 99, 235, 0.4) 0%,
+    v-bind(gradientColor2) 0%,
     transparent 70%
   );
   border-radius: 70% 30% 50% 50% / 40% 50% 50% 60%;

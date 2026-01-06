@@ -95,16 +95,16 @@ const emit = defineEmits(['click']);
 
 const rippleRef = ref(null);
 
-// Variant classes
+// Variant classes - using theme-aware utilities
 const variantClasses = {
-  primary: 'bg-primary hover:bg-primary-dark text-white shadow-sm hover:shadow-md',
-  secondary: 'bg-secondary hover:bg-secondary-dark text-white shadow-sm hover:shadow-md',
-  success: 'bg-green-600 hover:bg-green-700 text-white shadow-sm hover:shadow-md',
-  danger: 'bg-red-600 hover:bg-red-700 text-white shadow-sm hover:shadow-md',
-  warning: 'bg-yellow-500 hover:bg-yellow-600 text-white shadow-sm hover:shadow-md',
-  info: 'bg-blue-600 hover:bg-blue-700 text-white shadow-sm hover:shadow-md',
-  ghost: 'bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300',
-  outline: 'bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white',
+  primary: 'btn-themed-primary hover:opacity-90 text-white shadow-sm hover:shadow-md',
+  secondary: 'btn-themed-secondary hover:opacity-90 text-white shadow-sm hover:shadow-md',
+  success: 'btn-themed-success hover:opacity-90 text-white shadow-sm hover:shadow-md',
+  danger: 'btn-themed-danger hover:opacity-90 text-white shadow-sm hover:shadow-md',
+  warning: 'btn-themed-warning hover:opacity-90 text-white shadow-sm hover:shadow-md',
+  info: 'btn-themed-info hover:opacity-90 text-white shadow-sm hover:shadow-md',
+  ghost: 'bg-transparent hover:bg-themed-tertiary text-themed-primary',
+  outline: 'bg-transparent border-2 border-current btn-themed-primary hover:text-white text-themed-primary',
 };
 
 // Size classes

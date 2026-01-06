@@ -217,6 +217,7 @@
   },
   "theme_switcher": {
     "label": "Trocar tema",
+    "select_theme": "Selecione um tema",
     "light_mode": "Modo Claro",
     "dark_mode": "Modo Escuro",
     "dark": "Escuro",
