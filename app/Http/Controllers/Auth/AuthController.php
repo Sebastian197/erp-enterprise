@@ -36,7 +36,7 @@ class AuthController extends Controller
             $validated = $request->validated();
 
             $result = $this->authService->login(
-                $validated['email'],
+                $validated['username'],
                 $validated['password']
             );
 

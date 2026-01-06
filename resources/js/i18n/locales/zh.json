@@ -15,8 +15,8 @@
     "welcome_message": "欢迎使用 ERP Enterprise",
     "login": {
       "title": "登录您的账户",
-      "email": "电子邮箱",
-      "email_placeholder": "请输入您的邮箱",
+      "username": "用户名",
+      "username_placeholder": "输入您的用户名",
       "password": "密码",
       "password_placeholder": "请输入您的密码",
       "remember_me": "记住我",

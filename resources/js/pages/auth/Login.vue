@@ -21,22 +21,22 @@
     </transition>
 
     <form @submit.prevent="handleSubmit" class="space-y-5">
-      <!-- Email Input -->
+      <!-- Username Input -->
       <div>
-        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-          {{ $t('auth.login.email') }}
+        <label for="username" class="block text-sm font-medium text-gray-700 mb-2">
+          {{ $t('auth.login.username') }}
         </label>
         <input
-          id="email"
-          v-model="form.email"
-          type="email"
-          autocomplete="email"
-          :placeholder="$t('auth.login.email_placeholder')"
+          id="username"
+          v-model="form.username"
+          type="text"
+          autocomplete="username"
+          :placeholder="$t('auth.login.username_placeholder')"
           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-gray-900 placeholder-gray-400"
-          :class="{ 'border-danger-500 focus:ring-danger-500': errors.email }"
+          :class="{ 'border-danger-500 focus:ring-danger-500': errors.username }"
         />
-        <p v-if="errors.email" class="mt-1.5 text-sm text-danger-600">
-          {{ errors.email }}
+        <p v-if="errors.username" class="mt-1.5 text-sm text-danger-600">
+          {{ errors.username }}
         </p>
       </div>
 
@@ -116,26 +116,26 @@ const showPassword = ref(false);
 const errorMessage = ref('');
 
 const form = reactive({
-  email: '',
+  username: '',
   password: '',
   remember: false,
 });
 
 const errors = reactive({
-  email: '',
+  username: '',
   password: '',
 });
 
 const validateForm = () => {
   let isValid = true;
-  errors.email = '';
+  errors.username = '';
   errors.password = '';
 
-  if (!form.email) {
-    errors.email = 'El correo electrónico es obligatorio';
+  if (!form.username) {
+    errors.username = 'El nombre de usuario es obligatorio';
     isValid = false;
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-    errors.email = 'Por favor ingresa un correo válido';
+  } else if (form.username.length < 3) {
+    errors.username = 'El nombre de usuario debe tener al menos 3 caracteres';
     isValid = false;
   }
 
@@ -161,7 +161,7 @@ const handleSubmit = async () => {
     loading.value = true;
 
     await authStore.login({
-      email: form.email,
+      username: form.username,
       password: form.password,
       remember: form.remember,
     });
@@ -169,7 +169,7 @@ const handleSubmit = async () => {
     router.push('/dashboard');
   } catch (error) {
     console.error('Login error:', error);
-    errorMessage.value = error.response?.data?.message || 'Credenciales inválidas. Por favor verifica tu correo y contraseña.';
+    errorMessage.value = error.response?.data?.message || 'Credenciales inválidas. Por favor verifica tu nombre de usuario y contraseña.';
   } finally {
     loading.value = false;
   }

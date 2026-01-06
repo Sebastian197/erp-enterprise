@@ -15,8 +15,8 @@
     "welcome_message": "Добро пожаловать в ERP Enterprise",
     "login": {
       "title": "Войдите в свою учетную запись",
-      "email": "Адрес электронной почты",
-      "email_placeholder": "Введите ваш email",
+      "username": "Имя пользователя",
+      "username_placeholder": "Введите ваше имя пользователя",
       "password": "Пароль",
       "password_placeholder": "Введите ваш пароль",
       "remember_me": "Запомнить меня",

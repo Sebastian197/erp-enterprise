@@ -15,8 +15,8 @@
     "welcome_message": "Bem-vindo ao ERP Enterprise",
     "login": {
       "title": "Entre na Sua Conta",
-      "email": "Endereço de Email",
-      "email_placeholder": "Digite seu email",
+      "username": "Nome de usuário",
+      "username_placeholder": "Digite seu nome de usuário",
       "password": "Senha",
       "password_placeholder": "Digite sua senha",
       "remember_me": "Lembrar-me",

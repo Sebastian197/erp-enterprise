@@ -22,23 +22,21 @@ class AuthService
     ) {}
 
     /**
-     * Authenticate user by email and password.
+     * Authenticate user by username and password.
      *
-     * @param string $email
+     * @param string $username
      * @param string $password
      * @return array
      * @throws UnauthorizedException
      */
-    public function login(string $email, string $password): array
+    public function login(string $username, string $password): array
     {
-        // Find email in user_emails table
-        $userEmail = $this->userEmailRepository->findByEmail($email);
+        // Find user by username
+        $user = $this->userRepository->findByUsername($username);
 
-        if (!$userEmail) {
+        if (!$user) {
             throw new UnauthorizedException('Invalid credentials.');
         }
-
-        $user = $userEmail->user;
 
         // Verify password
         if (!Hash::check($password, $user->password)) {

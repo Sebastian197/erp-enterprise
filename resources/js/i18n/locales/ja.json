@@ -15,8 +15,8 @@
     "welcome_message": "ERP Enterpriseへようこそ",
     "login": {
       "title": "アカウントにログイン",
-      "email": "メールアドレス",
-      "email_placeholder": "メールアドレスを入力してください",
+      "username": "ユーザー名",
+      "username_placeholder": "ユーザー名を入力してください",
       "password": "パスワード",
       "password_placeholder": "パスワードを入力してください",
       "remember_me": "ログイン状態を保持",
