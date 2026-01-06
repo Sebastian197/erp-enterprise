@@ -1,11 +1,11 @@
 <template>
-  <header class="h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between px-4 lg:px-6 sticky top-0 z-30">
+  <header class="h-16 bg-navbar border-b border-navbar flex items-center justify-between px-4 lg:px-6 sticky top-0 z-30">
     <!-- Left Section -->
     <div class="flex items-center space-x-4">
       <!-- Menu Toggle -->
       <button
         @click="$emit('toggle-sidebar')"
-        class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+        class="text-navbar hover:text-themed-primary transition-colors"
         :aria-label="$t('navbar.toggle_menu')"
       >
         <i class="fas fa-bars text-xl"></i>
@@ -18,7 +18,7 @@
             v-model="searchQuery"
             type="text"
             :placeholder="$t('navbar.search_placeholder')"
-            class="w-64 pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+            class="w-64 pl-10 pr-4 py-2 rounded-lg bg-input border-input border-input-focus text-input focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
             @keyup.enter="handleSearch"
           />
           <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
@@ -30,7 +30,7 @@
     <div class="flex items-center space-x-2 lg:space-x-4">
       <!-- Search Icon (Mobile) -->
       <button
-        class="md:hidden p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+        class="md:hidden p-2 text-navbar hover:text-themed-primary transition-colors"
         @click="showMobileSearch = true"
         :aria-label="$t('navbar.search')"
       >
@@ -50,7 +50,7 @@
       <div class="relative" ref="userMenuRef">
         <button
           @click="toggleUserMenu"
-          class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          class="flex items-center space-x-2 p-2 rounded-lg hover:bg-themed-tertiary transition-colors"
           :aria-label="$t('navbar.user_menu')"
           aria-haspopup="true"
           :aria-expanded="showUserMenu"
@@ -69,7 +69,7 @@
               {{ userInitials }}
             </span>
           </div>
-          <span class="hidden lg:block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <span class="hidden lg:block text-sm font-medium text-navbar">
             {{ userName }}
           </span>
           <i class="hidden lg:block fas fa-chevron-down text-xs text-gray-400"></i>
@@ -86,14 +86,14 @@
         >
           <div
             v-if="showUserMenu"
-            class="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-50"
+            class="absolute right-0 mt-2 w-56 bg-card rounded-lg shadow-card border-card py-2 z-50"
           >
             <!-- User Info -->
-            <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-              <p class="text-sm font-semibold text-gray-900 dark:text-white">
+            <div class="px-4 py-3 border-b border-themed">
+              <p class="text-sm font-semibold text-themed-primary">
                 {{ userName }}
               </p>
-              <p class="text-xs text-gray-500 dark:text-gray-400 truncate">
+              <p class="text-xs text-themed-muted truncate">
                 {{ userEmail }}
               </p>
             </div>
@@ -102,7 +102,7 @@
             <router-link
               to="/profile"
               @click="closeUserMenu"
-              class="flex items-center space-x-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              class="flex items-center space-x-3 px-4 py-2 text-sm text-themed-secondary hover:bg-themed-tertiary transition-colors"
             >
               <i class="fas fa-user w-4"></i>
               <span>{{ $t('navbar.my_profile') }}</span>
@@ -111,13 +111,13 @@
             <router-link
               to="/settings"
               @click="closeUserMenu"
-              class="flex items-center space-x-3 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              class="flex items-center space-x-3 px-4 py-2 text-sm text-themed-secondary hover:bg-themed-tertiary transition-colors"
             >
               <i class="fas fa-cog w-4"></i>
               <span>{{ $t('navbar.settings') }}</span>
             </router-link>
 
-            <div class="border-t border-gray-200 dark:border-gray-700 my-2"></div>
+            <div class="border-t border-themed my-2"></div>
 
             <button
               @click="handleLogout"
@@ -147,7 +147,7 @@
         @click="showMobileSearch = false"
       >
         <div
-          class="w-full max-w-lg bg-white dark:bg-gray-800 rounded-lg shadow-xl p-4"
+          class="w-full max-w-lg bg-card rounded-lg shadow-xl p-4"
           @click.stop
         >
           <div class="relative">
@@ -155,7 +155,7 @@
               v-model="searchQuery"
               type="text"
               :placeholder="$t('navbar.search_placeholder')"
-              class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary"
+              class="w-full pl-10 pr-4 py-3 rounded-lg bg-input border-input border-input-focus text-input focus:outline-none focus:ring-2 focus:ring-primary"
               @keyup.enter="handleSearch"
               autofocus
             />

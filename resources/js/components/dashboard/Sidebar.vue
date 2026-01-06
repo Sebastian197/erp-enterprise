@@ -1,7 +1,7 @@
 <template>
   <aside
     :class="[
-      'fixed top-0 left-0 h-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 z-40',
+      'fixed top-0 left-0 h-full bg-sidebar border-r border-themed transition-all duration-300 z-40',
       // Desktop behavior
       'lg:translate-x-0',
       collapsed ? 'lg:w-20' : 'lg:w-64',
@@ -12,7 +12,7 @@
     :aria-label="$t('sidebar.label')"
   >
     <!-- Logo Section -->
-    <div class="h-16 flex items-center justify-center border-b border-gray-200 dark:border-gray-700 px-4">
+    <div class="h-16 flex items-center justify-center border-b border-themed px-4">
       <router-link
         to="/dashboard"
         class="flex items-center space-x-3 transition-opacity hover:opacity-80"
@@ -30,7 +30,7 @@
         >
           <span
             v-if="!collapsed"
-            class="text-xl font-bold text-gray-900 dark:text-white"
+            class="text-xl font-bold text-themed-primary"
           >
             {{ appName }}
           </span>
@@ -39,7 +39,7 @@
     </div>
 
     <!-- User Info Section -->
-    <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+    <div class="p-4 border-b border-themed">
       <div class="flex items-center space-x-3">
         <!-- Avatar -->
         <div class="relative flex-shrink-0">
@@ -73,10 +73,10 @@
           leave-to-class="opacity-0"
         >
           <div v-if="!collapsed" class="flex-1 min-w-0">
-            <p class="text-sm font-semibold text-gray-900 dark:text-white truncate">
+            <p class="text-sm font-semibold text-themed-primary truncate">
               {{ userName }}
             </p>
-            <p class="text-xs text-gray-500 dark:text-gray-400 truncate">
+            <p class="text-xs text-themed-muted truncate">
               {{ userEmail }}
             </p>
           </div>
@@ -100,8 +100,8 @@
             :class="[
               'flex items-center space-x-3 px-3 py-2.5 rounded-lg transition-all duration-200',
               isActive
-                ? 'bg-primary text-white shadow-md'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700',
+                ? 'bg-sidebar-active text-white shadow-md'
+                : 'text-sidebar bg-sidebar-hover',
             ]"
             :title="collapsed ? item.name : ''"
           >
@@ -127,7 +127,7 @@
             @click="toggleSubmenu(item.route)"
             :class="[
               'w-full flex items-center justify-between space-x-3 px-3 py-2.5 rounded-lg transition-all duration-200',
-              'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700',
+              'text-sidebar bg-sidebar-hover',
             ]"
           >
             <div class="flex items-center space-x-3">
@@ -172,7 +172,7 @@
                     'block px-3 py-2 rounded-lg text-sm transition-colors duration-200',
                     isActive
                       ? 'text-primary font-medium bg-primary/10'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white',
+                      : 'text-themed-secondary hover:text-themed-primary',
                   ]"
                 >
                   {{ $t(child.i18nKey) }}

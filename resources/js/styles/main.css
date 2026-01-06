@@ -252,6 +252,52 @@ html[dir="rtl"] .main-content {
     100% { transform: rotate(360deg); }
 }
 
+/* ===== THEME-AWARE UTILITY CLASSES ===== */
+
+/* Background utilities */
+.bg-themed-primary { background-color: var(--bg-primary); }
+.bg-themed-secondary { background-color: var(--bg-secondary); }
+.bg-themed-tertiary { background-color: var(--bg-tertiary); }
+
+/* Text utilities */
+.text-themed-primary { color: var(--text-primary); }
+.text-themed-secondary { color: var(--text-secondary); }
+.text-themed-muted { color: var(--text-muted); }
+
+/* Border utilities */
+.border-themed { border-color: var(--border-color); }
+.border-themed-hover:hover { border-color: var(--border-color-hover); }
+
+/* Card utilities */
+.bg-card { background-color: var(--card-bg); }
+.border-card { border-color: var(--card-border); }
+.shadow-card { box-shadow: var(--card-shadow); }
+
+/* Button utilities */
+.btn-themed-primary { background-color: var(--color-primary); }
+.btn-themed-secondary { background-color: var(--color-secondary); }
+.btn-themed-success { background-color: var(--color-success); }
+.btn-themed-danger { background-color: var(--color-danger); }
+.btn-themed-warning { background-color: var(--color-warning); }
+.btn-themed-info { background-color: var(--color-info); }
+
+/* Sidebar utilities */
+.bg-sidebar { background-color: var(--sidebar-bg); }
+.text-sidebar { color: var(--sidebar-text); }
+.bg-sidebar-hover:hover { background-color: var(--sidebar-hover); }
+.bg-sidebar-active { background-color: var(--sidebar-active); }
+
+/* Navbar utilities */
+.bg-navbar { background-color: var(--navbar-bg); }
+.text-navbar { color: var(--navbar-text); }
+.border-navbar { border-color: var(--navbar-border); }
+
+/* Input utilities */
+.bg-input { background-color: var(--input-bg); }
+.border-input { border-color: var(--input-border); }
+.border-input-focus:focus { border-color: var(--input-focus-border); }
+.text-input { color: var(--input-text); }
+
 /* Responsive */
 @media (max-width: 768px) {
     html {
