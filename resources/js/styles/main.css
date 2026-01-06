@@ -56,6 +56,32 @@
     --transition-speed: 0.3s;
 }
 
+/* ===== THEME TRANSITION SYSTEM ===== */
+:root {
+    --theme-transition-duration: 300ms;
+    --theme-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Apply smooth transitions to all elements for theme changes */
+* {
+    transition-property: background-color, color, border-color, box-shadow;
+    transition-duration: var(--theme-transition-duration);
+    transition-timing-function: var(--theme-transition-timing);
+}
+
+/* Preserve interactive transitions for better UX */
+a, button, .hover-effect {
+    transition-property: background-color, color, border-color, box-shadow, transform, opacity;
+    transition-duration: var(--theme-transition-duration);
+    transition-timing-function: var(--theme-transition-timing);
+}
+
+/* Prevent transition flash on initial page load */
+.no-theme-transition,
+.no-theme-transition * {
+    transition: none !important;
+}
+
 /* Global Styles */
 * {
     margin: 0;

@@ -36,6 +36,9 @@ export const useThemeStore = defineStore('theme', () => {
      * Initialize theme from localStorage
      */
     const init = () => {
+        // Add no-transition class to prevent flash on initial load
+        document.documentElement.classList.add('no-theme-transition');
+
         const storedTheme = localStorage.getItem(STORAGE_KEYS.THEME);
         if (storedTheme && Object.values(THEMES).includes(storedTheme)) {
             currentTheme.value = storedTheme;
@@ -47,6 +50,11 @@ export const useThemeStore = defineStore('theme', () => {
                 applyTheme(THEMES.DEFAULT_DARK);
             }
         }
+
+        // Remove no-transition class after brief delay
+        setTimeout(() => {
+            document.documentElement.classList.remove('no-theme-transition');
+        }, 100);
 
         // Listen for system theme changes
         if (window.matchMedia) {
@@ -120,6 +128,9 @@ export const useThemeStore = defineStore('theme', () => {
     const applyTheme = (theme) => {
         const html = document.documentElement;
 
+        // Add will-change hint for better performance
+        html.style.willChange = 'background-color, color';
+
         // Remove all theme classes
         Object.values(THEMES).forEach(t => {
             html.classList.remove(`theme-${t}`);
@@ -140,6 +151,11 @@ export const useThemeStore = defineStore('theme', () => {
 
         // Load theme CSS file dynamically
         loadThemeCSS(theme);
+
+        // Remove will-change hint after transition completes
+        setTimeout(() => {
+            html.style.willChange = '';
+        }, 350);
     };
 
     /**
