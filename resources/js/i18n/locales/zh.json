@@ -217,6 +217,7 @@
   },
   "theme_switcher": {
     "label": "切换主题",
+    "select_theme": "选择主题",
     "light_mode": "浅色模式",
     "dark_mode": "深色模式",
     "dark": "深色",
