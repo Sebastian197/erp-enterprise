@@ -217,6 +217,7 @@
   },
   "theme_switcher": {
     "label": "Переключить тему",
+    "select_theme": "Выберите тему",
     "light_mode": "Светлый режим",
     "dark_mode": "Темный режим",
     "dark": "Темный",

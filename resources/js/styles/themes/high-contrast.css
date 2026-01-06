@@ -1,2 +1,54 @@
 /* High Contrast Theme */
-.theme-high-contrast { --color-primary: #000000; --color-secondary: #333333; --color-success: #008000; --color-danger: #ff0000; --color-warning: #ff8c00; --color-info: #0000ff; --bg-primary: #ffffff; --bg-secondary: #f5f5f5; --bg-tertiary: #e0e0e0; --text-primary: #000000; --text-secondary: #333333; --text-muted: #666666; --border-color: #000000; --border-color-hover: #333333; --sidebar-bg: #000000; --sidebar-text: #ffffff; --sidebar-hover: #333333; --sidebar-active: #666666; --navbar-bg: #ffffff; --navbar-text: #000000; --navbar-border: #000000; --card-bg: #ffffff; --card-border: #000000; --card-shadow: 0 2px 4px 0 rgb(0 0 0 / 0.3); }
+.theme-high-contrast {
+    /* Status colors */
+    --color-primary: #000000;
+    --color-secondary: #333333;
+    --color-success: #008000;
+    --color-danger: #ff0000;
+    --color-warning: #ff8c00;
+    --color-info: #0000ff;
+
+    /* Hover states */
+    --color-primary-dark: #1a1a1a;
+    --color-secondary-dark: #1a1a1a;
+
+    /* Backgrounds */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --bg-tertiary: #e0e0e0;
+
+    /* Text */
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --text-muted: #666666;
+
+    /* Borders */
+    --border-color: #000000;
+    --border-color-hover: #333333;
+
+    /* Sidebar */
+    --sidebar-bg: #000000;
+    --sidebar-text: #ffffff;
+    --sidebar-hover: #333333;
+    --sidebar-active: #666666;
+
+    /* Navbar */
+    --navbar-bg: #ffffff;
+    --navbar-text: #000000;
+    --navbar-border: #000000;
+
+    /* Card */
+    --card-bg: #ffffff;
+    --card-border: #000000;
+    --card-shadow: 0 2px 4px 0 rgb(0 0 0 / 0.3);
+
+    /* Inputs */
+    --input-bg: #ffffff;
+    --input-border: #000000;
+    --input-focus-border: #000000;
+    --input-text: #000000;
+
+    /* Effects */
+    --button-shadow: 0 2px 4px 0 rgb(0 0 0 / 0.2);
+    --transition-speed: 0.3s;
+}

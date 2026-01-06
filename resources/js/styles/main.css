@@ -56,6 +56,32 @@
     --transition-speed: 0.3s;
 }
 
+/* ===== THEME TRANSITION SYSTEM ===== */
+:root {
+    --theme-transition-duration: 300ms;
+    --theme-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Apply smooth transitions to all elements for theme changes */
+* {
+    transition-property: background-color, color, border-color, box-shadow;
+    transition-duration: var(--theme-transition-duration);
+    transition-timing-function: var(--theme-transition-timing);
+}
+
+/* Preserve interactive transitions for better UX */
+a, button, .hover-effect {
+    transition-property: background-color, color, border-color, box-shadow, transform, opacity;
+    transition-duration: var(--theme-transition-duration);
+    transition-timing-function: var(--theme-transition-timing);
+}
+
+/* Prevent transition flash on initial page load */
+.no-theme-transition,
+.no-theme-transition * {
+    transition: none !important;
+}
+
 /* Global Styles */
 * {
     margin: 0;
@@ -225,6 +251,86 @@ html[dir="rtl"] .main-content {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* ===== THEME-AWARE UTILITY CLASSES ===== */
+
+/* Background utilities */
+.bg-themed-primary { background-color: var(--bg-primary); }
+.bg-themed-secondary { background-color: var(--bg-secondary); }
+.bg-themed-tertiary { background-color: var(--bg-tertiary); }
+
+/* Text utilities */
+.text-themed-primary { color: var(--text-primary); }
+.text-themed-secondary { color: var(--text-secondary); }
+.text-themed-muted { color: var(--text-muted); }
+
+/* Border utilities */
+.border-themed { border-color: var(--border-color); }
+.border-themed-hover:hover { border-color: var(--border-color-hover); }
+
+/* Card utilities */
+.bg-card { background-color: var(--card-bg); }
+.border-card { border-color: var(--card-border); }
+.shadow-card { box-shadow: var(--card-shadow); }
+
+/* Button utilities */
+.btn-themed-primary { background-color: var(--color-primary); }
+.btn-themed-secondary { background-color: var(--color-secondary); }
+.btn-themed-success { background-color: var(--color-success); }
+.btn-themed-danger { background-color: var(--color-danger); }
+.btn-themed-warning { background-color: var(--color-warning); }
+.btn-themed-info { background-color: var(--color-info); }
+
+/* Sidebar utilities */
+.bg-sidebar { background-color: var(--sidebar-bg); }
+.text-sidebar { color: var(--sidebar-text); }
+.bg-sidebar-hover:hover { background-color: var(--sidebar-hover); }
+.bg-sidebar-active { background-color: var(--sidebar-active); }
+
+/* Navbar utilities */
+.bg-navbar { background-color: var(--navbar-bg); }
+.text-navbar { color: var(--navbar-text); }
+.border-navbar { border-color: var(--navbar-border); }
+
+/* Input utilities */
+.bg-input { background-color: var(--input-bg); }
+.border-input { border-color: var(--input-border); }
+.border-input-focus:focus { border-color: var(--input-focus-border); }
+.text-input { color: var(--input-text); }
+
+/* Status color utilities */
+.text-primary { color: var(--color-primary); }
+.text-success { color: var(--color-success); }
+.text-danger { color: var(--color-danger); }
+.text-warning { color: var(--color-warning); }
+.text-info { color: var(--color-info); }
+
+.bg-primary { background-color: var(--color-primary); }
+.bg-success { background-color: var(--color-success); }
+.bg-danger { background-color: var(--color-danger); }
+.bg-warning { background-color: var(--color-warning); }
+.bg-info { background-color: var(--color-info); }
+
+/* Hover variations */
+.hover\:text-primary:hover { color: var(--color-primary); }
+.hover\:text-themed-primary:hover { color: var(--text-primary); }
+.hover\:bg-themed-tertiary:hover { background-color: var(--bg-tertiary); }
+.hover\:bg-sidebar-hover:hover { background-color: var(--sidebar-hover); }
+
+/* Focus ring utilities */
+.focus\:ring-primary:focus {
+  --tw-ring-color: var(--color-primary);
+}
+
+/* Opacity variations for backgrounds */
+.bg-primary\/10 { background-color: color-mix(in srgb, var(--color-primary) 10%, transparent); }
+.bg-danger\/10 { background-color: color-mix(in srgb, var(--color-danger) 10%, transparent); }
+
+/* Additional sidebar utilities */
+.bg-sidebar-hover-state { background-color: var(--sidebar-hover); }
+
+/* Additional text utilities for specific use cases */
+.text-muted { color: var(--text-muted); }
 
 /* Responsive */
 @media (max-width: 768px) {

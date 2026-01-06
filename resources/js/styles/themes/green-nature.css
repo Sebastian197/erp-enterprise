@@ -1,2 +1,54 @@
 /* Green Nature Theme */
-.theme-green-nature { --color-primary: #16a34a; --color-secondary: #22c55e; --color-success: #4ade80; --color-danger: #ef4444; --color-warning: #f59e0b; --color-info: #0ea5e9; --bg-primary: #ffffff; --bg-secondary: #f0fdf4; --bg-tertiary: #dcfce7; --text-primary: #14532d; --text-secondary: #15803d; --text-muted: #16a34a; --border-color: #bbf7d0; --border-color-hover: #86efac; --sidebar-bg: #14532d; --sidebar-text: #bbf7d0; --sidebar-hover: #15803d; --sidebar-active: #16a34a; --navbar-bg: #ffffff; --navbar-text: #14532d; --navbar-border: #bbf7d0; --card-bg: #ffffff; --card-border: #bbf7d0; --card-shadow: 0 1px 3px 0 rgb(22 163 74 / 0.1); }
+.theme-green-nature {
+    /* Status colors */
+    --color-primary: #16a34a;
+    --color-secondary: #22c55e;
+    --color-success: #4ade80;
+    --color-danger: #ef4444;
+    --color-warning: #f59e0b;
+    --color-info: #0ea5e9;
+
+    /* Hover states */
+    --color-primary-dark: #15803d;
+    --color-secondary-dark: #16a34a;
+
+    /* Backgrounds */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f0fdf4;
+    --bg-tertiary: #dcfce7;
+
+    /* Text */
+    --text-primary: #14532d;
+    --text-secondary: #15803d;
+    --text-muted: #16a34a;
+
+    /* Borders */
+    --border-color: #bbf7d0;
+    --border-color-hover: #86efac;
+
+    /* Sidebar */
+    --sidebar-bg: #14532d;
+    --sidebar-text: #bbf7d0;
+    --sidebar-hover: #15803d;
+    --sidebar-active: #16a34a;
+
+    /* Navbar */
+    --navbar-bg: #ffffff;
+    --navbar-text: #14532d;
+    --navbar-border: #bbf7d0;
+
+    /* Card */
+    --card-bg: #ffffff;
+    --card-border: #bbf7d0;
+    --card-shadow: 0 1px 3px 0 rgb(22 163 74 / 0.1);
+
+    /* Inputs */
+    --input-bg: #ffffff;
+    --input-border: #86efac;
+    --input-focus-border: #16a34a;
+    --input-text: #14532d;
+
+    /* Effects */
+    --button-shadow: 0 1px 2px 0 rgb(22 163 74 / 0.05);
+    --transition-speed: 0.3s;
+}

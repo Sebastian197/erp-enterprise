@@ -1,17 +1,18 @@
 <template>
-  <div class="space-y-6">
-    <!-- Welcome Section -->
-    <div v-motion-slide-visible-once-bottom>
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
-        {{ $t('dashboard.welcome', { name: userName }) }}
-      </h1>
-      <p class="mt-2 text-gray-600 dark:text-gray-400">
-        {{ $t('dashboard.subtitle') }}
-      </p>
-    </div>
+  <div>
+    <!-- Welcome Animation -->
+    <WelcomeAnimation
+      v-if="showWelcome"
+      :text="t('dashboard.welcome', { name: userName })"
+      :subtitle="t('dashboard.subtitle')"
+      :duration="2000"
+      :sidebar-collapsed="sidebarCollapsed"
+      @complete="onWelcomeComplete"
+    />
 
-    <!-- Stats Widgets -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div v-if="!showWelcome" class="space-y-6">
+    <!-- Stats Widgets with Staggered Animation -->
+    <div v-if="contentVisible" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fadeInUp" style="animation-delay: 0.1s">
       <Widget
         :title="$t('dashboard.stats.total_users')"
         :value="stats.totalUsers"
@@ -44,19 +45,21 @@
       />
     </div>
 
-    <!-- Quick Actions -->
+    <!-- Quick Actions with Staggered Animation -->
     <Card
+      v-if="contentVisible"
       :title="$t('dashboard.quick_actions.title')"
-      v-motion-slide-visible-once-bottom
+      class="animate-fadeInUp"
+      style="animation-delay: 0.2s"
     >
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <button
           v-if="can('users.create')"
           @click="router.push('/users/create')"
-          class="flex flex-col items-center justify-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg border-2 border-dashed border-blue-300 dark:border-blue-700 hover:border-blue-500 dark:hover:border-blue-500 transition-all group"
+          class="flex flex-col items-center justify-center p-6 bg-themed-tertiary rounded-lg border-2 border-dashed border-themed hover:border-themed-hover transition-all group"
         >
-          <i class="fas fa-user-plus text-3xl text-blue-600 dark:text-blue-400 mb-2 group-hover:scale-110 transition-transform"></i>
-          <span class="text-sm font-medium text-blue-900 dark:text-blue-300">
+          <i class="fas fa-user-plus text-3xl text-primary mb-2 group-hover:scale-110 transition-transform"></i>
+          <span class="text-sm font-medium text-themed-primary">
             {{ $t('dashboard.quick_actions.create_user') }}
           </span>
         </button>
@@ -64,10 +67,10 @@
         <button
           v-if="can('groups.create')"
           @click="router.push('/groups/create')"
-          class="flex flex-col items-center justify-center p-6 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg border-2 border-dashed border-green-300 dark:border-green-700 hover:border-green-500 dark:hover:border-green-500 transition-all group"
+          class="flex flex-col items-center justify-center p-6 bg-themed-tertiary rounded-lg border-2 border-dashed border-themed hover:border-themed-hover transition-all group"
         >
-          <i class="fas fa-folder-plus text-3xl text-green-600 dark:text-green-400 mb-2 group-hover:scale-110 transition-transform"></i>
-          <span class="text-sm font-medium text-green-900 dark:text-green-300">
+          <i class="fas fa-folder-plus text-3xl text-success mb-2 group-hover:scale-110 transition-transform"></i>
+          <span class="text-sm font-medium text-themed-primary">
             {{ $t('dashboard.quick_actions.create_group') }}
           </span>
         </button>
@@ -75,31 +78,33 @@
         <button
           v-if="can('categories.create')"
           @click="router.push('/categories/create')"
-          class="flex flex-col items-center justify-center p-6 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg border-2 border-dashed border-purple-300 dark:border-purple-700 hover:border-purple-500 dark:hover:border-purple-500 transition-all group"
+          class="flex flex-col items-center justify-center p-6 bg-themed-tertiary rounded-lg border-2 border-dashed border-themed hover:border-themed-hover transition-all group"
         >
-          <i class="fas fa-tag text-3xl text-purple-600 dark:text-purple-400 mb-2 group-hover:scale-110 transition-transform"></i>
-          <span class="text-sm font-medium text-purple-900 dark:text-purple-300">
+          <i class="fas fa-tag text-3xl text-warning mb-2 group-hover:scale-110 transition-transform"></i>
+          <span class="text-sm font-medium text-themed-primary">
             {{ $t('dashboard.quick_actions.create_category') }}
           </span>
         </button>
 
         <button
           @click="router.push('/settings')"
-          class="flex flex-col items-center justify-center p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800/20 dark:to-gray-700/20 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-700 hover:border-gray-500 dark:hover:border-gray-500 transition-all group"
+          class="flex flex-col items-center justify-center p-6 bg-themed-tertiary rounded-lg border-2 border-dashed border-themed hover:border-themed-hover transition-all group"
         >
-          <i class="fas fa-cog text-3xl text-gray-600 dark:text-gray-400 mb-2 group-hover:scale-110 group-hover:rotate-90 transition-all"></i>
-          <span class="text-sm font-medium text-gray-900 dark:text-gray-300">
+          <i class="fas fa-cog text-3xl text-themed-secondary mb-2 group-hover:scale-110 group-hover:rotate-90 transition-all"></i>
+          <span class="text-sm font-medium text-themed-primary">
             {{ $t('dashboard.quick_actions.settings') }}
           </span>
         </button>
       </div>
     </Card>
 
-    <!-- Recent Activity -->
+    <!-- Recent Activity with Staggered Animation -->
     <Card
+      v-if="contentVisible"
       :title="$t('dashboard.recent_activity.title')"
       :subtitle="$t('dashboard.recent_activity.subtitle')"
-      v-motion-slide-visible-once-bottom
+      class="animate-fadeInUp"
+      style="animation-delay: 0.3s"
     >
       <Table
         :columns="activityColumns"
@@ -125,25 +130,26 @@
                 {{ value.name.substring(0, 2).toUpperCase() }}
               </span>
             </div>
-            <span class="font-medium text-gray-900 dark:text-white">
+            <span class="font-medium text-themed-primary">
               {{ value.name }}
             </span>
           </div>
         </template>
 
         <template #cell-action="{ value }">
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
             {{ value }}
           </span>
         </template>
 
         <template #cell-timestamp="{ value }">
-          <span class="text-sm text-gray-500 dark:text-gray-400">
+          <span class="text-sm text-themed-muted">
             {{ formatDate(value) }}
           </span>
         </template>
       </Table>
     </Card>
+    </div>
   </div>
 </template>
 
@@ -155,8 +161,9 @@ import { useAuthStore } from '@/stores/auth';
 import Widget from '@/components/dashboard/Widget.vue';
 import Card from '@/components/ui/Card.vue';
 import Table from '@/components/ui/Table.vue';
+import WelcomeAnimation from '@/components/common/WelcomeAnimation.vue';
 import api from '@/utils/api';
-import { API_ENDPOINTS } from '@/utils/constants';
+import { API_ENDPOINTS, STORAGE_KEYS } from '@/utils/constants';
 
 /**
  * Dashboard Index Page
@@ -167,6 +174,13 @@ import { API_ENDPOINTS } from '@/utils/constants';
 const router = useRouter();
 const authStore = useAuthStore();
 const { t } = useI18n();
+
+// Welcome animation state
+const showWelcome = ref(true);
+const contentVisible = ref(false);
+
+// Sidebar state (read from localStorage to match DashboardLayout)
+const sidebarCollapsed = ref(false);
 
 // State
 const loading = ref(true);
@@ -180,6 +194,17 @@ const stats = ref({
   activeUsersTrend: 0,
 });
 const recentActivity = ref([]);
+
+/**
+ * Handle welcome animation complete
+ */
+const onWelcomeComplete = () => {
+  showWelcome.value = false;
+  // Delay showing content slightly for smooth transition
+  setTimeout(() => {
+    contentVisible.value = true;
+  }, 50);
+};
 
 // Computed
 const userName = computed(() => authStore.userName);
@@ -248,6 +273,25 @@ const formatDate = (date) => {
 
 // Lifecycle
 onMounted(() => {
+  // Initialize sidebar state from localStorage
+  const stored = localStorage.getItem(STORAGE_KEYS.SIDEBAR_COLLAPSED);
+  sidebarCollapsed.value = stored === '1';
+
+  // Listen for sidebar state changes
+  const handleStorageChange = (e) => {
+    if (e.key === STORAGE_KEYS.SIDEBAR_COLLAPSED) {
+      sidebarCollapsed.value = e.newValue === '1';
+    }
+  };
+  window.addEventListener('storage', handleStorageChange);
+
+  // Also listen for changes within the same window
+  const handleSidebarToggle = () => {
+    const stored = localStorage.getItem(STORAGE_KEYS.SIDEBAR_COLLAPSED);
+    sidebarCollapsed.value = stored === '1';
+  };
+  window.addEventListener('sidebar-toggle', handleSidebarToggle);
+
   fetchStats();
   fetchActivity();
 
@@ -258,6 +302,28 @@ onMounted(() => {
   }, 30000);
 
   // Clean up on unmount
-  return () => clearInterval(interval);
+  return () => {
+    clearInterval(interval);
+    window.removeEventListener('storage', handleStorageChange);
+    window.removeEventListener('sidebar-toggle', handleSidebarToggle);
+  };
 });
 </script>
+
+<style scoped>
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.7s ease-out forwards;
+  opacity: 0;
+}
+</style>

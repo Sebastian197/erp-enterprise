@@ -2,25 +2,25 @@
   <div
     v-motion-slide-visible-once-bottom
     :class="[
-      'bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 p-6 transition-all duration-300',
+      'bg-card rounded-lg shadow-card border border-card p-6 transition-all duration-300',
       'hover:shadow-lg hover:-translate-y-1',
     ]"
   >
     <div class="flex items-center justify-between">
       <!-- Content -->
       <div class="flex-1">
-        <h3 class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">
+        <h3 class="text-sm font-medium text-themed-secondary mb-1">
           {{ title }}
         </h3>
 
         <!-- Value -->
-        <div v-if="!loading" class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+        <div v-if="!loading" class="text-3xl font-bold text-themed-primary mb-2">
           {{ displayValue }}
         </div>
 
         <!-- Loading Skeleton -->
         <div v-else class="space-y-2 mb-2">
-          <div class="h-9 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
+          <div class="h-9 bg-themed-tertiary rounded animate-pulse"></div>
         </div>
 
         <!-- Trend (Optional) -->
@@ -28,13 +28,13 @@
           <span
             :class="[
               'flex items-center space-x-1',
-              trend > 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400',
+              trend > 0 ? 'text-success' : 'text-danger',
             ]"
           >
             <i :class="trend > 0 ? 'fas fa-arrow-up' : 'fas fa-arrow-down'"></i>
             <span>{{ Math.abs(trend) }}%</span>
           </span>
-          <span class="text-gray-500 dark:text-gray-400">
+          <span class="text-themed-muted">
             {{ $t('widget.vs_last_period') }}
           </span>
         </div>
@@ -97,31 +97,31 @@ const props = defineProps({
 // Animated value
 const animatedValue = ref(0);
 
-// Color mappings
+// Color mappings using CSS variables
 const colorMap = {
   primary: {
     bg: 'bg-primary/10',
     text: 'text-primary',
   },
   success: {
-    bg: 'bg-green-100 dark:bg-green-900/20',
-    text: 'text-green-600 dark:text-green-400',
+    bg: 'bg-success/10',
+    text: 'text-success',
   },
   danger: {
-    bg: 'bg-red-100 dark:bg-red-900/20',
-    text: 'text-red-600 dark:text-red-400',
+    bg: 'bg-danger/10',
+    text: 'text-danger',
   },
   warning: {
-    bg: 'bg-yellow-100 dark:bg-yellow-900/20',
-    text: 'text-yellow-600 dark:text-yellow-400',
+    bg: 'bg-warning/10',
+    text: 'text-warning',
   },
   info: {
-    bg: 'bg-blue-100 dark:bg-blue-900/20',
-    text: 'text-blue-600 dark:text-blue-400',
+    bg: 'bg-info/10',
+    text: 'text-info',
   },
   secondary: {
-    bg: 'bg-gray-100 dark:bg-gray-700',
-    text: 'text-gray-600 dark:text-gray-400',
+    bg: 'bg-themed-tertiary',
+    text: 'text-themed-secondary',
   },
 };
 
