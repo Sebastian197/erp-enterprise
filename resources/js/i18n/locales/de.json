@@ -217,6 +217,7 @@
   },
   "theme_switcher": {
     "label": "Thema wechseln",
+    "select_theme": "Wählen Sie ein Thema",
     "light_mode": "Heller Modus",
     "dark_mode": "Dunkler Modus",
     "dark": "Dunkel",

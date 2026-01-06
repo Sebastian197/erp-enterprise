@@ -370,8 +370,22 @@ export const useAuthStore = defineStore('auth', () => {
 
             // Apply theme preference if exists
             if (preferences && preferences.theme) {
-                // Theme will be handled by theme switcher component
-                localStorage.setItem(STORAGE_KEYS.THEME, preferences.theme);
+                try {
+                    const { useThemeStore } = await import('@/stores/theme');
+                    const themeStore = useThemeStore();
+
+                    // Get theme identifier from backend response
+                    // Backend should return theme object with 'identifier' field (e.g., 'default-light')
+                    const themeIdentifier = preferences.theme.identifier || preferences.theme;
+
+                    // Apply theme without syncing back to backend (avoid circular call)
+                    if (themeIdentifier) {
+                        await themeStore.setTheme(themeIdentifier, false);
+                    }
+                } catch (themeErr) {
+                    console.error('Failed to apply theme preference:', themeErr);
+                    // Continue anyway - theme is optional
+                }
             }
 
             return preferences;

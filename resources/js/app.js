@@ -17,6 +17,20 @@ import './bootstrap';
 // Import global styles
 import '../css/app.css';
 
+// Import theme styles
+import './styles/themes/default-light.css';
+import './styles/themes/default-dark.css';
+import './styles/themes/blue-ocean.css';
+import './styles/themes/purple-dream.css';
+import './styles/themes/green-nature.css';
+import './styles/themes/orange-sunset.css';
+import './styles/themes/red-fire.css';
+import './styles/themes/gray-professional.css';
+import './styles/themes/teal-modern.css';
+import './styles/themes/pink-soft.css';
+import './styles/themes/high-contrast.css';
+import './styles/themes/custom.css';
+
 // Import Font Awesome
 import '@fortawesome/fontawesome-free/css/all.css';
 

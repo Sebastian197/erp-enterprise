@@ -36,6 +36,9 @@ export const useThemeStore = defineStore('theme', () => {
      * Initialize theme from localStorage
      */
     const init = () => {
+        // Add no-transition class to prevent flash on initial load
+        document.documentElement.classList.add('no-theme-transition');
+
         const storedTheme = localStorage.getItem(STORAGE_KEYS.THEME);
         if (storedTheme && Object.values(THEMES).includes(storedTheme)) {
             currentTheme.value = storedTheme;
@@ -47,6 +50,11 @@ export const useThemeStore = defineStore('theme', () => {
                 applyTheme(THEMES.DEFAULT_DARK);
             }
         }
+
+        // Remove no-transition class after brief delay
+        setTimeout(() => {
+            document.documentElement.classList.remove('no-theme-transition');
+        }, 100);
 
         // Listen for system theme changes
         if (window.matchMedia) {
@@ -61,17 +69,59 @@ export const useThemeStore = defineStore('theme', () => {
 
     /**
      * Set theme
-     * @param {string} theme - Theme ID
+     * @param {string|object} theme - Theme ID or theme object from backend
+     * @param {boolean} syncToBackend - Whether to sync to backend (default: true)
      */
-    const setTheme = (theme) => {
-        if (!Object.values(THEMES).includes(theme)) {
+    const setTheme = async (theme, syncToBackend = true) => {
+        // Handle theme object from backend (extract slug)
+        const themeSlug = typeof theme === 'object' && theme !== null ? theme.slug : theme;
+
+        if (!Object.values(THEMES).includes(themeSlug)) {
             console.error('Invalid theme:', theme);
             return;
         }
 
-        currentTheme.value = theme;
-        localStorage.setItem(STORAGE_KEYS.THEME, theme);
-        applyTheme(theme);
+        currentTheme.value = themeSlug;
+        localStorage.setItem(STORAGE_KEYS.THEME, themeSlug);
+        applyTheme(themeSlug);
+
+        // Sync to backend if user is authenticated
+        if (syncToBackend) {
+            await syncThemeToBackend(themeSlug);
+        }
+    };
+
+    /**
+     * Sync theme to backend
+     * @param {string} theme - Theme ID
+     */
+    const syncThemeToBackend = async (theme) => {
+        try {
+            // Check if user is authenticated
+            const hasToken = !!localStorage.getItem(STORAGE_KEYS.AUTH_TOKEN);
+            if (!hasToken) {
+                return; // Skip backend sync for non-authenticated users
+            }
+
+            // Get numeric theme_id from mapping
+            const { THEME_ID_MAP } = await import('@/utils/constants');
+            const themeId = THEME_ID_MAP[theme];
+            if (!themeId) {
+                console.warn('Theme ID mapping not found for:', theme);
+                return;
+            }
+
+            // Import API dynamically to avoid circular dependency
+            const { default: api } = await import('@/utils/api');
+            const { API_ENDPOINTS } = await import('@/utils/constants');
+
+            await api.put(API_ENDPOINTS.PREFERENCES.THEME, {
+                theme_id: themeId,
+            });
+        } catch (error) {
+            console.error('Failed to save theme preference to backend:', error);
+            // Don't throw - localStorage is already updated, backend sync is optional enhancement
+        }
     };
 
     /**
@@ -80,6 +130,9 @@ export const useThemeStore = defineStore('theme', () => {
      */
     const applyTheme = (theme) => {
         const html = document.documentElement;
+
+        // Add will-change hint for better performance
+        html.style.willChange = 'background-color, color';
 
         // Remove all theme classes
         Object.values(THEMES).forEach(t => {
@@ -101,6 +154,11 @@ export const useThemeStore = defineStore('theme', () => {
 
         // Load theme CSS file dynamically
         loadThemeCSS(theme);
+
+        // Remove will-change hint after transition completes
+        setTimeout(() => {
+            html.style.willChange = '';
+        }, 350);
     };
 
     /**
@@ -131,9 +189,9 @@ export const useThemeStore = defineStore('theme', () => {
     /**
      * Toggle dark mode
      */
-    const toggleDarkMode = () => {
+    const toggleDarkMode = async () => {
         const newTheme = isDark.value ? THEMES.DEFAULT_LIGHT : THEMES.DEFAULT_DARK;
-        setTheme(newTheme);
+        await setTheme(newTheme);
     };
 
     /**
@@ -236,6 +294,7 @@ export const useThemeStore = defineStore('theme', () => {
         // Actions
         setTheme,
         applyTheme,
+        syncThemeToBackend,
         toggleDarkMode,
         setCustomTheme,
         loadCustomTheme,

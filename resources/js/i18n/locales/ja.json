@@ -217,6 +217,7 @@
   },
   "theme_switcher": {
     "label": "テーマを切り替える",
+    "select_theme": "テーマを選択",
     "light_mode": "ライトモード",
     "dark_mode": "ダークモード",
     "dark": "ダーク",

@@ -18,8 +18,19 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue';
+import { useThemeStore } from '@/stores/theme';
+import { PARTICLE_COLORS, createRGBA } from '@/utils/constants';
 import MeshGradient from './MeshGradient.vue';
+
+// Theme store
+const themeStore = useThemeStore();
+
+// Computed theme colors
+const themeColors = computed(() => {
+  const theme = themeStore.currentTheme;
+  return PARTICLE_COLORS[theme] || PARTICLE_COLORS['default-light'];
+});
 
 const props = defineProps({
   intensity: {
@@ -50,6 +61,21 @@ const shipPath = [
   [25, 10], [27, 5], [30, 5], [32, 8], [35, 8],
   [35, 20], [45, 20], [45, 22], [0, 22]
 ];
+
+// Helper functions to get theme-aware colors
+const getShipColor = () => createRGBA(themeColors.value.secondary, 0.6);
+const getAnchorColor = () => createRGBA(themeColors.value.primary, 0.5);
+const getGearColor = () => createRGBA(themeColors.value.tertiary, 0.4);
+const getDotColor = () => createRGBA(themeColors.value.primary, 0.6);
+const getConnectionColor = (opacity) => createRGBA(themeColors.value.primary, opacity);
+const getMouseFillColor = () => createRGBA(themeColors.value.primary, 0.4);
+const getMouseStrokeColor = () => createRGBA(themeColors.value.secondary, 0.8);
+const getMouseConnectionColor = (opacity) => createRGBA(themeColors.value.secondary, opacity);
+
+// Computed properties for CSS v-bind
+const getGridColor = computed(() => createRGBA(themeColors.value.primary, 0.03));
+const getWaveColor1 = computed(() => createRGBA(themeColors.value.primary, 0.3));
+const getWaveColor2 = computed(() => createRGBA(themeColors.value.secondary, 0.2));
 
 class NavalElement {
   constructor(type, x, y, canvas) {
@@ -125,7 +151,7 @@ class NavalElement {
   }
 
   drawShip(ctx) {
-    ctx.strokeStyle = 'rgba(96, 165, 250, 0.6)';
+    ctx.strokeStyle = getShipColor();
     ctx.lineWidth = 2;
     ctx.beginPath();
     shipPath.forEach((point, i) => {
@@ -143,7 +169,7 @@ class NavalElement {
   }
 
   drawAnchor(ctx) {
-    ctx.strokeStyle = 'rgba(59, 130, 246, 0.5)';
+    ctx.strokeStyle = getAnchorColor();
     ctx.lineWidth = 2;
     ctx.beginPath();
     // Anchor shaft
@@ -164,7 +190,7 @@ class NavalElement {
   }
 
   drawGear(ctx) {
-    ctx.strokeStyle = 'rgba(147, 197, 253, 0.4)';
+    ctx.strokeStyle = getGearColor();
     ctx.lineWidth = 1.5;
     const teeth = 8;
     const outerRadius = 12;
@@ -189,7 +215,7 @@ class NavalElement {
   }
 
   drawDot(ctx) {
-    ctx.fillStyle = 'rgba(59, 130, 246, 0.6)';
+    ctx.fillStyle = getDotColor();
     ctx.beginPath();
     ctx.arc(0, 0, 2, 0, Math.PI * 2);
     ctx.fill();
@@ -268,7 +294,7 @@ const drawConnections = (ctx) => {
 
       if (distance < 150) {
         const opacity = (1 - distance / 150) * 0.2;
-        ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`;
+        ctx.strokeStyle = getConnectionColor(opacity);
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(dots[i].x, dots[i].y);
@@ -285,9 +311,9 @@ const drawMouseConnections = (ctx) => {
   // Draw mouse cursor highlight
   ctx.beginPath();
   ctx.arc(mouse.x, mouse.y, 8, 0, Math.PI * 2);
-  ctx.fillStyle = 'rgba(59, 130, 246, 0.4)';
+  ctx.fillStyle = getMouseFillColor();
   ctx.fill();
-  ctx.strokeStyle = 'rgba(96, 165, 250, 0.8)';
+  ctx.strokeStyle = getMouseStrokeColor();
   ctx.lineWidth = 2;
   ctx.stroke();
 
@@ -301,7 +327,7 @@ const drawMouseConnections = (ctx) => {
       const opacity = (1 - distance / 250) * 0.5;
       const lineWidth = element.type === 'dot' ? 1 : 2;
 
-      ctx.strokeStyle = `rgba(96, 165, 250, ${opacity})`;
+      ctx.strokeStyle = getMouseConnectionColor(opacity);
       ctx.lineWidth = lineWidth;
       ctx.beginPath();
       ctx.moveTo(mouse.x, mouse.y);
@@ -349,6 +375,19 @@ const handleMouseLeave = () => {
   mouse.y = null;
 };
 
+// Watch for theme changes and redraw
+watch(() => themeStore.currentTheme, () => {
+  if (canvas.value) {
+    // Redraw on next frame
+    requestAnimationFrame(() => {
+      const ctx = canvas.value?.getContext('2d');
+      if (ctx) {
+        ctx.clearRect(0, 0, canvas.value.width, canvas.value.height);
+      }
+    });
+  }
+});
+
 onMounted(() => {
   initNavalElements();
   animate();
@@ -386,8 +425,8 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
   background-image:
-    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+    linear-gradient(v-bind(getGridColor) 1px, transparent 1px),
+    linear-gradient(90deg, v-bind(getGridColor) 1px, transparent 1px);
   background-size: 50px 50px;
   z-index: 1;
 }
@@ -404,7 +443,7 @@ onBeforeUnmount(() => {
 }
 
 .wave {
-  fill: rgba(59, 130, 246, 0.3);
+  fill: v-bind(getWaveColor1);
   animation: wave-animation 15s ease-in-out infinite;
 }
 
@@ -416,7 +455,7 @@ onBeforeUnmount(() => {
 .wave-2 {
   animation-delay: -3s;
   animation-duration: 18s;
-  fill: rgba(96, 165, 250, 0.2);
+  fill: v-bind(getWaveColor2);
 }
 
 @keyframes wave-animation {

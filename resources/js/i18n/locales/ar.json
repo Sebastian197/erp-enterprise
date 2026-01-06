@@ -217,6 +217,7 @@
   },
   "theme_switcher": {
     "label": "تبديل المظهر",
+    "select_theme": "اختر السمة",
     "light_mode": "الوضع الفاتح",
     "dark_mode": "الوضع الداكن",
     "dark": "داكن",
