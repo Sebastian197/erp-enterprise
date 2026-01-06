@@ -15,16 +15,8 @@
         'left-0'
       ]"
     >
-      <!-- Animated Background Gradient -->
-      <div class="absolute inset-0 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 animate-pulse"></div>
-
-        <!-- Floating Particles -->
-        <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-primary rounded-full animate-ping opacity-75"></div>
-        <div class="absolute top-1/3 right-1/3 w-3 h-3 bg-secondary rounded-full animate-ping opacity-50" style="animation-delay: 0.3s"></div>
-        <div class="absolute bottom-1/3 left-1/3 w-2 h-2 bg-primary rounded-full animate-ping opacity-60" style="animation-delay: 0.6s"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-3 h-3 bg-secondary rounded-full animate-ping opacity-40" style="animation-delay: 0.9s"></div>
-      </div>
+      <!-- Naval Background with high intensity -->
+      <NavalBackground intensity="high" />
 
       <!-- Content -->
       <div class="relative z-10 text-center px-6">
@@ -69,6 +61,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import Typed from 'typed.js';
+import NavalBackground from '@/components/common/NavalBackground.vue';
 
 const props = defineProps({
   text: {

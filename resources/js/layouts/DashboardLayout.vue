@@ -59,9 +59,9 @@
 
       <!-- Page Content -->
       <main class="flex-1 overflow-x-hidden overflow-y-auto bg-themed-secondary p-4 lg:p-6 relative">
-        <!-- Naval Background with low intensity -->
+        <!-- Naval Background with high intensity -->
         <div class="dashboard-naval-background">
-          <NavalBackground intensity="low" />
+          <NavalBackground intensity="high" />
         </div>
 
         <div class="relative z-10">
