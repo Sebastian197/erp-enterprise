@@ -1,2 +1,54 @@
 /* Gray Professional Theme */
-.theme-gray-professional { --color-primary: #475569; --color-secondary: #64748b; --color-success: #22c55e; --color-danger: #ef4444; --color-warning: #f59e0b; --color-info: #0ea5e9; --bg-primary: #ffffff; --bg-secondary: #f8fafc; --bg-tertiary: #f1f5f9; --text-primary: #0f172a; --text-secondary: #1e293b; --text-muted: #475569; --border-color: #e2e8f0; --border-color-hover: #cbd5e1; --sidebar-bg: #1e293b; --sidebar-text: #cbd5e1; --sidebar-hover: #334155; --sidebar-active: #475569; --navbar-bg: #ffffff; --navbar-text: #0f172a; --navbar-border: #e2e8f0; --card-bg: #ffffff; --card-border: #e2e8f0; --card-shadow: 0 1px 3px 0 rgb(71 85 105 / 0.1); }
+.theme-gray-professional {
+    /* Status colors */
+    --color-primary: #475569;
+    --color-secondary: #64748b;
+    --color-success: #22c55e;
+    --color-danger: #ef4444;
+    --color-warning: #f59e0b;
+    --color-info: #0ea5e9;
+
+    /* Hover states */
+    --color-primary-dark: #334155;
+    --color-secondary-dark: #475569;
+
+    /* Backgrounds */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+
+    /* Text */
+    --text-primary: #0f172a;
+    --text-secondary: #1e293b;
+    --text-muted: #475569;
+
+    /* Borders */
+    --border-color: #e2e8f0;
+    --border-color-hover: #cbd5e1;
+
+    /* Sidebar */
+    --sidebar-bg: #1e293b;
+    --sidebar-text: #cbd5e1;
+    --sidebar-hover: #334155;
+    --sidebar-active: #475569;
+
+    /* Navbar */
+    --navbar-bg: #ffffff;
+    --navbar-text: #0f172a;
+    --navbar-border: #e2e8f0;
+
+    /* Card */
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --card-shadow: 0 1px 3px 0 rgb(71 85 105 / 0.1);
+
+    /* Inputs */
+    --input-bg: #ffffff;
+    --input-border: #cbd5e1;
+    --input-focus-border: #475569;
+    --input-text: #0f172a;
+
+    /* Effects */
+    --button-shadow: 0 1px 2px 0 rgb(71 85 105 / 0.05);
+    --transition-speed: 0.3s;
+}
