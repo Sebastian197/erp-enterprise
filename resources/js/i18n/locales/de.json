@@ -264,7 +264,24 @@
     "groups": "Gruppen",
     "categories": "Kategorien",
     "roles": "Rollen",
+    "hrm": "Personalwesen",
+    "webmaster": "WebMaster",
     "settings": "Einstellungen"
+  },
+  "hrm": {
+    "title": "Personalwesen",
+    "employees": "Mitarbeiter",
+    "departments": "Abteilungen",
+    "payroll": "Gehaltsabrechnung",
+    "attendance": "Anwesenheit",
+    "masters": "Stammdaten",
+    "masters_groups": "Gruppen",
+    "masters_categories": "Kategorien"
+  },
+  "webmaster": {
+    "title": "WebMaster",
+    "permissions": "Berechtigungen",
+    "grant_permissions": "Berechtigungen Erteilen"
   },
   "navbar": {
     "toggle_menu": "Menü umschalten",

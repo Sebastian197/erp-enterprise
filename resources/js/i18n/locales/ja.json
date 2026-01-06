@@ -264,7 +264,24 @@
     "groups": "グループ",
     "categories": "カテゴリー",
     "roles": "ロール",
+    "hrm": "人事管理",
+    "webmaster": "ウェブマスター",
     "settings": "設定"
+  },
+  "hrm": {
+    "title": "人事管理",
+    "employees": "従業員",
+    "departments": "部門",
+    "payroll": "給与",
+    "attendance": "勤怠",
+    "masters": "マスター",
+    "masters_groups": "グループ",
+    "masters_categories": "カテゴリ"
+  },
+  "webmaster": {
+    "title": "ウェブマスター",
+    "permissions": "権限",
+    "grant_permissions": "権限を付与"
   },
   "navbar": {
     "toggle_menu": "メニュー切り替え",

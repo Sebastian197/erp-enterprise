@@ -264,7 +264,24 @@
     "groups": "المجموعات",
     "categories": "الفئات",
     "roles": "الأدوار",
+    "hrm": "الموارد البشرية",
+    "webmaster": "مدير الويب",
     "settings": "الإعدادات"
+  },
+  "hrm": {
+    "title": "إدارة الموارد البشرية",
+    "employees": "الموظفون",
+    "departments": "الأقسام",
+    "payroll": "كشوف المرتبات",
+    "attendance": "الحضور",
+    "masters": "البيانات الرئيسية",
+    "masters_groups": "المجموعات",
+    "masters_categories": "الفئات"
+  },
+  "webmaster": {
+    "title": "مدير الويب",
+    "permissions": "الصلاحيات",
+    "grant_permissions": "منح الصلاحيات"
   },
   "navbar": {
     "toggle_menu": "تبديل القائمة",

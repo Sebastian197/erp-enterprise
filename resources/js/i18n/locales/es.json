@@ -264,7 +264,24 @@
     "groups": "Grupos",
     "categories": "Categorías",
     "roles": "Roles",
+    "hrm": "RRHH",
+    "webmaster": "WebMaster",
     "settings": "Configuración"
+  },
+  "hrm": {
+    "title": "Recursos Humanos",
+    "employees": "Empleados",
+    "departments": "Departamentos",
+    "payroll": "Nóminas",
+    "attendance": "Asistencias",
+    "masters": "Maestros",
+    "masters_groups": "Grupos",
+    "masters_categories": "Categorías"
+  },
+  "webmaster": {
+    "title": "WebMaster",
+    "permissions": "Permisos",
+    "grant_permissions": "Dar Permisos"
   },
   "settings": {
     "subtitle": "Personaliza tu experiencia en el sistema",

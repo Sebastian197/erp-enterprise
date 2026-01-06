@@ -158,26 +158,88 @@
               v-if="expandedMenus.includes(item.route) && !collapsed"
               class="ml-8 space-y-1 mt-1"
             >
-              <router-link
-                v-for="child in item.children"
-                :key="child.route"
-                :to="child.route"
-                v-slot="{ isActive }"
-                custom
-              >
-                <a
-                  :href="child.route"
-                  @click.prevent="navigateTo(child.route)"
-                  :class="[
-                    'block px-3 py-2 rounded-lg text-sm transition-colors duration-200',
-                    isActive
-                      ? 'text-primary font-medium bg-primary/10'
-                      : 'text-themed-secondary hover:text-themed-primary',
-                  ]"
+              <template v-for="child in item.children" :key="child.route">
+                <!-- Child without children (simple link) -->
+                <router-link
+                  v-if="!child.children"
+                  :to="child.route"
+                  v-slot="{ isActive }"
+                  custom
                 >
-                  {{ $t(child.i18nKey) }}
-                </a>
-              </router-link>
+                  <a
+                    :href="child.route"
+                    @click.prevent="navigateTo(child.route)"
+                    :class="[
+                      'flex items-center space-x-2 px-3 py-2 rounded-lg text-sm transition-colors duration-200',
+                      isActive
+                        ? 'text-primary font-medium bg-primary/10'
+                        : 'text-themed-secondary hover:text-themed-primary',
+                    ]"
+                  >
+                    <i v-if="child.icon" :class="[child.icon, 'text-sm w-4']"></i>
+                    <span>{{ $t(child.i18nKey) }}</span>
+                  </a>
+                </router-link>
+
+                <!-- Child with children (nested submenu) -->
+                <div v-else class="space-y-1">
+                  <button
+                    @click="toggleSubmenu(child.route)"
+                    :class="[
+                      'w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors duration-200',
+                      'text-themed-secondary hover:text-themed-primary',
+                    ]"
+                  >
+                    <div class="flex items-center space-x-2">
+                      <i v-if="child.icon" :class="[child.icon, 'text-sm w-4']"></i>
+                      <span>{{ $t(child.i18nKey) }}</span>
+                    </div>
+                    <i
+                      :class="[
+                        'fas fa-chevron-down text-xs transition-transform duration-200',
+                        expandedMenus.includes(child.route) && 'rotate-180',
+                      ]"
+                    ></i>
+                  </button>
+
+                  <!-- Third level submenu -->
+                  <transition
+                    enter-active-class="transition duration-200"
+                    enter-from-class="opacity-0 -translate-y-2"
+                    enter-to-class="opacity-100 translate-y-0"
+                    leave-active-class="transition duration-150"
+                    leave-from-class="opacity-100 translate-y-0"
+                    leave-to-class="opacity-0 -translate-y-2"
+                  >
+                    <div
+                      v-if="expandedMenus.includes(child.route)"
+                      class="ml-4 space-y-1 mt-1"
+                    >
+                      <router-link
+                        v-for="subChild in child.children"
+                        :key="subChild.route"
+                        :to="subChild.route"
+                        v-slot="{ isActive }"
+                        custom
+                      >
+                        <a
+                          :href="subChild.route"
+                          @click.prevent="navigateTo(subChild.route)"
+                          :class="[
+                            'flex items-center space-x-2 px-3 py-2 rounded-lg text-sm transition-colors duration-200',
+                            isActive
+                              ? 'text-primary font-medium bg-primary/10'
+                              : 'text-themed-secondary hover:text-themed-primary',
+                          ]"
+                        >
+                          <i v-if="subChild.icon" :class="[subChild.icon, 'text-sm w-4']"></i>
+                          <span>{{ $t(subChild.i18nKey) }}</span>
+                        </a>
+                      </router-link>
+                    </div>
+                  </transition>
+                </div>
+              </template>
             </div>
           </transition>
         </div>
@@ -192,6 +254,7 @@ import { computed, ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 import { APP } from '@/utils/constants';
+import { menuItems as menuConfig } from '@/config/menu';
 
 /**
  * Sidebar Component
@@ -228,51 +291,8 @@ const userInitials = computed(() => {
     : name.substring(0, 2).toUpperCase();
 });
 
-// Menu items configuration
-const menuItems = [
-  {
-    name: 'Dashboard',
-    i18nKey: 'menu.dashboard',
-    icon: 'fas fa-home',
-    route: '/dashboard',
-    permission: null,
-  },
-  {
-    name: 'Users',
-    i18nKey: 'menu.users',
-    icon: 'fas fa-users',
-    route: '/users',
-    permission: 'users.view',
-  },
-  {
-    name: 'Groups',
-    i18nKey: 'menu.groups',
-    icon: 'fas fa-folder',
-    route: '/groups',
-    permission: 'groups.view',
-  },
-  {
-    name: 'Categories',
-    i18nKey: 'menu.categories',
-    icon: 'fas fa-tags',
-    route: '/categories',
-    permission: 'categories.view',
-  },
-  {
-    name: 'Roles',
-    i18nKey: 'menu.roles',
-    icon: 'fas fa-shield-alt',
-    route: '/roles',
-    permission: 'roles.view',
-  },
-  {
-    name: 'Settings',
-    i18nKey: 'menu.settings',
-    icon: 'fas fa-cog',
-    route: '/settings',
-    permission: null,
-  },
-];
+// Menu items from config
+const menuItems = menuConfig;
 
 // Filter menu items based on permissions
 const visibleMenuItems = computed(() => {

@@ -264,7 +264,24 @@
     "groups": "Группы",
     "categories": "Категории",
     "roles": "Роли",
+    "hrm": "Управление персоналом",
+    "webmaster": "Веб-мастер",
     "settings": "Настройки"
+  },
+  "hrm": {
+    "title": "Управление персоналом",
+    "employees": "Сотрудники",
+    "departments": "Отделы",
+    "payroll": "Заработная плата",
+    "attendance": "Посещаемость",
+    "masters": "Справочники",
+    "masters_groups": "Группы",
+    "masters_categories": "Категории"
+  },
+  "webmaster": {
+    "title": "Веб-мастер",
+    "permissions": "Разрешения",
+    "grant_permissions": "Предоставить Разрешения"
   },
   "navbar": {
     "toggle_menu": "Переключить меню",

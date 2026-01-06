@@ -112,6 +112,7 @@ import Navbar from '@/components/dashboard/Navbar.vue';
 import Footer from '@/components/dashboard/Footer.vue';
 import NavalBackground from '@/components/common/NavalBackground.vue';
 import { STORAGE_KEYS } from '@/utils/constants';
+import { findMenuPath, generateBreadcrumbs } from '@/config/menu';
 
 /**
  * DashboardLayout Component
@@ -126,8 +127,20 @@ const { t } = useI18n();
 const sidebarCollapsed = ref(false);
 const isMobile = ref(false);
 
-// Breadcrumbs from route meta
+// Breadcrumbs from menu structure
 const breadcrumbs = computed(() => {
+  // Get current route path
+  const currentPath = route.path;
+
+  // Find menu path for current route
+  const menuPath = findMenuPath(currentPath);
+
+  // Generate breadcrumbs from menu path
+  if (menuPath && menuPath.length > 0) {
+    return generateBreadcrumbs(menuPath, t);
+  }
+
+  // Fallback to route meta if not found in menu
   const crumbs = [];
   const matched = route.matched;
 

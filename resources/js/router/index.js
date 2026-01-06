@@ -27,6 +27,18 @@ const UsersShow = () => import('@/pages/users/Show.vue');
 // Profile
 const Profile = () => import('@/pages/profile/Index.vue');
 
+// HRM
+const HRMEmployees = () => import('@/pages/hrm/employees/Index.vue');
+const HRMDepartments = () => import('@/pages/hrm/departments/Index.vue');
+const HRMPayroll = () => import('@/pages/hrm/payroll/Index.vue');
+const HRMAttendance = () => import('@/pages/hrm/attendance/Index.vue');
+const HRMMastersGroups = () => import('@/pages/hrm/masters/groups/Index.vue');
+const HRMMastersCategories = () => import('@/pages/hrm/masters/categories/Index.vue');
+
+// WebMaster
+const WebMasterPermissions = () => import('@/pages/webmaster/permissions/Index.vue');
+const WebMasterGrantPermissions = () => import('@/pages/webmaster/grant-permissions/Index.vue');
+
 // Settings
 const Settings = () => import('@/pages/settings/Index.vue');
 
@@ -164,6 +176,106 @@ const routes = [
                     requiresAuth: true,
                     icon: 'fa-user',
                 },
+            },
+
+            // HRM routes
+            {
+                path: 'hrm',
+                name: 'hrm',
+                redirect: { name: 'hrm.employees' },
+                meta: {
+                    title: 'hrm.title',
+                    requiresAuth: true,
+                    icon: 'fa-user-tie',
+                },
+                children: [
+                    {
+                        path: 'employees',
+                        name: 'hrm.employees',
+                        component: HRMEmployees,
+                        meta: {
+                            title: 'hrm.employees',
+                            requiresAuth: true,
+                        },
+                    },
+                    {
+                        path: 'departments',
+                        name: 'hrm.departments',
+                        component: HRMDepartments,
+                        meta: {
+                            title: 'hrm.departments',
+                            requiresAuth: true,
+                        },
+                    },
+                    {
+                        path: 'payroll',
+                        name: 'hrm.payroll',
+                        component: HRMPayroll,
+                        meta: {
+                            title: 'hrm.payroll',
+                            requiresAuth: true,
+                        },
+                    },
+                    {
+                        path: 'attendance',
+                        name: 'hrm.attendance',
+                        component: HRMAttendance,
+                        meta: {
+                            title: 'hrm.attendance',
+                            requiresAuth: true,
+                        },
+                    },
+                    {
+                        path: 'masters/groups',
+                        name: 'hrm.masters.groups',
+                        component: HRMMastersGroups,
+                        meta: {
+                            title: 'hrm.masters_groups',
+                            requiresAuth: true,
+                        },
+                    },
+                    {
+                        path: 'masters/categories',
+                        name: 'hrm.masters.categories',
+                        component: HRMMastersCategories,
+                        meta: {
+                            title: 'hrm.masters_categories',
+                            requiresAuth: true,
+                        },
+                    },
+                ],
+            },
+
+            // WebMaster routes
+            {
+                path: 'webmaster',
+                name: 'webmaster',
+                redirect: { name: 'webmaster.permissions' },
+                meta: {
+                    title: 'webmaster.title',
+                    requiresAuth: true,
+                    icon: 'fa-code',
+                },
+                children: [
+                    {
+                        path: 'permissions',
+                        name: 'webmaster.permissions',
+                        component: WebMasterPermissions,
+                        meta: {
+                            title: 'webmaster.permissions',
+                            requiresAuth: true,
+                        },
+                    },
+                    {
+                        path: 'grant-permissions',
+                        name: 'webmaster.grant-permissions',
+                        component: WebMasterGrantPermissions,
+                        meta: {
+                            title: 'webmaster.grant_permissions',
+                            requiresAuth: true,
+                        },
+                    },
+                ],
             },
 
             // Settings route

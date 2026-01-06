@@ -264,7 +264,24 @@
     "groups": "组",
     "categories": "分类",
     "roles": "角色",
+    "hrm": "人力资源",
+    "webmaster": "网站管理",
     "settings": "设置"
+  },
+  "hrm": {
+    "title": "人力资源管理",
+    "employees": "员工",
+    "departments": "部门",
+    "payroll": "工资单",
+    "attendance": "考勤",
+    "masters": "主数据",
+    "masters_groups": "组",
+    "masters_categories": "类别"
+  },
+  "webmaster": {
+    "title": "网站管理",
+    "permissions": "权限",
+    "grant_permissions": "授予权限"
   },
   "navbar": {
     "toggle_menu": "切换菜单",

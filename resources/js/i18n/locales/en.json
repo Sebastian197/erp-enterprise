@@ -264,7 +264,24 @@
     "groups": "Groups",
     "categories": "Categories",
     "roles": "Roles",
+    "hrm": "HRM",
+    "webmaster": "WebMaster",
     "settings": "Settings"
+  },
+  "hrm": {
+    "title": "Human Resources",
+    "employees": "Employees",
+    "departments": "Departments",
+    "payroll": "Payroll",
+    "attendance": "Attendance",
+    "masters": "Masters",
+    "masters_groups": "Groups",
+    "masters_categories": "Categories"
+  },
+  "webmaster": {
+    "title": "WebMaster",
+    "permissions": "Permissions",
+    "grant_permissions": "Grant Permissions"
   },
   "navbar": {
     "toggle_menu": "Toggle menu",

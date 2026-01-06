@@ -264,7 +264,24 @@
     "groups": "Gruppi",
     "categories": "Categorie",
     "roles": "Ruoli",
+    "hrm": "Risorse Umane",
+    "webmaster": "WebMaster",
     "settings": "Impostazioni"
+  },
+  "hrm": {
+    "title": "Risorse Umane",
+    "employees": "Dipendenti",
+    "departments": "Dipartimenti",
+    "payroll": "Buste Paga",
+    "attendance": "Presenze",
+    "masters": "Anagrafiche",
+    "masters_groups": "Gruppi",
+    "masters_categories": "Categorie"
+  },
+  "webmaster": {
+    "title": "WebMaster",
+    "permissions": "Permessi",
+    "grant_permissions": "Concedi Permessi"
   },
   "navbar": {
     "toggle_menu": "Attiva/disattiva menu",
