@@ -3,7 +3,7 @@
     <!-- Trigger Button -->
     <button
       @click="toggleDropdown"
-      class="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl border border-gray-200/50 dark:border-gray-700/50 hover:scale-105 active:scale-95"
+      class="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-card backdrop-blur-sm text-themed-secondary hover:bg-themed-secondary transition-all duration-300 shadow-lg hover:shadow-xl border-card hover:scale-105 active:scale-95"
       :aria-label="$t('language_switcher.label')"
       aria-haspopup="true"
       :aria-expanded="isOpen"
@@ -46,11 +46,11 @@
     >
       <div
         v-if="isOpen"
-        class="fixed left-1/2 top-1/2 w-80 bg-white/98 dark:bg-gray-800/98 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200/50 dark:border-gray-700/50 overflow-hidden dropdown-container"
+        class="fixed left-1/2 top-1/2 w-80 bg-card backdrop-blur-xl rounded-2xl shadow-2xl border-card overflow-hidden dropdown-container"
         style="z-index: 9999; transform: translate(-50%, -50%);"
       >
-        <div class="px-5 py-3 border-b border-gray-200/70 dark:border-gray-700/70 bg-gradient-to-r from-primary-50/50 to-transparent dark:from-primary-900/20 flex-shrink-0">
-          <p class="text-xs font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wider flex items-center">
+        <div class="px-5 py-3 border-b border-themed bg-gradient-to-r from-primary-50/50 to-transparent dark:from-primary-900/20 flex-shrink-0">
+          <p class="text-xs font-bold text-themed-muted uppercase tracking-wider flex items-center">
             <i class="fas fa-language mr-2 text-primary-500"></i>
             {{ $t('language_switcher.select_language') }}
           </p>
@@ -65,7 +65,7 @@
               'language-item w-full flex items-center space-x-3 px-5 py-3 text-sm transition-all duration-300',
               currentLocale === locale.code
                 ? 'bg-primary-500/15 text-primary-600 dark:text-primary-400 font-semibold border-l-4 border-primary-500'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/70 dark:hover:bg-gray-700/70 hover:pl-6 border-l-4 border-transparent hover:border-primary-300',
+                : 'text-themed-secondary hover:bg-themed-tertiary hover:pl-6 border-l-4 border-transparent hover:border-primary-300',
             ]"
             :style="{ '--item-index': index }"
           >
