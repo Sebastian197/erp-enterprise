@@ -147,6 +147,80 @@ export const THEME_ID_MAP = {
 };
 
 /**
+ * Particle gradient colors for each theme
+ * Each theme has primary, secondary, and tertiary colors with different opacities
+ */
+export const PARTICLE_COLORS = {
+    'default-light': {
+        primary: { r: 59, g: 130, b: 246 },      // Blue #3b82f6
+        secondary: { r: 96, g: 165, b: 250 },    // Light blue #60a5fa
+        tertiary: { r: 147, g: 197, b: 253 },    // Very light blue #93c5fd
+    },
+    'default-dark': {
+        primary: { r: 96, g: 165, b: 250 },      // Lighter blue for dark
+        secondary: { r: 147, g: 197, b: 253 },   // Very light blue
+        tertiary: { r: 191, g: 219, b: 254 },    // Ultra light blue
+    },
+    'blue-ocean': {
+        primary: { r: 2, g: 132, b: 199 },       // #0284c7
+        secondary: { r: 14, g: 165, b: 233 },    // #0ea5e9
+        tertiary: { r: 56, g: 189, b: 248 },     // #38bdf8
+    },
+    'purple-dream': {
+        primary: { r: 147, g: 51, b: 234 },      // #9333ea
+        secondary: { r: 168, g: 85, b: 247 },    // #a855f7
+        tertiary: { r: 192, g: 132, b: 252 },    // #c084fc
+    },
+    'green-nature': {
+        primary: { r: 22, g: 163, b: 74 },       // #16a34a
+        secondary: { r: 34, g: 197, b: 94 },     // #22c55e
+        tertiary: { r: 74, g: 222, b: 128 },     // #4ade80
+    },
+    'orange-sunset': {
+        primary: { r: 234, g: 88, b: 12 },       // #ea580c
+        secondary: { r: 249, g: 115, b: 22 },    // #f97316
+        tertiary: { r: 251, g: 146, b: 60 },     // #fb923c
+    },
+    'red-fire': {
+        primary: { r: 220, g: 38, b: 38 },       // #dc2626
+        secondary: { r: 239, g: 68, b: 68 },     // #ef4444
+        tertiary: { r: 248, g: 113, b: 113 },    // #f87171
+    },
+    'gray-professional': {
+        primary: { r: 71, g: 85, b: 105 },       // #475569
+        secondary: { r: 100, g: 116, b: 139 },   // #64748b
+        tertiary: { r: 148, g: 163, b: 184 },    // #94a3b8
+    },
+    'teal-modern': {
+        primary: { r: 13, g: 148, b: 136 },      // #0d9488
+        secondary: { r: 20, g: 184, b: 166 },    // #14b8a6
+        tertiary: { r: 45, g: 212, b: 191 },     // #2dd4bf
+    },
+    'pink-soft': {
+        primary: { r: 236, g: 72, b: 153 },      // #ec4899
+        secondary: { r: 244, g: 114, b: 182 },   // #f472b6
+        tertiary: { r: 249, g: 168, b: 212 },    // #f9a8d4
+    },
+    'high-contrast': {
+        primary: { r: 0, g: 0, b: 0 },           // Black
+        secondary: { r: 51, g: 51, b: 51 },      // Dark gray
+        tertiary: { r: 102, g: 102, b: 102 },    // Gray
+    },
+    'custom': {
+        primary: { r: 59, g: 130, b: 246 },      // Default to blue
+        secondary: { r: 96, g: 165, b: 250 },
+        tertiary: { r: 147, g: 197, b: 253 },
+    },
+};
+
+/**
+ * Helper function to create rgba string from color object
+ */
+export const createRGBA = (colorObj, alpha) => {
+    return `rgba(${colorObj.r}, ${colorObj.g}, ${colorObj.b}, ${alpha})`;
+};
+
+/**
  * User roles
  */
 export const ROLES = {
