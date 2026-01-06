@@ -1,6 +1,6 @@
 {
   "nav": {
-    "dashboard": "Tableau de Bord",
+    "dashboard": "Accueil",
     "users": "Utilisateurs",
     "groups": "Groupes",
     "roles": "Rôles",
@@ -49,7 +49,7 @@
     }
   },
   "dashboard": {
-    "title": "Tableau de Bord",
+    "title": "Accueil",
     "welcome": "Bon retour, {name}!",
     "subtitle": "Voici ce qui se passe avec votre système aujourd'hui.",
     "overview": "Vue d'Ensemble",
@@ -117,24 +117,35 @@
     "no_users": "Aucun utilisateur trouvé"
   },
   "profile": {
-    "title": "Mon profil",
-    "edit_profile": "Modifier le profil",
-    "change_password": "Changer le mot de passe",
-    "personal_info": "Informations personnelles",
-    "contact_info": "Coordonnées",
-    "preferences": "Préférences",
-    "security": "Sécurité",
-    "current_password": "Mot de passe actuel",
-    "new_password": "Nouveau mot de passe",
-    "confirm_new_password": "Confirmer le nouveau mot de passe",
+    "title": "Mon Profil",
+    "subtitle": "Gérez vos informations personnelles et préférences",
     "avatar": "Avatar",
-    "upload_avatar": "Télécharger l'avatar",
-    "remove_avatar": "Supprimer l'avatar",
-    "language": "Langue",
-    "theme": "Thème",
-    "timezone": "Fuseau horaire",
-    "profile_updated": "Profil mis à jour avec succès",
-    "password_updated": "Mot de passe mis à jour avec succès"
+    "avatar_hint": "Cliquez sur l'icône de caméra pour mettre à jour votre photo de profil",
+    "tabs": {
+      "personal": "Informations Personnelles",
+      "security": "Sécurité",
+      "preferences": "Préférences"
+    },
+    "form": {
+      "name": "Nom",
+      "username": "Nom d'utilisateur"
+    },
+    "security": {
+      "change_password": "Changer le Mot de Passe",
+      "current_password": "Mot de Passe Actuel",
+      "new_password": "Nouveau Mot de Passe",
+      "confirm_password": "Confirmer le Nouveau Mot de Passe",
+      "update_password": "Mettre à Jour le Mot de Passe"
+    },
+    "preferences": {
+      "language": "Langue",
+      "theme": "Thème",
+      "timezone": "Fuseau Horaire"
+    },
+    "messages": {
+      "profile_updated": "Profil mis à jour avec succès",
+      "password_updated": "Mot de passe mis à jour avec succès"
+    }
   },
   "common": {
     "save": "Enregistrer",
@@ -172,6 +183,10 @@
     "error": "Erreur",
     "warning": "Avertissement",
     "info": "Information"
+  },
+  "select": {
+    "search_placeholder": "Rechercher...",
+    "no_results": "Aucun résultat trouvé"
   },
   "validation": {
     "required": "Ce champ est requis",
@@ -244,7 +259,7 @@
     "close": "Fermer le menu"
   },
   "menu": {
-    "dashboard": "Tableau de Bord",
+    "dashboard": "Accueil",
     "users": "Utilisateurs",
     "groups": "Groupes",
     "categories": "Catégories",
@@ -270,7 +285,7 @@
     "ask_more": "N'hésitez pas à me poser des questions sur cette page !",
     "help": {
       "dashboard": {
-        "title": "Aide du Tableau de Bord",
+        "title": "Aide du Accueil",
         "description": "Voici votre tableau de bord principal où vous pouvez voir un aperçu de toutes les activités et statistiques du système.",
         "feature1": "Voir les statistiques et métriques en temps réel",
         "feature2": "Accéder aux actions rapides pour les tâches courantes",
@@ -317,6 +332,35 @@
       "help": "Je suis là pour aider ! Vous pouvez me poser des questions sur n'importe quelle fonctionnalité de cette page, comment effectuer des actions spécifiques ou des questions générales sur le système.",
       "thanks": "De rien ! Si vous avez besoin d'autre chose, faites-le moi savoir.",
       "default": "Je comprends votre question. Pourriez-vous fournir plus de détails pour que je puisse mieux vous aider ?"
+    }
+  },
+  "settings": {
+    "subtitle": "Personnalisez votre expérience système",
+    "dashboard_layout": {
+      "title": "Disposition du Tableau de Bord",
+      "subtitle": "Personnalisez la disposition de votre panneau principal",
+      "description": "Modifiez la position et la taille des composants sur votre tableau de bord principal pour l'adapter à vos besoins.",
+      "edit_button": "Modifier la Disposition du Tableau de Bord",
+      "info": "Vous pouvez faire glisser et redimensionner les composants. Les modifications seront enregistrées automatiquement."
+    },
+    "appearance": {
+      "title": "Apparence",
+      "subtitle": "Thème et personnalisation visuelle",
+      "theme_label": "Thème du Système",
+      "language_label": "Langue"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "Configurez vos préférences de notification",
+      "email_title": "Notifications par Email",
+      "email_description": "Recevoir des mises à jour par email",
+      "push_title": "Notifications Push",
+      "push_description": "Alertes du navigateur"
+    },
+    "account": {
+      "title": "Compte",
+      "subtitle": "Informations de votre profil",
+      "view_profile": "Voir le Profil Complet"
     }
   }
 }

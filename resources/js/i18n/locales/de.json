@@ -1,6 +1,6 @@
 {
   "nav": {
-    "dashboard": "Dashboard",
+    "dashboard": "Startseite",
     "users": "Benutzer",
     "groups": "Gruppen",
     "roles": "Rollen",
@@ -49,7 +49,7 @@
     }
   },
   "dashboard": {
-    "title": "Dashboard",
+    "title": "Startseite",
     "welcome": "Willkommen zurück, {name}!",
     "subtitle": "Hier ist, was heute mit Ihrem System passiert.",
     "overview": "Übersicht",
@@ -118,23 +118,34 @@
   },
   "profile": {
     "title": "Mein Profil",
-    "edit_profile": "Profil Bearbeiten",
-    "change_password": "Passwort Ändern",
-    "personal_info": "Persönliche Informationen",
-    "contact_info": "Kontaktinformationen",
-    "preferences": "Einstellungen",
-    "security": "Sicherheit",
-    "current_password": "Aktuelles Passwort",
-    "new_password": "Neues Passwort",
-    "confirm_new_password": "Neues Passwort Bestätigen",
+    "subtitle": "Verwalten Sie Ihre persönlichen Informationen und Einstellungen",
     "avatar": "Avatar",
-    "upload_avatar": "Avatar Hochladen",
-    "remove_avatar": "Avatar Entfernen",
-    "language": "Sprache",
-    "theme": "Thema",
-    "timezone": "Zeitzone",
-    "profile_updated": "Profil erfolgreich aktualisiert",
-    "password_updated": "Passwort erfolgreich aktualisiert"
+    "avatar_hint": "Klicken Sie auf das Kamera-Symbol, um Ihr Profilbild zu aktualisieren",
+    "tabs": {
+      "personal": "Persönliche Informationen",
+      "security": "Sicherheit",
+      "preferences": "Einstellungen"
+    },
+    "form": {
+      "name": "Name",
+      "username": "Benutzername"
+    },
+    "security": {
+      "change_password": "Passwort Ändern",
+      "current_password": "Aktuelles Passwort",
+      "new_password": "Neues Passwort",
+      "confirm_password": "Neues Passwort Bestätigen",
+      "update_password": "Passwort Aktualisieren"
+    },
+    "preferences": {
+      "language": "Sprache",
+      "theme": "Thema",
+      "timezone": "Zeitzone"
+    },
+    "messages": {
+      "profile_updated": "Profil erfolgreich aktualisiert",
+      "password_updated": "Passwort erfolgreich aktualisiert"
+    }
   },
   "common": {
     "save": "Speichern",
@@ -173,6 +184,10 @@
     "warning": "Warnung",
     "info": "Information"
   },
+  "select": {
+    "search_placeholder": "Suchen...",
+    "no_results": "Keine Ergebnisse gefunden"
+  },
   "validation": {
     "required": "Dieses Feld ist erforderlich",
     "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
@@ -191,7 +206,7 @@
     "404_message": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
     "500_title": "Serverfehler",
     "500_message": "Auf unserer Seite ist etwas schief gelaufen. Bitte versuchen Sie es später erneut.",
-    "go_home": "Zum Dashboard",
+    "go_home": "Zum Startseite",
     "go_back": "Zurück",
     "network_error": "Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung.",
     "unknown_error": "Ein unerwarteter Fehler ist aufgetreten."
@@ -244,7 +259,7 @@
     "close": "Menü schließen"
   },
   "menu": {
-    "dashboard": "Dashboard",
+    "dashboard": "Startseite",
     "users": "Benutzer",
     "groups": "Gruppen",
     "categories": "Kategorien",
@@ -270,8 +285,8 @@
     "ask_more": "Fragen Sie mich gerne alles über diese Seite!",
     "help": {
       "dashboard": {
-        "title": "Dashboard-Hilfe",
-        "description": "Dies ist Ihr Haupt-Dashboard, wo Sie eine Übersicht aller Systemaktivitäten und Statistiken sehen können.",
+        "title": "Startseite-Hilfe",
+        "description": "Dies ist Ihr Haupt-Startseite, wo Sie eine Übersicht aller Systemaktivitäten und Statistiken sehen können.",
         "feature1": "Echtzeit-Statistiken und Metriken anzeigen",
         "feature2": "Schnellzugriff auf häufige Aufgaben",
         "feature3": "Überwachen Sie aktuelle Aktivitäten und Ereignisse"
@@ -317,6 +332,35 @@
       "help": "Ich bin hier, um zu helfen! Sie können mich über jede Funktion auf dieser Seite fragen, wie man bestimmte Aktionen ausführt oder allgemeine Fragen zum System stellen.",
       "thanks": "Gern geschehen! Wenn Sie etwas anderes brauchen, lassen Sie es mich einfach wissen.",
       "default": "Ich verstehe Ihre Frage. Könnten Sie mehr Details angeben, damit ich Ihnen besser helfen kann?"
+    }
+  },
+  "settings": {
+    "subtitle": "Passen Sie Ihre Systemerfahrung an",
+    "dashboard_layout": {
+      "title": "Dashboard-Layout",
+      "subtitle": "Passen Sie das Layout Ihres Hauptpanels an",
+      "description": "Bearbeiten Sie die Position und Größe der Komponenten auf Ihrem Haupt-Dashboard, um es an Ihre Bedürfnisse anzupassen.",
+      "edit_button": "Dashboard-Layout Bearbeiten",
+      "info": "Sie können Komponenten ziehen und ihre Größe ändern. Änderungen werden automatisch gespeichert."
+    },
+    "appearance": {
+      "title": "Erscheinungsbild",
+      "subtitle": "Thema und visuelle Anpassung",
+      "theme_label": "System-Thema",
+      "language_label": "Sprache"
+    },
+    "notifications": {
+      "title": "Benachrichtigungen",
+      "subtitle": "Konfigurieren Sie Ihre Benachrichtigungseinstellungen",
+      "email_title": "E-Mail-Benachrichtigungen",
+      "email_description": "Updates per E-Mail erhalten",
+      "push_title": "Push-Benachrichtigungen",
+      "push_description": "Browser-Benachrichtigungen"
+    },
+    "account": {
+      "title": "Konto",
+      "subtitle": "Ihre Profilinformationen",
+      "view_profile": "Vollständiges Profil Anzeigen"
     }
   }
 }

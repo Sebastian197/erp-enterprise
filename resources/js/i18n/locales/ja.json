@@ -1,6 +1,6 @@
 {
   "nav": {
-    "dashboard": "ダッシュボード",
+    "dashboard": "ホーム",
     "users": "ユーザー",
     "groups": "グループ",
     "roles": "ロール",
@@ -49,7 +49,7 @@
     }
   },
   "dashboard": {
-    "title": "ダッシュボード",
+    "title": "ホーム",
     "welcome": "おかえりなさい、{name}さん！",
     "subtitle": "本日のシステムの状況です。",
     "overview": "概要",
@@ -118,23 +118,34 @@
   },
   "profile": {
     "title": "マイプロフィール",
-    "edit_profile": "プロフィール編集",
-    "change_password": "パスワード変更",
-    "personal_info": "個人情報",
-    "contact_info": "連絡先情報",
-    "preferences": "設定",
-    "security": "セキュリティ",
-    "current_password": "現在のパスワード",
-    "new_password": "新しいパスワード",
-    "confirm_new_password": "新しいパスワード確認",
+    "subtitle": "個人情報と設定を管理",
     "avatar": "アバター",
-    "upload_avatar": "アバターをアップロード",
-    "remove_avatar": "アバターを削除",
-    "language": "言語",
-    "theme": "テーマ",
-    "timezone": "タイムゾーン",
-    "profile_updated": "プロフィールが正常に更新されました",
-    "password_updated": "パスワードが正常に更新されました"
+    "avatar_hint": "カメラアイコンをクリックしてプロフィール写真を更新",
+    "tabs": {
+      "personal": "個人情報",
+      "security": "セキュリティ",
+      "preferences": "設定"
+    },
+    "form": {
+      "name": "名前",
+      "username": "ユーザー名"
+    },
+    "security": {
+      "change_password": "パスワード変更",
+      "current_password": "現在のパスワード",
+      "new_password": "新しいパスワード",
+      "confirm_password": "新しいパスワードを確認",
+      "update_password": "パスワードを更新"
+    },
+    "preferences": {
+      "language": "言語",
+      "theme": "テーマ",
+      "timezone": "タイムゾーン"
+    },
+    "messages": {
+      "profile_updated": "プロフィールが正常に更新されました",
+      "password_updated": "パスワードが正常に更新されました"
+    }
   },
   "common": {
     "save": "保存",
@@ -173,6 +184,10 @@
     "warning": "警告",
     "info": "情報"
   },
+  "select": {
+    "search_placeholder": "検索...",
+    "no_results": "結果が見つかりません"
+  },
   "validation": {
     "required": "このフィールドは必須です",
     "email": "有効なメールアドレスを入力してください",
@@ -191,7 +206,7 @@
     "404_message": "お探しのページは存在しないか、移動されました。",
     "500_title": "サーバーエラー",
     "500_message": "サーバー側で問題が発生しました。後でもう一度お試しください。",
-    "go_home": "ダッシュボードへ",
+    "go_home": "ホームへ",
     "go_back": "戻る",
     "network_error": "ネットワークエラー。接続を確認してください。",
     "unknown_error": "予期しないエラーが発生しました。"
@@ -244,7 +259,7 @@
     "close": "メニューを閉じる"
   },
   "menu": {
-    "dashboard": "ダッシュボード",
+    "dashboard": "ホーム",
     "users": "ユーザー",
     "groups": "グループ",
     "categories": "カテゴリー",
@@ -270,8 +285,8 @@
     "ask_more": "このページについて何でもお気軽にお尋ねください！",
     "help": {
       "dashboard": {
-        "title": "ダッシュボードのヘルプ",
-        "description": "これはメインダッシュボードで、すべてのシステム活動と統計の概要を表示できます。",
+        "title": "ホームのヘルプ",
+        "description": "これはメインホームで、すべてのシステム活動と統計の概要を表示できます。",
         "feature1": "リアルタイムの統計と指標を表示",
         "feature2": "一般的なタスクのクイックアクションにアクセス",
         "feature3": "最近のアクティビティとイベントを監視"
@@ -317,6 +332,35 @@
       "help": "お手伝いします！このページの機能、特定のアクションの実行方法、またはシステムに関する一般的な質問について質問できます。",
       "thanks": "どういたしまして！他に何か必要なことがあれば、お知らせください。",
       "default": "ご質問を理解しました。より良いサポートができるよう、詳細を教えていただけますか？"
+    }
+  },
+  "settings": {
+    "subtitle": "システム体験をカスタマイズ",
+    "dashboard_layout": {
+      "title": "ダッシュボードレイアウト",
+      "subtitle": "メインパネルのレイアウトをカスタマイズ",
+      "description": "メインダッシュボードのコンポーネントの位置とサイズを編集して、ニーズに合わせて調整できます。",
+      "edit_button": "ダッシュボードレイアウトを編集",
+      "info": "コンポーネントをドラッグ＆リサイズできます。変更は自動的に保存されます。"
+    },
+    "appearance": {
+      "title": "外観",
+      "subtitle": "テーマとビジュアルカスタマイズ",
+      "theme_label": "システムテーマ",
+      "language_label": "言語"
+    },
+    "notifications": {
+      "title": "通知",
+      "subtitle": "通知設定を構成",
+      "email_title": "メール通知",
+      "email_description": "メールで更新を受信",
+      "push_title": "プッシュ通知",
+      "push_description": "ブラウザ通知"
+    },
+    "account": {
+      "title": "アカウント",
+      "subtitle": "プロフィール情報",
+      "view_profile": "完全なプロフィールを表示"
     }
   }
 }

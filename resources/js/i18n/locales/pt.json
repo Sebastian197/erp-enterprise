@@ -1,6 +1,6 @@
 {
   "nav": {
-    "dashboard": "Painel",
+    "dashboard": "Início",
     "users": "Usuários",
     "groups": "Grupos",
     "roles": "Funções",
@@ -49,7 +49,7 @@
     }
   },
   "dashboard": {
-    "title": "Painel",
+    "title": "Início",
     "welcome": "Bem-vindo de volta, {name}!",
     "subtitle": "Aqui está o que está acontecendo com o seu sistema hoje.",
     "overview": "Visão Geral",
@@ -118,23 +118,34 @@
   },
   "profile": {
     "title": "Meu Perfil",
-    "edit_profile": "Editar Perfil",
-    "change_password": "Alterar Senha",
-    "personal_info": "Informações Pessoais",
-    "contact_info": "Informações de Contato",
-    "preferences": "Preferências",
-    "security": "Segurança",
-    "current_password": "Senha Atual",
-    "new_password": "Nova Senha",
-    "confirm_new_password": "Confirmar Nova Senha",
+    "subtitle": "Gerencie suas informações pessoais e preferências",
     "avatar": "Avatar",
-    "upload_avatar": "Carregar Avatar",
-    "remove_avatar": "Remover Avatar",
-    "language": "Idioma",
-    "theme": "Tema",
-    "timezone": "Fuso Horário",
-    "profile_updated": "Perfil atualizado com sucesso",
-    "password_updated": "Senha atualizada com sucesso"
+    "avatar_hint": "Clique no ícone da câmera para atualizar sua foto de perfil",
+    "tabs": {
+      "personal": "Informações Pessoais",
+      "security": "Segurança",
+      "preferences": "Preferências"
+    },
+    "form": {
+      "name": "Nome",
+      "username": "Nome de usuário"
+    },
+    "security": {
+      "change_password": "Alterar Senha",
+      "current_password": "Senha Atual",
+      "new_password": "Nova Senha",
+      "confirm_password": "Confirmar Nova Senha",
+      "update_password": "Atualizar Senha"
+    },
+    "preferences": {
+      "language": "Idioma",
+      "theme": "Tema",
+      "timezone": "Fuso Horário"
+    },
+    "messages": {
+      "profile_updated": "Perfil atualizado com sucesso",
+      "password_updated": "Senha atualizada com sucesso"
+    }
   },
   "common": {
     "save": "Salvar",
@@ -173,6 +184,10 @@
     "warning": "Aviso",
     "info": "Informação"
   },
+  "select": {
+    "search_placeholder": "Pesquisar...",
+    "no_results": "Nenhum resultado encontrado"
+  },
   "validation": {
     "required": "Este campo é obrigatório",
     "email": "Por favor, insira um endereço de email válido",
@@ -191,7 +206,7 @@
     "404_message": "A página que você está procurando não existe ou foi movida.",
     "500_title": "Erro do Servidor",
     "500_message": "Algo deu errado do nosso lado. Por favor, tente novamente mais tarde.",
-    "go_home": "Ir para o Painel",
+    "go_home": "Ir para o Início",
     "go_back": "Voltar",
     "network_error": "Erro de rede. Por favor, verifique sua conexão.",
     "unknown_error": "Ocorreu um erro inesperado."
@@ -244,7 +259,7 @@
     "close": "Fechar menu"
   },
   "menu": {
-    "dashboard": "Painel",
+    "dashboard": "Início",
     "users": "Usuários",
     "groups": "Grupos",
     "categories": "Categorias",
@@ -270,7 +285,7 @@
     "ask_more": "Sinta-se à vontade para me perguntar qualquer coisa sobre esta página!",
     "help": {
       "dashboard": {
-        "title": "Ajuda do Painel",
+        "title": "Ajuda do Início",
         "description": "Este é o seu painel principal onde você pode ver uma visão geral de todas as atividades e estatísticas do sistema.",
         "feature1": "Ver estatísticas e métricas em tempo real",
         "feature2": "Acessar ações rápidas para tarefas comuns",
@@ -317,6 +332,35 @@
       "help": "Estou aqui para ajudar! Você pode me perguntar sobre qualquer recurso nesta página, como realizar ações específicas ou perguntas gerais sobre o sistema.",
       "thanks": "De nada! Se precisar de mais alguma coisa, me avise.",
       "default": "Entendo sua pergunta. Você poderia fornecer mais detalhes para que eu possa ajudá-lo melhor?"
+    }
+  },
+  "settings": {
+    "subtitle": "Personalize sua experiência no sistema",
+    "dashboard_layout": {
+      "title": "Layout do Painel",
+      "subtitle": "Personalize o layout do seu painel principal",
+      "description": "Edite a posição e o tamanho dos componentes no seu painel principal para adaptá-lo às suas necessidades.",
+      "edit_button": "Editar Layout do Painel",
+      "info": "Você pode arrastar e redimensionar os componentes. As alterações serão salvas automaticamente."
+    },
+    "appearance": {
+      "title": "Aparência",
+      "subtitle": "Tema e personalização visual",
+      "theme_label": "Tema do Sistema",
+      "language_label": "Idioma"
+    },
+    "notifications": {
+      "title": "Notificações",
+      "subtitle": "Configure suas preferências de notificação",
+      "email_title": "Notificações por Email",
+      "email_description": "Receber atualizações por email",
+      "push_title": "Notificações Push",
+      "push_description": "Alertas do navegador"
+    },
+    "account": {
+      "title": "Conta",
+      "subtitle": "Informações do seu perfil",
+      "view_profile": "Ver Perfil Completo"
     }
   }
 }

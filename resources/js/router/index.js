@@ -27,6 +27,9 @@ const UsersShow = () => import('@/pages/users/Show.vue');
 // Profile
 const Profile = () => import('@/pages/profile/Index.vue');
 
+// Settings
+const Settings = () => import('@/pages/settings/Index.vue');
+
 // Error Pages
 const Forbidden = () => import('@/pages/errors/403.vue');
 const NotFound = () => import('@/pages/errors/404.vue');
@@ -90,7 +93,7 @@ const routes = [
                 meta: {
                     title: 'Dashboard',
                     requiresAuth: true,
-                    icon: 'fa-tachometer-alt',
+                    icon: 'fa-home',
                 },
             },
 
@@ -157,9 +160,21 @@ const routes = [
                 name: 'profile',
                 component: Profile,
                 meta: {
-                    title: 'My Profile',
+                    title: 'profile.title',
                     requiresAuth: true,
                     icon: 'fa-user',
+                },
+            },
+
+            // Settings route
+            {
+                path: 'settings',
+                name: 'settings',
+                component: Settings,
+                meta: {
+                    title: 'menu.settings',
+                    requiresAuth: true,
+                    icon: 'fa-cog',
                 },
             },
         ],

@@ -1,6 +1,6 @@
 {
   "nav": {
-    "dashboard": "Dashboard",
+    "dashboard": "Home",
     "users": "Utenti",
     "groups": "Gruppi",
     "roles": "Ruoli",
@@ -49,7 +49,7 @@
     }
   },
   "dashboard": {
-    "title": "Dashboard",
+    "title": "Home",
     "welcome": "Bentornato, {name}!",
     "subtitle": "Ecco cosa sta succedendo con il tuo sistema oggi.",
     "overview": "Panoramica",
@@ -118,23 +118,34 @@
   },
   "profile": {
     "title": "Il Mio Profilo",
-    "edit_profile": "Modifica Profilo",
-    "change_password": "Cambia Password",
-    "personal_info": "Informazioni Personali",
-    "contact_info": "Informazioni di Contatto",
-    "preferences": "Preferenze",
-    "security": "Sicurezza",
-    "current_password": "Password Attuale",
-    "new_password": "Nuova Password",
-    "confirm_new_password": "Conferma Nuova Password",
+    "subtitle": "Gestisci le tue informazioni personali e preferenze",
     "avatar": "Avatar",
-    "upload_avatar": "Carica Avatar",
-    "remove_avatar": "Rimuovi Avatar",
-    "language": "Lingua",
-    "theme": "Tema",
-    "timezone": "Fuso Orario",
-    "profile_updated": "Profilo aggiornato con successo",
-    "password_updated": "Password aggiornata con successo"
+    "avatar_hint": "Clicca sull'icona della fotocamera per aggiornare la tua foto profilo",
+    "tabs": {
+      "personal": "Informazioni Personali",
+      "security": "Sicurezza",
+      "preferences": "Preferenze"
+    },
+    "form": {
+      "name": "Nome",
+      "username": "Nome utente"
+    },
+    "security": {
+      "change_password": "Cambia Password",
+      "current_password": "Password Attuale",
+      "new_password": "Nuova Password",
+      "confirm_password": "Conferma Nuova Password",
+      "update_password": "Aggiorna Password"
+    },
+    "preferences": {
+      "language": "Lingua",
+      "theme": "Tema",
+      "timezone": "Fuso Orario"
+    },
+    "messages": {
+      "profile_updated": "Profilo aggiornato con successo",
+      "password_updated": "Password aggiornata con successo"
+    }
   },
   "common": {
     "save": "Salva",
@@ -173,6 +184,10 @@
     "warning": "Avviso",
     "info": "Informazioni"
   },
+  "select": {
+    "search_placeholder": "Cerca...",
+    "no_results": "Nessun risultato trovato"
+  },
   "validation": {
     "required": "Questo campo è obbligatorio",
     "email": "Inserisci un indirizzo email valido",
@@ -191,7 +206,7 @@
     "404_message": "La pagina che stai cercando non esiste o è stata spostata.",
     "500_title": "Errore del Server",
     "500_message": "Qualcosa è andato storto dal nostro lato. Riprova più tardi.",
-    "go_home": "Vai alla Dashboard",
+    "go_home": "Vai alla Home",
     "go_back": "Torna Indietro",
     "network_error": "Errore di rete. Controlla la tua connessione.",
     "unknown_error": "Si è verificato un errore imprevisto."
@@ -244,7 +259,7 @@
     "close": "Chiudi menu"
   },
   "menu": {
-    "dashboard": "Dashboard",
+    "dashboard": "Home",
     "users": "Utenti",
     "groups": "Gruppi",
     "categories": "Categorie",
@@ -270,7 +285,7 @@
     "ask_more": "Sentiti libero di chiedermi qualsiasi cosa su questa pagina!",
     "help": {
       "dashboard": {
-        "title": "Aiuto Dashboard",
+        "title": "Aiuto Home",
         "description": "Questa è la tua dashboard principale dove puoi vedere una panoramica di tutte le attività e statistiche del sistema.",
         "feature1": "Visualizza statistiche e metriche in tempo reale",
         "feature2": "Accedi ad azioni rapide per attività comuni",
@@ -317,6 +332,35 @@
       "help": "Sono qui per aiutare! Puoi chiedermi qualsiasi funzionalità di questa pagina, come eseguire azioni specifiche o domande generali sul sistema.",
       "thanks": "Prego! Se hai bisogno di qualcos'altro, fammelo sapere.",
       "default": "Capisco la tua domanda. Potresti fornire più dettagli così posso aiutarti meglio?"
+    }
+  },
+  "settings": {
+    "subtitle": "Personalizza la tua esperienza di sistema",
+    "dashboard_layout": {
+      "title": "Layout della Dashboard",
+      "subtitle": "Personalizza il layout del tuo pannello principale",
+      "description": "Modifica la posizione e la dimensione dei componenti sulla tua dashboard principale per adattarla alle tue esigenze.",
+      "edit_button": "Modifica Layout della Dashboard",
+      "info": "Puoi trascinare e ridimensionare i componenti. Le modifiche verranno salvate automaticamente."
+    },
+    "appearance": {
+      "title": "Aspetto",
+      "subtitle": "Tema e personalizzazione visiva",
+      "theme_label": "Tema di Sistema",
+      "language_label": "Lingua"
+    },
+    "notifications": {
+      "title": "Notifiche",
+      "subtitle": "Configura le tue preferenze di notifica",
+      "email_title": "Notifiche Email",
+      "email_description": "Ricevi aggiornamenti via email",
+      "push_title": "Notifiche Push",
+      "push_description": "Avvisi del browser"
+    },
+    "account": {
+      "title": "Account",
+      "subtitle": "Informazioni del tuo profilo",
+      "view_profile": "Visualizza Profilo Completo"
     }
   }
 }

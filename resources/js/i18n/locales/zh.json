@@ -1,6 +1,6 @@
 {
   "nav": {
-    "dashboard": "仪表板",
+    "dashboard": "主页",
     "users": "用户",
     "groups": "组",
     "roles": "角色",
@@ -49,7 +49,7 @@
     }
   },
   "dashboard": {
-    "title": "仪表板",
+    "title": "主页",
     "welcome": "欢迎回来，{name}！",
     "subtitle": "这是您的系统今天发生的情况。",
     "overview": "概览",
@@ -118,23 +118,34 @@
   },
   "profile": {
     "title": "我的个人资料",
-    "edit_profile": "编辑个人资料",
-    "change_password": "更改密码",
-    "personal_info": "个人信息",
-    "contact_info": "联系信息",
-    "preferences": "偏好设置",
-    "security": "安全",
-    "current_password": "当前密码",
-    "new_password": "新密码",
-    "confirm_new_password": "确认新密码",
+    "subtitle": "管理您的个人信息和偏好设置",
     "avatar": "头像",
-    "upload_avatar": "上传头像",
-    "remove_avatar": "删除头像",
-    "language": "语言",
-    "theme": "主题",
-    "timezone": "时区",
-    "profile_updated": "个人资料更新成功",
-    "password_updated": "密码更新成功"
+    "avatar_hint": "点击相机图标更新您的个人资料照片",
+    "tabs": {
+      "personal": "个人信息",
+      "security": "安全",
+      "preferences": "偏好设置"
+    },
+    "form": {
+      "name": "姓名",
+      "username": "用户名"
+    },
+    "security": {
+      "change_password": "更改密码",
+      "current_password": "当前密码",
+      "new_password": "新密码",
+      "confirm_password": "确认新密码",
+      "update_password": "更新密码"
+    },
+    "preferences": {
+      "language": "语言",
+      "theme": "主题",
+      "timezone": "时区"
+    },
+    "messages": {
+      "profile_updated": "个人资料更新成功",
+      "password_updated": "密码更新成功"
+    }
   },
   "common": {
     "save": "保存",
@@ -173,6 +184,10 @@
     "warning": "警告",
     "info": "信息"
   },
+  "select": {
+    "search_placeholder": "搜索...",
+    "no_results": "未找到结果"
+  },
   "validation": {
     "required": "此字段为必填项",
     "email": "请输入有效的电子邮箱地址",
@@ -191,7 +206,7 @@
     "404_message": "您要查找的页面不存在或已被移动。",
     "500_title": "服务器错误",
     "500_message": "我们这边出了点问题。请稍后再试。",
-    "go_home": "前往仪表板",
+    "go_home": "前往主页",
     "go_back": "返回",
     "network_error": "网络错误。请检查您的连接。",
     "unknown_error": "发生了意外错误。"
@@ -244,7 +259,7 @@
     "close": "关闭菜单"
   },
   "menu": {
-    "dashboard": "仪表板",
+    "dashboard": "主页",
     "users": "用户",
     "groups": "组",
     "categories": "分类",
@@ -270,8 +285,8 @@
     "ask_more": "随时问我关于此页面的任何问题！",
     "help": {
       "dashboard": {
-        "title": "仪表板帮助",
-        "description": "这是您的主仪表板，您可以在此处查看所有系统活动和统计信息的概览。",
+        "title": "主页帮助",
+        "description": "这是您的主主页，您可以在此处查看所有系统活动和统计信息的概览。",
         "feature1": "查看实时统计和指标",
         "feature2": "访问常见任务的快速操作",
         "feature3": "监控最近的活动和事件"
@@ -317,6 +332,35 @@
       "help": "我在这里提供帮助！您可以询问我有关此页面上的任何功能、如何执行特定操作或有关系统的一般问题。",
       "thanks": "不客气！如果您需要其他帮助，请告诉我。",
       "default": "我理解您的问题。您能提供更多详细信息以便我更好地帮助您吗？"
+    }
+  },
+  "settings": {
+    "subtitle": "自定义您的系统体验",
+    "dashboard_layout": {
+      "title": "仪表板布局",
+      "subtitle": "自定义主面板布局",
+      "description": "编辑主仪表板上组件的位置和大小，使其适应您的需求。",
+      "edit_button": "编辑仪表板布局",
+      "info": "您可以拖放和调整组件大小。更改将自动保存。"
+    },
+    "appearance": {
+      "title": "外观",
+      "subtitle": "主题和视觉自定义",
+      "theme_label": "系统主题",
+      "language_label": "语言"
+    },
+    "notifications": {
+      "title": "通知",
+      "subtitle": "配置您的通知偏好",
+      "email_title": "电子邮件通知",
+      "email_description": "通过电子邮件接收更新",
+      "push_title": "推送通知",
+      "push_description": "浏览器警报"
+    },
+    "account": {
+      "title": "账户",
+      "subtitle": "您的个人资料信息",
+      "view_profile": "查看完整个人资料"
     }
   }
 }

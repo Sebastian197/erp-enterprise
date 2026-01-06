@@ -1,6 +1,6 @@
 {
   "nav": {
-    "dashboard": "Tablero",
+    "dashboard": "Inicio",
     "users": "Usuarios",
     "groups": "Grupos",
     "roles": "Roles",
@@ -49,7 +49,7 @@
     }
   },
   "dashboard": {
-    "title": "Tablero",
+    "title": "Inicio",
     "welcome": "¡Bienvenido de nuevo, {name}!",
     "subtitle": "Esto es lo que está pasando con tu sistema hoy.",
     "overview": "Resumen",
@@ -118,23 +118,34 @@
   },
   "profile": {
     "title": "Mi Perfil",
-    "edit_profile": "Editar Perfil",
-    "change_password": "Cambiar Contraseña",
-    "personal_info": "Información Personal",
-    "contact_info": "Información de Contacto",
-    "preferences": "Preferencias",
-    "security": "Seguridad",
-    "current_password": "Contraseña Actual",
-    "new_password": "Nueva Contraseña",
-    "confirm_new_password": "Confirmar Nueva Contraseña",
+    "subtitle": "Gestiona tu información personal y preferencias",
     "avatar": "Avatar",
-    "upload_avatar": "Subir Avatar",
-    "remove_avatar": "Eliminar Avatar",
-    "language": "Idioma",
-    "theme": "Tema",
-    "timezone": "Zona Horaria",
-    "profile_updated": "Perfil actualizado exitosamente",
-    "password_updated": "Contraseña actualizada exitosamente"
+    "avatar_hint": "Haz clic en el ícono de cámara para actualizar tu foto de perfil",
+    "tabs": {
+      "personal": "Información Personal",
+      "security": "Seguridad",
+      "preferences": "Preferencias"
+    },
+    "form": {
+      "name": "Nombre",
+      "username": "Nombre de usuario"
+    },
+    "security": {
+      "change_password": "Cambiar Contraseña",
+      "current_password": "Contraseña Actual",
+      "new_password": "Nueva Contraseña",
+      "confirm_password": "Confirmar Nueva Contraseña",
+      "update_password": "Actualizar Contraseña"
+    },
+    "preferences": {
+      "language": "Idioma",
+      "theme": "Tema",
+      "timezone": "Zona Horaria"
+    },
+    "messages": {
+      "profile_updated": "Perfil actualizado exitosamente",
+      "password_updated": "Contraseña actualizada exitosamente"
+    }
   },
   "common": {
     "save": "Guardar",
@@ -173,6 +184,10 @@
     "warning": "Advertencia",
     "info": "Información"
   },
+  "select": {
+    "search_placeholder": "Buscar...",
+    "no_results": "No se encontraron resultados"
+  },
   "validation": {
     "required": "Este campo es obligatorio",
     "email": "Por favor ingrese un correo válido",
@@ -191,7 +206,7 @@
     "404_message": "La página que busca no existe o ha sido movida.",
     "500_title": "Error del Servidor",
     "500_message": "Algo salió mal. Por favor intente de nuevo más tarde.",
-    "go_home": "Ir al Tablero",
+    "go_home": "Ir al Inicio",
     "go_back": "Volver",
     "network_error": "Error de red. Por favor verifique su conexión.",
     "unknown_error": "Ocurrió un error inesperado."
@@ -244,12 +259,41 @@
     "close": "Cerrar menú"
   },
   "menu": {
-    "dashboard": "Tablero",
+    "dashboard": "Inicio",
     "users": "Usuarios",
     "groups": "Grupos",
     "categories": "Categorías",
     "roles": "Roles",
     "settings": "Configuración"
+  },
+  "settings": {
+    "subtitle": "Personaliza tu experiencia en el sistema",
+    "dashboard_layout": {
+      "title": "Layout del Dashboard",
+      "subtitle": "Personaliza la disposición de tu panel principal",
+      "description": "Edita la posición y tamaño de los componentes en tu dashboard principal para adaptarlo a tus necesidades.",
+      "edit_button": "Editar Layout del Dashboard",
+      "info": "Podrás arrastrar y redimensionar los componentes. Los cambios se guardarán automáticamente."
+    },
+    "appearance": {
+      "title": "Apariencia",
+      "subtitle": "Tema y personalización visual",
+      "theme_label": "Tema del Sistema",
+      "language_label": "Idioma"
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "subtitle": "Configura tus preferencias de notificaciones",
+      "email_title": "Notificaciones de Email",
+      "email_description": "Recibir actualizaciones por correo",
+      "push_title": "Notificaciones Push",
+      "push_description": "Alertas en el navegador"
+    },
+    "account": {
+      "title": "Cuenta",
+      "subtitle": "Información de tu perfil",
+      "view_profile": "Ver Perfil Completo"
+    }
   },
   "navbar": {
     "toggle_menu": "Alternar menú",
@@ -270,8 +314,8 @@
     "ask_more": "¡Siéntete libre de preguntarme cualquier cosa sobre esta página!",
     "help": {
       "dashboard": {
-        "title": "Ayuda del Tablero",
-        "description": "Este es tu tablero principal donde puedes ver una vista general de todas las actividades y estadísticas del sistema.",
+        "title": "Ayuda de Inicio",
+        "description": "Esta es tu página de inicio donde puedes ver una vista general de todas las actividades y estadísticas del sistema.",
         "feature1": "Ver estadísticas y métricas en tiempo real",
         "feature2": "Acceder a acciones rápidas para tareas comunes",
         "feature3": "Monitorear actividad reciente y eventos"

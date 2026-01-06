@@ -1,6 +1,6 @@
 {
   "nav": {
-    "dashboard": "Dashboard",
+    "dashboard": "Home",
     "users": "Users",
     "groups": "Groups",
     "roles": "Roles",
@@ -49,7 +49,7 @@
     }
   },
   "dashboard": {
-    "title": "Dashboard",
+    "title": "Home",
     "welcome": "Welcome back, {name}!",
     "subtitle": "Here's what's happening with your system today.",
     "overview": "Overview",
@@ -118,23 +118,34 @@
   },
   "profile": {
     "title": "My Profile",
-    "edit_profile": "Edit Profile",
-    "change_password": "Change Password",
-    "personal_info": "Personal Information",
-    "contact_info": "Contact Information",
-    "preferences": "Preferences",
-    "security": "Security",
-    "current_password": "Current Password",
-    "new_password": "New Password",
-    "confirm_new_password": "Confirm New Password",
+    "subtitle": "Manage your personal information and preferences",
     "avatar": "Avatar",
-    "upload_avatar": "Upload Avatar",
-    "remove_avatar": "Remove Avatar",
-    "language": "Language",
-    "theme": "Theme",
-    "timezone": "Timezone",
-    "profile_updated": "Profile updated successfully",
-    "password_updated": "Password updated successfully"
+    "avatar_hint": "Click on the camera icon to update your profile picture",
+    "tabs": {
+      "personal": "Personal Information",
+      "security": "Security",
+      "preferences": "Preferences"
+    },
+    "form": {
+      "name": "Name",
+      "username": "Username"
+    },
+    "security": {
+      "change_password": "Change Password",
+      "current_password": "Current Password",
+      "new_password": "New Password",
+      "confirm_password": "Confirm New Password",
+      "update_password": "Update Password"
+    },
+    "preferences": {
+      "language": "Language",
+      "theme": "Theme",
+      "timezone": "Timezone"
+    },
+    "messages": {
+      "profile_updated": "Profile updated successfully",
+      "password_updated": "Password updated successfully"
+    }
   },
   "common": {
     "save": "Save",
@@ -173,6 +184,10 @@
     "warning": "Warning",
     "info": "Information"
   },
+  "select": {
+    "search_placeholder": "Search...",
+    "no_results": "No results found"
+  },
   "validation": {
     "required": "This field is required",
     "email": "Please enter a valid email address",
@@ -191,7 +206,7 @@
     "404_message": "The page you are looking for doesn't exist or has been moved.",
     "500_title": "Server Error",
     "500_message": "Something went wrong on our end. Please try again later.",
-    "go_home": "Go to Dashboard",
+    "go_home": "Go to Home",
     "go_back": "Go Back",
     "network_error": "Network error. Please check your connection.",
     "unknown_error": "An unexpected error occurred."
@@ -244,7 +259,7 @@
     "close": "Close menu"
   },
   "menu": {
-    "dashboard": "Dashboard",
+    "dashboard": "Home",
     "users": "Users",
     "groups": "Groups",
     "categories": "Categories",
@@ -270,8 +285,8 @@
     "ask_more": "Feel free to ask me anything about this page!",
     "help": {
       "dashboard": {
-        "title": "Dashboard Help",
-        "description": "This is your main dashboard where you can see an overview of all system activities and statistics.",
+        "title": "Home Help",
+        "description": "This is your home page where you can see an overview of all system activities and statistics.",
         "feature1": "View real-time statistics and metrics",
         "feature2": "Access quick actions for common tasks",
         "feature3": "Monitor recent activity and events"
@@ -317,6 +332,35 @@
       "help": "I'm here to help! You can ask me about any feature on this page, how to perform specific actions, or general questions about the system.",
       "thanks": "You're welcome! If you need anything else, just let me know.",
       "default": "I understand your question. Could you provide more details so I can assist you better?"
+    }
+  },
+  "settings": {
+    "subtitle": "Customize your system experience",
+    "dashboard_layout": {
+      "title": "Dashboard Layout",
+      "subtitle": "Customize your main panel layout",
+      "description": "Edit the position and size of the components on your main dashboard to adapt it to your needs.",
+      "edit_button": "Edit Dashboard Layout",
+      "info": "You can drag and resize components. Changes will be saved automatically."
+    },
+    "appearance": {
+      "title": "Appearance",
+      "subtitle": "Theme and visual customization",
+      "theme_label": "System Theme",
+      "language_label": "Language"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "Configure your notification preferences",
+      "email_title": "Email Notifications",
+      "email_description": "Receive updates via email",
+      "push_title": "Push Notifications",
+      "push_description": "Browser alerts"
+    },
+    "account": {
+      "title": "Account",
+      "subtitle": "Your profile information",
+      "view_profile": "View Full Profile"
     }
   }
 }
