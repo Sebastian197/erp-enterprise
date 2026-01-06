@@ -233,7 +233,7 @@ const menuItems = [
   {
     name: 'Dashboard',
     i18nKey: 'menu.dashboard',
-    icon: 'fas fa-tachometer-alt',
+    icon: 'fas fa-home',
     route: '/dashboard',
     permission: null,
   },

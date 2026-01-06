@@ -67,6 +67,9 @@ export const useAuthStore = defineStore('auth', () => {
             localStorage.setItem(STORAGE_KEYS.AUTH_TOKEN, authToken);
             localStorage.setItem(STORAGE_KEYS.AUTH_USER, JSON.stringify(userData));
 
+            // Clear welcome animation flag so it shows on first dashboard visit after login
+            sessionStorage.removeItem('dashboard_welcome_shown');
+
             // Fetch and apply user preferences (locale, theme, etc.)
             await fetchAndApplyPreferences();
 
@@ -313,6 +316,9 @@ export const useAuthStore = defineStore('auth', () => {
 
         localStorage.removeItem(STORAGE_KEYS.AUTH_TOKEN);
         localStorage.removeItem(STORAGE_KEYS.AUTH_USER);
+
+        // Clear welcome animation flag so it shows again on next login
+        sessionStorage.removeItem('dashboard_welcome_shown');
     };
 
     /**

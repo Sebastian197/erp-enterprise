@@ -9,6 +9,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\PreferenceController;
+use App\Http\Controllers\Api\DashboardLayoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,4 +57,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('preferences', [PreferenceController::class, 'update']);
     Route::put('preferences/locale', [PreferenceController::class, 'updateLocale']);
     Route::put('preferences/theme', [PreferenceController::class, 'updateTheme']);
+
+    // Dashboard layout
+    Route::get('dashboard/layout', [DashboardLayoutController::class, 'show']);
+    Route::put('dashboard/layout', [DashboardLayoutController::class, 'update']);
 });
