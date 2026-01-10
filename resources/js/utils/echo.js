@@ -28,10 +28,14 @@ export const getEcho = () => {
             wssPort: import.meta.env.VITE_REVERB_PORT || 8080,
             forceTLS: (import.meta.env.VITE_REVERB_SCHEME || 'http') === 'https',
             enabledTransports: ['ws', 'wss'],
-            authEndpoint: '/broadcasting/auth',
+            authEndpoint: '/api/broadcasting/auth',
             auth: {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('auth_token')}`,
+                    // Dynamically get token from localStorage on each auth request
+                    get Authorization() {
+                        const token = localStorage.getItem('auth_token');
+                        return token ? `Bearer ${token}` : '';
+                    },
                     Accept: 'application/json',
                 },
             },
@@ -46,6 +50,10 @@ export const getEcho = () => {
  * @returns {Echo} Echo instance
  */
 export const connect = () => {
+    // If already connected, return existing instance
+    if (echoInstance) {
+        return echoInstance;
+    }
     return getEcho();
 };
 
@@ -54,8 +62,19 @@ export const connect = () => {
  */
 export const disconnect = () => {
     if (echoInstance) {
-        echoInstance.disconnect();
-        echoInstance = null;
+        try {
+            // Leave all channels before disconnecting
+            if (echoInstance.connector && echoInstance.connector.channels) {
+                Object.keys(echoInstance.connector.channels).forEach(channelName => {
+                    echoInstance.leave(channelName);
+                });
+            }
+            echoInstance.disconnect();
+        } catch (error) {
+            console.warn('Error disconnecting Echo:', error);
+        } finally {
+            echoInstance = null;
+        }
     }
 };
 

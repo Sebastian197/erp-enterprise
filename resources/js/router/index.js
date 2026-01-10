@@ -32,12 +32,28 @@ const HRMEmployees = () => import('@/pages/hrm/employees/Index.vue');
 const HRMDepartments = () => import('@/pages/hrm/departments/Index.vue');
 const HRMPayroll = () => import('@/pages/hrm/payroll/Index.vue');
 const HRMAttendance = () => import('@/pages/hrm/attendance/Index.vue');
-const HRMMastersGroups = () => import('@/pages/hrm/masters/groups/Index.vue');
-const HRMMastersCategories = () => import('@/pages/hrm/masters/categories/Index.vue');
+
+// HRM Masters - Groups
+const GroupsIndex = () => import('@/pages/hrm/masters/groups/Index.vue');
+const GroupsCreate = () => import('@/pages/hrm/masters/groups/Create.vue');
+const GroupsEdit = () => import('@/pages/hrm/masters/groups/Edit.vue');
+const GroupsShow = () => import('@/pages/hrm/masters/groups/Show.vue');
+
+// HRM Masters - Categories
+const CategoriesIndex = () => import('@/pages/hrm/masters/categories/Index.vue');
+const CategoriesCreate = () => import('@/pages/hrm/masters/categories/Create.vue');
+const CategoriesEdit = () => import('@/pages/hrm/masters/categories/Edit.vue');
+const CategoriesShow = () => import('@/pages/hrm/masters/categories/Show.vue');
 
 // WebMaster
 const WebMasterPermissions = () => import('@/pages/webmaster/permissions/Index.vue');
 const WebMasterGrantPermissions = () => import('@/pages/webmaster/grant-permissions/Index.vue');
+
+// WebMaster - Roles
+const RolesIndex = () => import('@/pages/webmaster/roles/Index.vue');
+const RolesCreate = () => import('@/pages/webmaster/roles/Create.vue');
+const RolesEdit = () => import('@/pages/webmaster/roles/Edit.vue');
+const RolesShow = () => import('@/pages/webmaster/roles/Show.vue');
 
 // Settings
 const Settings = () => import('@/pages/settings/Index.vue');
@@ -226,22 +242,125 @@ const routes = [
                         },
                     },
                     {
-                        path: 'masters/groups',
-                        name: 'hrm.masters.groups',
-                        component: HRMMastersGroups,
+                        path: 'masters',
+                        name: 'hrm.masters',
+                        redirect: { name: 'hrm.masters.groups.index' },
                         meta: {
-                            title: 'hrm.masters_groups',
+                            title: 'hrm.masters',
                             requiresAuth: true,
                         },
-                    },
-                    {
-                        path: 'masters/categories',
-                        name: 'hrm.masters.categories',
-                        component: HRMMastersCategories,
-                        meta: {
-                            title: 'hrm.masters_categories',
-                            requiresAuth: true,
-                        },
+                        children: [
+                            // Groups routes
+                            {
+                                path: 'groups',
+                                name: 'hrm.masters.groups',
+                                redirect: { name: 'hrm.masters.groups.index' },
+                                meta: {
+                                    title: 'groups.title',
+                                    requiresAuth: true,
+                                    permissions: ['groups.view'],
+                                },
+                                children: [
+                                    {
+                                        path: '',
+                                        name: 'hrm.masters.groups.index',
+                                        component: GroupsIndex,
+                                        meta: {
+                                            title: 'groups.title',
+                                            requiresAuth: true,
+                                            permissions: ['groups.view'],
+                                        },
+                                    },
+                                    {
+                                        path: 'create',
+                                        name: 'hrm.masters.groups.create',
+                                        component: GroupsCreate,
+                                        meta: {
+                                            title: 'groups.create.title',
+                                            requiresAuth: true,
+                                            permissions: ['groups.create'],
+                                        },
+                                    },
+                                    {
+                                        path: ':id',
+                                        name: 'hrm.masters.groups.show',
+                                        component: GroupsShow,
+                                        meta: {
+                                            title: 'groups.show.title',
+                                            requiresAuth: true,
+                                            permissions: ['groups.view'],
+                                        },
+                                        props: true,
+                                    },
+                                    {
+                                        path: ':id/edit',
+                                        name: 'hrm.masters.groups.edit',
+                                        component: GroupsEdit,
+                                        meta: {
+                                            title: 'groups.edit.title',
+                                            requiresAuth: true,
+                                            permissions: ['groups.update'],
+                                        },
+                                        props: true,
+                                    },
+                                ],
+                            },
+                            // Categories routes
+                            {
+                                path: 'categories',
+                                name: 'hrm.masters.categories',
+                                redirect: { name: 'hrm.masters.categories.index' },
+                                meta: {
+                                    title: 'categories.title',
+                                    requiresAuth: true,
+                                    permissions: ['categories.view'],
+                                },
+                                children: [
+                                    {
+                                        path: '',
+                                        name: 'hrm.masters.categories.index',
+                                        component: CategoriesIndex,
+                                        meta: {
+                                            title: 'categories.title',
+                                            requiresAuth: true,
+                                            permissions: ['categories.view'],
+                                        },
+                                    },
+                                    {
+                                        path: 'create',
+                                        name: 'hrm.masters.categories.create',
+                                        component: CategoriesCreate,
+                                        meta: {
+                                            title: 'categories.create.title',
+                                            requiresAuth: true,
+                                            permissions: ['categories.create'],
+                                        },
+                                    },
+                                    {
+                                        path: ':id',
+                                        name: 'hrm.masters.categories.show',
+                                        component: CategoriesShow,
+                                        meta: {
+                                            title: 'categories.show.title',
+                                            requiresAuth: true,
+                                            permissions: ['categories.view'],
+                                        },
+                                        props: true,
+                                    },
+                                    {
+                                        path: ':id/edit',
+                                        name: 'hrm.masters.categories.edit',
+                                        component: CategoriesEdit,
+                                        meta: {
+                                            title: 'categories.edit.title',
+                                            requiresAuth: true,
+                                            permissions: ['categories.update'],
+                                        },
+                                        props: true,
+                                    },
+                                ],
+                            },
+                        ],
                     },
                 ],
             },
@@ -264,7 +383,63 @@ const routes = [
                         meta: {
                             title: 'webmaster.permissions',
                             requiresAuth: true,
+                            permissions: ['permissions.view'],
                         },
+                    },
+                    // Roles routes
+                    {
+                        path: 'roles',
+                        name: 'webmaster.roles',
+                        redirect: { name: 'webmaster.roles.index' },
+                        meta: {
+                            title: 'roles.title',
+                            requiresAuth: true,
+                            permissions: ['roles.view'],
+                        },
+                        children: [
+                            {
+                                path: '',
+                                name: 'webmaster.roles.index',
+                                component: RolesIndex,
+                                meta: {
+                                    title: 'roles.title',
+                                    requiresAuth: true,
+                                    permissions: ['roles.view'],
+                                },
+                            },
+                            {
+                                path: 'create',
+                                name: 'webmaster.roles.create',
+                                component: RolesCreate,
+                                meta: {
+                                    title: 'roles.create',
+                                    requiresAuth: true,
+                                    permissions: ['roles.create'],
+                                },
+                            },
+                            {
+                                path: ':id',
+                                name: 'webmaster.roles.show',
+                                component: RolesShow,
+                                meta: {
+                                    title: 'roles.show.title',
+                                    requiresAuth: true,
+                                    permissions: ['roles.view'],
+                                },
+                                props: true,
+                            },
+                            {
+                                path: ':id/edit',
+                                name: 'webmaster.roles.edit',
+                                component: RolesEdit,
+                                meta: {
+                                    title: 'roles.edit',
+                                    requiresAuth: true,
+                                    permissions: ['roles.update'],
+                                },
+                                props: true,
+                            },
+                        ],
                     },
                     {
                         path: 'grant-permissions',
@@ -273,6 +448,7 @@ const routes = [
                         meta: {
                             title: 'webmaster.grant_permissions',
                             requiresAuth: true,
+                            permissions: ['users.grantPermissions'],
                         },
                     },
                 ],

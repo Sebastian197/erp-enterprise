@@ -177,6 +177,8 @@
     "select": "Select",
     "actions": "Actions",
     "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
     "date": "Date",
     "time": "Time",
     "success": "Success",
@@ -379,5 +381,152 @@
       "subtitle": "Your profile information",
       "view_profile": "View Full Profile"
     }
+  },
+  "groups": {
+    "title": "Groups",
+    "subtitle": "Manage employee groups and team organization",
+    "create": "Create Group",
+    "search_placeholder": "Search groups...",
+    "filter_by_status": "Filter by status",
+    "create": {
+      "title": "Create Group",
+      "subtitle": "Add a new group to organize your employees"
+    },
+    "edit": {
+      "title": "Edit Group",
+      "subtitle": "Update group information"
+    },
+    "show": {
+      "title": "Group Details",
+      "users": "Users in this Group",
+      "categories": "Categories in this Group",
+      "no_users": "No users assigned to this group",
+      "no_categories": "No categories in this group",
+      "users_count": "Total Users",
+      "categories_count": "Total Categories",
+      "created_at": "Created At"
+    },
+    "form": {
+      "basic_info": "Basic Information",
+      "name": "Group Name",
+      "name_placeholder": "Enter group name",
+      "description": "Description",
+      "description_placeholder": "Enter group description",
+      "is_active": "Active"
+    },
+    "delete_confirmation": {
+      "title": "Delete Group",
+      "message": "Are you sure you want to delete \"{name}\"? This action cannot be undone."
+    }
+  },
+  "categories": {
+    "title": "Categories",
+    "subtitle": "Manage employee categories and classifications",
+    "create": "Create Category",
+    "search_placeholder": "Search categories...",
+    "filter_by_group": "Filter by group",
+    "filter_by_status": "Filter by status",
+    "create": {
+      "title": "Create Category",
+      "subtitle": "Add a new category to classify your employees"
+    },
+    "edit": {
+      "title": "Edit Category",
+      "subtitle": "Update category information"
+    },
+    "show": {
+      "title": "Category Details",
+      "group": "Group",
+      "users": "Users in this Category",
+      "no_users": "No users assigned to this category",
+      "users_count": "Total Users",
+      "created_at": "Created At",
+      "costs": "Cost Information"
+    },
+    "form": {
+      "basic_info": "Basic Information",
+      "group": "Group",
+      "name": "Category Name",
+      "name_placeholder": "Enter category name",
+      "description": "Description",
+      "description_placeholder": "Enter category description",
+      "is_active": "Active"
+    },
+    "costs": {
+      "title": "Cost Information",
+      "hourly_rate_pvp": "Hourly Rate PVP",
+      "hourly_rate_pc": "Hourly Rate PC",
+      "daily_rate_pvp": "Daily Rate PVP",
+      "daily_rate_pc": "Daily Rate PC"
+    },
+    "delete_confirmation": {
+      "title": "Delete Category",
+      "message": "Are you sure you want to delete \"{name}\"? This action cannot be undone."
+    }
+  },
+  "roles": {
+    "title": "Roles",
+    "subtitle": "Manage user roles and their permissions",
+    "create": "Create Role",
+    "edit": "Edit Role",
+    "name": "Role Name",
+    "description": "Description",
+    "permissions": "Permissions",
+    "users_count": "Users",
+    "permissions_count": "Permissions",
+    "assign_permissions": "Assign Permissions",
+    "matrix": {
+      "title": "Permission Matrix",
+      "select_all": "Select All",
+      "deselect_all": "Deselect All",
+      "save": "Save Permissions"
+    },
+    "create": {
+      "title": "Create Role",
+      "subtitle": "Add a new role to organize permissions"
+    },
+    "edit": {
+      "title": "Edit Role",
+      "subtitle": "Update role information"
+    },
+    "show": {
+      "title": "Role Details",
+      "created_at": "Created At"
+    },
+    "form": {
+      "basic_info": "Basic Information",
+      "name": "Role Name",
+      "name_placeholder": "Enter role name"
+    },
+    "delete_confirmation": {
+      "title": "Delete Role",
+      "message": "Are you sure you want to delete \"{name}\"? This action cannot be undone."
+    }
+  },
+  "permissions": {
+    "title": "Permissions",
+    "subtitle": "Manage system permissions and access control",
+    "create": "Create Permission",
+    "name": "Permission Name",
+    "guard": "Guard",
+    "search_placeholder": "Search permissions...",
+    "filter_by_module": "Filter by module",
+    "no_permissions": "No permissions found"
+  },
+  "grant_permissions": {
+    "title": "Grant Permissions",
+    "subtitle": "Assign roles and permissions to users",
+    "select_user": "Select User",
+    "assign_role": "Assign Role",
+    "grant_permission": "Grant Permission",
+    "revoke_permission": "Revoke Permission",
+    "deny_permission": "Deny Permission (Explicit)",
+    "user_roles": "User Roles",
+    "user_permissions": "User Permissions",
+    "direct_permissions": "Direct Permissions",
+    "role_permissions": "Role Permissions",
+    "is_negative": "Explicit Deny",
+    "privileged_group": "Privileged Group",
+    "privileged_group_info": "This user is in a privileged group ({group}) and has automatic access to all features unless explicitly denied."
   }
 }

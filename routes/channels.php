@@ -11,10 +11,30 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 });
 
 /**
- * Admin channel - Only users with Super Admin or Admin role can join
+ * Admin channel - Super Admin, Admin role, or privileged groups can join
  */
 Broadcast::channel('admin', function ($user) {
-    return $user->hasAnyRole(['Super Admin', 'Admin']);
+    // Load roles if not already loaded
+    if (!$user->relationLoaded('roles')) {
+        $user->load('roles');
+    }
+
+    // Load group if not already loaded
+    if (!$user->relationLoaded('group')) {
+        $user->load('group');
+    }
+
+    // Allow Super Admin or Admin roles
+    if ($user->hasAnyRole(['Super Admin', 'Admin'])) {
+        return true;
+    }
+
+    // Allow privileged groups
+    if ($user->isPrivilegedGroup()) {
+        return true;
+    }
+
+    return false;
 });
 
 /**

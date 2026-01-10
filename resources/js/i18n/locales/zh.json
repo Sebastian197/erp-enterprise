@@ -177,6 +177,8 @@
     "select": "选择",
     "actions": "操作",
     "status": "状态",
+    "active": "活跃",
+    "inactive": "不活跃",
     "date": "日期",
     "time": "时间",
     "success": "成功",
@@ -378,6 +380,88 @@
       "title": "账户",
       "subtitle": "您的个人资料信息",
       "view_profile": "查看完整个人资料"
+    }
+  },
+  "groups": {
+    "title": "组",
+    "subtitle": "管理员工组和团队组织",
+    "create": "创建组",
+    "search_placeholder": "搜索组...",
+    "filter_by_status": "按状态筛选",
+    "create": {
+      "title": "创建组",
+      "subtitle": "添加新组以组织您的员工"
+    },
+    "edit": {
+      "title": "编辑组",
+      "subtitle": "更新组信息"
+    },
+    "show": {
+      "title": "组详情",
+      "users": "此组中的用户",
+      "categories": "此组中的分类",
+      "no_users": "此组未分配用户",
+      "no_categories": "此组中没有分类",
+      "users_count": "总用户数",
+      "categories_count": "总分类数",
+      "created_at": "创建于"
+    },
+    "form": {
+      "basic_info": "基本信息",
+      "name": "组名称",
+      "name_placeholder": "输入组名称",
+      "description": "描述",
+      "description_placeholder": "输入组描述",
+      "is_active": "活跃"
+    },
+    "delete_confirmation": {
+      "title": "删除组",
+      "message": "您确定要删除 {name} 吗？此操作无法撤销。"
+    }
+  },
+  "categories": {
+    "title": "分类",
+    "subtitle": "管理员工分类和类别",
+    "create": "创建分类",
+    "search_placeholder": "搜索分类...",
+    "filter_by_group": "按组筛选",
+    "filter_by_status": "按状态筛选",
+    "create": {
+      "title": "创建分类",
+      "subtitle": "添加新分类以分类您的员工"
+    },
+    "edit": {
+      "title": "编辑分类",
+      "subtitle": "更新分类信息"
+    },
+    "show": {
+      "title": "分类详情",
+      "group": "组",
+      "users": "此分类中的用户",
+      "no_users": "此分类未分配用户",
+      "users_count": "总用户数",
+      "created_at": "创建于",
+      "costs": "成本信息"
+    },
+    "form": {
+      "basic_info": "基本信息",
+      "group": "组",
+      "name": "分类名称",
+      "name_placeholder": "输入分类名称",
+      "description": "描述",
+      "description_placeholder": "输入分类描述",
+      "is_active": "活跃"
+    },
+    "costs": {
+      "title": "成本信息",
+      "hourly_rate_pvp": "小时费率 PVP",
+      "hourly_rate_pc": "小时费率 PC",
+      "daily_rate_pvp": "每日费率 PVP",
+      "daily_rate_pc": "每日费率 PC"
+    },
+    "delete_confirmation": {
+      "title": "删除分类",
+      "message": "您确定要删除 {name} 吗？此操作无法撤销。"
     }
   }
 }

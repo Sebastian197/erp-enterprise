@@ -23,6 +23,8 @@ class RolePermissionSeeder extends Seeder
             'users.create',
             'users.update',
             'users.delete',
+            'users.assignRoles',
+            'users.grantPermissions',
 
             // Group permissions
             'groups.view',
@@ -45,6 +47,19 @@ class RolePermissionSeeder extends Seeder
             // Preference permissions
             'preferences.view',
             'preferences.update',
+
+            // Permission permissions
+            'permissions.view',
+            'permissions.create',
+            'permissions.update',
+            'permissions.delete',
+
+            // Role permissions
+            'roles.view',
+            'roles.create',
+            'roles.update',
+            'roles.delete',
+            'roles.assignPermissions',
         ];
 
         // Create permissions

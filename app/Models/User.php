@@ -125,4 +125,47 @@ class User extends Authenticatable
             ->wherePivot('is_primary', true)
             ->first();
     }
+
+    /**
+     * Override Spatie's permissions relationship to include is_negative pivot.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function permissions(): BelongsToMany
+    {
+        $relation = $this->morphToMany(
+            config('permission.models.permission'),
+            'model',
+            config('permission.table_names.model_has_permissions'),
+            config('permission.column_names.model_morph_key'),
+            'permission_id'
+        );
+
+        return $relation->withPivot('is_negative');
+    }
+
+    /**
+     * Check if user has an explicit deny permission (negative permission).
+     *
+     * @param string $ability The permission name (e.g., 'users.delete')
+     * @return bool True if permission is explicitly denied
+     */
+    public function hasExplicitDenyPermission(string $ability): bool
+    {
+        return $this->permissions()
+            ->wherePivot('is_negative', true)
+            ->where('name', $ability)
+            ->exists();
+    }
+
+    /**
+     * Check if user belongs to a privileged group.
+     * Privileged groups have automatic access to all features unless explicitly denied.
+     *
+     * @return bool True if user is in Administradores or Webmaster group
+     */
+    public function isPrivilegedGroup(): bool
+    {
+        return $this->group && in_array($this->group->name, ['Administradores', 'Webmaster']);
+    }
 }

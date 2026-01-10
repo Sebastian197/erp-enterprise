@@ -14,6 +14,16 @@ class GroupSeeder extends Seeder
     {
         $groups = [
             [
+                'name' => 'Administradores',
+                'description' => 'Privileged administrative group with full system access unless explicitly denied',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Webmaster',
+                'description' => 'Privileged technical group with full system access unless explicitly denied',
+                'is_active' => true,
+            ],
+            [
                 'name' => 'Development',
                 'description' => 'Software development and engineering team',
                 'is_active' => true,

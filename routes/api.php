@@ -2,11 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Broadcast;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\Api\DashboardLayoutController;
@@ -16,6 +19,13 @@ use App\Http\Controllers\Api\DashboardLayoutController;
 | API Routes
 |--------------------------------------------------------------------------
 */
+
+/*
+|--------------------------------------------------------------------------
+| Broadcasting Authentication Routes
+|--------------------------------------------------------------------------
+*/
+Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
 // Public routes (no authentication required)
 Route::prefix('auth')->group(function () {
@@ -47,6 +57,15 @@ Route::middleware('auth:sanctum')->group(function () {
     // Categories
     Route::apiResource('categories', CategoryController::class);
     Route::post('categories/{category}/costs', [CategoryController::class, 'updateCosts']);
+
+    // Permissions
+    Route::apiResource('permissions', PermissionController::class);
+
+    // Roles
+    Route::apiResource('roles', RoleController::class);
+    Route::post('roles/{role}/permissions', [RoleController::class, 'attachPermissions']);
+    Route::delete('roles/{role}/permissions', [RoleController::class, 'detachPermissions']);
+    Route::put('roles/{role}/permissions/sync', [RoleController::class, 'syncPermissions']);
 
     // Themes
     Route::get('themes', [ThemeController::class, 'index']);

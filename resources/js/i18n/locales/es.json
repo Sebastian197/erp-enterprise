@@ -177,6 +177,8 @@
     "select": "Seleccionar",
     "actions": "Acciones",
     "status": "Estado",
+    "active": "Activo",
+    "inactive": "Inactivo",
     "date": "Fecha",
     "time": "Hora",
     "success": "Éxito",
@@ -379,5 +381,152 @@
       "thanks": "¡De nada! Si necesitas algo más, solo házmelo saber.",
       "default": "Entiendo tu pregunta. ¿Podrías proporcionar más detalles para que pueda ayudarte mejor?"
     }
+  },
+  "groups": {
+    "title": "Grupos",
+    "subtitle": "Gestiona los grupos de empleados y la organización de equipos",
+    "create": "Crear Grupo",
+    "search_placeholder": "Buscar grupos...",
+    "filter_by_status": "Filtrar por estado",
+    "create": {
+      "title": "Crear Grupo",
+      "subtitle": "Agrega un nuevo grupo para organizar a tus empleados"
+    },
+    "edit": {
+      "title": "Editar Grupo",
+      "subtitle": "Actualiza la información del grupo"
+    },
+    "show": {
+      "title": "Detalles del Grupo",
+      "users": "Usuarios en este Grupo",
+      "categories": "Categorías en este Grupo",
+      "no_users": "No hay usuarios asignados a este grupo",
+      "no_categories": "No hay categorías en este grupo",
+      "users_count": "Total de Usuarios",
+      "categories_count": "Total de Categorías",
+      "created_at": "Creado el"
+    },
+    "form": {
+      "basic_info": "Información Básica",
+      "name": "Nombre del Grupo",
+      "name_placeholder": "Ingresa el nombre del grupo",
+      "description": "Descripción",
+      "description_placeholder": "Ingresa la descripción del grupo",
+      "is_active": "Activo"
+    },
+    "delete_confirmation": {
+      "title": "Eliminar Grupo",
+      "message": "¿Estás seguro de que quieres eliminar \"{name}\"? Esta acción no se puede deshacer."
+    }
+  },
+  "categories": {
+    "title": "Categorías",
+    "subtitle": "Gestiona las categorías y clasificaciones de empleados",
+    "create": "Crear Categoría",
+    "search_placeholder": "Buscar categorías...",
+    "filter_by_group": "Filtrar por grupo",
+    "filter_by_status": "Filtrar por estado",
+    "create": {
+      "title": "Crear Categoría",
+      "subtitle": "Agrega una nueva categoría para clasificar a tus empleados"
+    },
+    "edit": {
+      "title": "Editar Categoría",
+      "subtitle": "Actualiza la información de la categoría"
+    },
+    "show": {
+      "title": "Detalles de la Categoría",
+      "group": "Grupo",
+      "users": "Usuarios en esta Categoría",
+      "no_users": "No hay usuarios asignados a esta categoría",
+      "users_count": "Total de Usuarios",
+      "created_at": "Creado el",
+      "costs": "Información de Costos"
+    },
+    "form": {
+      "basic_info": "Información Básica",
+      "group": "Grupo",
+      "name": "Nombre de la Categoría",
+      "name_placeholder": "Ingresa el nombre de la categoría",
+      "description": "Descripción",
+      "description_placeholder": "Ingresa la descripción de la categoría",
+      "is_active": "Activo"
+    },
+    "costs": {
+      "title": "Información de Costos",
+      "hourly_rate_pvp": "Tarifa Horaria PVP",
+      "hourly_rate_pc": "Tarifa Horaria PC",
+      "daily_rate_pvp": "Tarifa Diaria PVP",
+      "daily_rate_pc": "Tarifa Diaria PC"
+    },
+    "delete_confirmation": {
+      "title": "Eliminar Categoría",
+      "message": "¿Estás seguro de que quieres eliminar \"{name}\"? Esta acción no se puede deshacer."
+    }
+  },
+  "roles": {
+    "title": "Roles",
+    "subtitle": "Gestiona los roles de usuario y sus permisos",
+    "create": "Crear Rol",
+    "edit": "Editar Rol",
+    "name": "Nombre del Rol",
+    "description": "Descripción",
+    "permissions": "Permisos",
+    "users_count": "Usuarios",
+    "permissions_count": "Permisos",
+    "assign_permissions": "Asignar Permisos",
+    "matrix": {
+      "title": "Matriz de Permisos",
+      "select_all": "Seleccionar Todos",
+      "deselect_all": "Deseleccionar Todos",
+      "save": "Guardar Permisos"
+    },
+    "create": {
+      "title": "Crear Rol",
+      "subtitle": "Agrega un nuevo rol para organizar permisos"
+    },
+    "edit": {
+      "title": "Editar Rol",
+      "subtitle": "Actualiza la información del rol"
+    },
+    "show": {
+      "title": "Detalles del Rol",
+      "created_at": "Creado el"
+    },
+    "form": {
+      "basic_info": "Información Básica",
+      "name": "Nombre del Rol",
+      "name_placeholder": "Ingresa el nombre del rol"
+    },
+    "delete_confirmation": {
+      "title": "Eliminar Rol",
+      "message": "¿Estás seguro de que quieres eliminar \"{name}\"? Esta acción no se puede deshacer."
+    }
+  },
+  "permissions": {
+    "title": "Permisos",
+    "subtitle": "Gestiona los permisos del sistema y el control de acceso",
+    "create": "Crear Permiso",
+    "name": "Nombre del Permiso",
+    "guard": "Guard",
+    "search_placeholder": "Buscar permisos...",
+    "filter_by_module": "Filtrar por módulo",
+    "no_permissions": "No se encontraron permisos"
+  },
+  "grant_permissions": {
+    "title": "Asignar Permisos",
+    "subtitle": "Asigna roles y permisos a usuarios",
+    "select_user": "Seleccionar Usuario",
+    "assign_role": "Asignar Rol",
+    "grant_permission": "Otorgar Permiso",
+    "revoke_permission": "Revocar Permiso",
+    "deny_permission": "Denegar Permiso (Explícito)",
+    "user_roles": "Roles del Usuario",
+    "user_permissions": "Permisos del Usuario",
+    "direct_permissions": "Permisos Directos",
+    "role_permissions": "Permisos de Rol",
+    "is_negative": "Denegación Explícita",
+    "privileged_group": "Grupo Privilegiado",
+    "privileged_group_info": "Este usuario está en un grupo privilegiado ({group}) y tiene acceso automático a todas las funcionalidades a menos que se le deniegue explícitamente."
   }
 }

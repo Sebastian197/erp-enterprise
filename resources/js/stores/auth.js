@@ -285,15 +285,45 @@ export const useAuthStore = defineStore('auth', () => {
 
     /**
      * Check if user has specific permission
+     * Replicates backend Gate::before() logic:
+     * 1. Super Admin has access to everything
+     * 2. Privileged groups (Administradores, Webmaster) have access unless explicitly denied
+     * 3. Regular users need the permission in their permissions array
+     *
      * @param {string|string[]} permissions - Permission(s) to check
      * @returns {boolean} True if user has permission
      */
     const hasPermission = (permissions) => {
         if (!user.value) return false;
 
-        const userPermissionNames = userPermissions.value.map(perm => perm.name);
         const permsToCheck = Array.isArray(permissions) ? permissions : [permissions];
 
+        // 1. Super Admin bypass - full access to everything
+        if (hasRole('Super Admin')) {
+            return true;
+        }
+
+        // 2. Privileged groups system
+        const privilegedGroups = ['Administradores', 'Webmaster'];
+        const userGroupName = user.value.group?.name;
+
+        if (userGroupName && privilegedGroups.includes(userGroupName)) {
+            // Check if any of the requested permissions are explicitly denied
+            const hasExplicitDeny = permsToCheck.some(permName => {
+                return userPermissions.value.some(perm =>
+                    perm.name === permName && perm.pivot?.is_negative === true
+                );
+            });
+
+            if (hasExplicitDeny) {
+                return false; // Explicitly denied
+            }
+
+            return true; // Granted by privileged group
+        }
+
+        // 3. Regular permission check
+        const userPermissionNames = userPermissions.value.map(perm => perm.name);
         return permsToCheck.some(perm => userPermissionNames.includes(perm));
     };
 

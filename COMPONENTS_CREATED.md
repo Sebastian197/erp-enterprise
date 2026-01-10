@@ -1,155 +1,155 @@
-# Vue.js 3 Components - Complete Overview
+# Componentes Vue.js 3 - Resumen Completo
 
-## Summary
-All Vue.js 3 components for the ERP frontend have been created with production-ready code.
+## Resumen
+Todos los componentes Vue.js 3 para el frontend del ERP han sido creados con código listo para producción.
 
-## Components Created (28 files)
+## Componentes Creados (28 archivos)
 
-### 1. LAYOUTS (2 files)
-- ✅ `resources/js/layouts/AuthLayout.vue` - Authentication layout with centered design
-- ✅ `resources/js/layouts/DashboardLayout.vue` - Main dashboard layout with sidebar, navbar, and footer
+### 1. LAYOUTS (2 archivos)
+- ✅ `resources/js/layouts/AuthLayout.vue` - Layout de autenticación con diseño centrado
+- ✅ `resources/js/layouts/DashboardLayout.vue` - Layout principal del dashboard con sidebar, navbar y footer
 
-### 2. DASHBOARD COMPONENTS (4 files)
-- ✅ `resources/js/components/dashboard/Sidebar.vue` - Collapsible sidebar with menu navigation
-- ✅ `resources/js/components/dashboard/Navbar.vue` - Top navigation with search, notifications, and user menu
-- ✅ `resources/js/components/dashboard/Footer.vue` - Simple footer with copyright and links
-- ✅ `resources/js/components/dashboard/Widget.vue` - Dashboard statistics card with animated counters
+### 2. COMPONENTES DEL DASHBOARD (4 archivos)
+- ✅ `resources/js/components/dashboard/Sidebar.vue` - Sidebar colapsable con navegación de menú
+- ✅ `resources/js/components/dashboard/Navbar.vue` - Navegación superior con búsqueda, notificaciones y menú de usuario
+- ✅ `resources/js/components/dashboard/Footer.vue` - Footer simple con copyright y enlaces
+- ✅ `resources/js/components/dashboard/Widget.vue` - Tarjeta de estadísticas del dashboard con contadores animados
 
-### 3. UI COMPONENTS (7 files)
-- ✅ `resources/js/components/ui/Button.vue` - Reusable button with variants, sizes, icons, and loading states
-- ✅ `resources/js/components/ui/Input.vue` - Text input with validation, icons, and password toggle
-- ✅ `resources/js/components/ui/Select.vue` - Dropdown select with search and multiple selection
-- ✅ `resources/js/components/ui/Modal.vue` - Modal dialog with transitions and focus trap
-- ✅ `resources/js/components/ui/Card.vue` - Card container with collapsible sections
-- ✅ `resources/js/components/ui/Table.vue` - Advanced data table with sorting, pagination, and selection
-- ✅ `resources/js/components/ui/Loading.vue` - Versatile loading indicators (spinner, skeleton, dots, pulse)
+### 3. COMPONENTES UI (7 archivos)
+- ✅ `resources/js/components/ui/Button.vue` - Botón reutilizable con variantes, tamaños, iconos y estados de carga
+- ✅ `resources/js/components/ui/Input.vue` - Input de texto con validación, iconos y toggle de contraseña
+- ✅ `resources/js/components/ui/Select.vue` - Select desplegable con búsqueda y selección múltiple
+- ✅ `resources/js/components/ui/Modal.vue` - Diálogo modal con transiciones y captura de foco
+- ✅ `resources/js/components/ui/Card.vue` - Contenedor de tarjeta con secciones colapsables
+- ✅ `resources/js/components/ui/Table.vue` - Tabla de datos avanzada con ordenamiento, paginación y selección
+- ✅ `resources/js/components/ui/Loading.vue` - Indicadores de carga versátiles (spinner, skeleton, dots, pulse)
 
-### 4. COMMON COMPONENTS (3 files)
-- ✅ `resources/js/components/common/LanguageSwitcher.vue` - Language selection dropdown with 10 languages
-- ✅ `resources/js/components/common/ThemeSwitcher.vue` - Theme selection with preview and dark mode toggle
-- ✅ `resources/js/components/common/NotificationDropdown.vue` - Real-time notifications with WebSocket support
+### 4. COMPONENTES COMUNES (3 archivos)
+- ✅ `resources/js/components/common/LanguageSwitcher.vue` - Desplegable de selección de idioma con 10 idiomas
+- ✅ `resources/js/components/common/ThemeSwitcher.vue` - Selección de tema con vista previa y toggle de modo oscuro
+- ✅ `resources/js/components/common/NotificationDropdown.vue` - Notificaciones en tiempo real con soporte WebSocket
 
-### 5. AUTH PAGES (3 files)
-- ✅ `resources/js/pages/auth/Login.vue` - Login page with email and password
-- ✅ `resources/js/pages/auth/ForgotPassword.vue` - Password reset request page
-- ✅ `resources/js/pages/auth/ResetPassword.vue` - Password reset with token and strength indicator
+### 5. PÁGINAS DE AUTENTICACIÓN (3 archivos)
+- ✅ `resources/js/pages/auth/Login.vue` - Página de login con email y contraseña
+- ✅ `resources/js/pages/auth/ForgotPassword.vue` - Página de solicitud de restablecimiento de contraseña
+- ✅ `resources/js/pages/auth/ResetPassword.vue` - Restablecimiento de contraseña con token e indicador de fortaleza
 
-### 6. DASHBOARD PAGE (1 file)
-- ✅ `resources/js/pages/dashboard/Index.vue` - Main dashboard with stats widgets, quick actions, and activity
+### 6. PÁGINA DEL DASHBOARD (1 archivo)
+- ✅ `resources/js/pages/dashboard/Index.vue` - Dashboard principal con widgets de estadísticas, acciones rápidas y actividad
 
-### 7. USER PAGES (4 files)
-- ✅ `resources/js/pages/users/Index.vue` - User list with search, filters, and bulk actions
-- ✅ `resources/js/pages/users/Create.vue` - Create new user form
-- ✅ `resources/js/pages/users/Edit.vue` - Edit existing user form
-- ✅ `resources/js/pages/users/Show.vue` - View user details and information
+### 7. PÁGINAS DE USUARIOS (4 archivos)
+- ✅ `resources/js/pages/users/Index.vue` - Lista de usuarios con búsqueda, filtros y acciones masivas
+- ✅ `resources/js/pages/users/Create.vue` - Formulario de creación de nuevo usuario
+- ✅ `resources/js/pages/users/Edit.vue` - Formulario de edición de usuario existente
+- ✅ `resources/js/pages/users/Show.vue` - Ver detalles e información del usuario
 
-### 8. PROFILE PAGE (1 file)
-- ✅ `resources/js/pages/profile/Index.vue` - User profile with tabs (Personal Info, Security, Preferences)
+### 8. PÁGINA DE PERFIL (1 archivo)
+- ✅ `resources/js/pages/profile/Index.vue` - Perfil de usuario con pestañas (Información Personal, Seguridad, Preferencias)
 
-### 9. ERROR PAGES (3 files)
-- ✅ `resources/js/pages/errors/403.vue` - Forbidden access error page
-- ✅ `resources/js/pages/errors/404.vue` - Page not found error page
-- ✅ `resources/js/pages/errors/500.vue` - Server error page
+### 9. PÁGINAS DE ERROR (3 archivos)
+- ✅ `resources/js/pages/errors/403.vue` - Página de error de acceso prohibido
+- ✅ `resources/js/pages/errors/404.vue` - Página de error de página no encontrada
+- ✅ `resources/js/pages/errors/500.vue` - Página de error del servidor
 
-## Key Features Implemented
+## Características Clave Implementadas
 
-### All Components Include:
-✅ Composition API with `<script setup>`
-✅ Tailwind CSS styling (AdminLTE-compatible)
-✅ Dark mode support via theme store
-✅ Responsive design (mobile-first approach)
-✅ Animations with @vueuse/motion
-✅ i18n support (all text uses $t())
-✅ TypeScript-style JSDoc comments
-✅ Accessibility (ARIA labels and attributes)
-✅ Permission-based rendering
-✅ Loading states and error handling
-✅ Real-time updates support
+### Todos los Componentes Incluyen:
+✅ Composition API con `<script setup>`
+✅ Estilado con Tailwind CSS (compatible con AdminLTE)
+✅ Soporte de modo oscuro vía theme store
+✅ Diseño responsive (enfoque mobile-first)
+✅ Animaciones con @vueuse/motion
+✅ Soporte i18n (todo el texto usa $t())
+✅ Comentarios JSDoc estilo TypeScript
+✅ Accesibilidad (etiquetas y atributos ARIA)
+✅ Renderizado basado en permisos
+✅ Estados de carga y manejo de errores
+✅ Soporte de actualizaciones en tiempo real
 
-### Specific Features:
+### Características Específicas:
 
 #### Layouts
-- Responsive sidebar with mobile toggle
-- Breadcrumb navigation
-- Smooth transitions between pages
-- Scroll lock for modals
-- Theme-aware styling
+- Sidebar responsive con toggle para móvil
+- Navegación con breadcrumbs
+- Transiciones suaves entre páginas
+- Bloqueo de scroll para modales
+- Estilado consciente del tema
 
-#### Dashboard Components
-- Permission-based menu items
-- Active route highlighting
-- Collapsible sidebar animation
-- Real-time notification count
-- Dropdown menus with smooth transitions
-- Animated statistics counters
+#### Componentes del Dashboard
+- Elementos de menú basados en permisos
+- Resaltado de ruta activa
+- Animación de sidebar colapsable
+- Contador de notificaciones en tiempo real
+- Menús desplegables con transiciones suaves
+- Contadores de estadísticas animados
 
-#### UI Components
-- Button ripple effects
-- Password visibility toggle
-- Searchable select dropdowns
-- Multiple selection support
-- Modal backdrop with ESC key support
-- Sortable table columns
-- Pagination controls
-- Row selection with bulk actions
-- Skeleton loading states
+#### Componentes UI
+- Efectos de ripple en botones
+- Toggle de visibilidad de contraseña
+- Selects desplegables con búsqueda
+- Soporte de selección múltiple
+- Backdrop de modal con soporte de tecla ESC
+- Columnas de tabla ordenables
+- Controles de paginación
+- Selección de filas con acciones masivas
+- Estados de carga tipo skeleton
 
-#### Common Components
-- 10 language options with flag icons
-- 12 theme options with color previews
-- Real-time notification polling
-- WebSocket integration ready
-- Mark as read functionality
+#### Componentes Comunes
+- 10 opciones de idioma con iconos de banderas
+- 12 opciones de tema con vistas previas de colores
+- Polling de notificaciones en tiempo real
+- Integración WebSocket lista
+- Funcionalidad de marcar como leído
 
-#### Auth Pages
-- Form validation with error messages
-- Password strength indicator
-- Remember me functionality
-- Success/error message displays
-- Forgot password flow
-- Token-based password reset
+#### Páginas de Autenticación
+- Validación de formularios con mensajes de error
+- Indicador de fortaleza de contraseña
+- Funcionalidad de recordarme
+- Visualización de mensajes de éxito/error
+- Flujo de contraseña olvidada
+- Restablecimiento de contraseña basado en token
 
 #### Dashboard
-- 4 stat widgets with trends
-- Quick action cards
-- Recent activity table
-- Real-time data updates
-- Permission-based actions
+- 4 widgets de estadísticas con tendencias
+- Tarjetas de acciones rápidas
+- Tabla de actividad reciente
+- Actualizaciones de datos en tiempo real
+- Acciones basadas en permisos
 
-#### User Management
-- Advanced search and filtering
-- Sortable columns
-- Bulk delete operations
-- Inline editing actions
-- Avatar management
-- Role and permission assignment
-- Category management with primary selection
+#### Gestión de Usuarios
+- Búsqueda y filtrado avanzado
+- Columnas ordenables
+- Operaciones de eliminación masiva
+- Acciones de edición en línea
+- Gestión de avatares
+- Asignación de roles y permisos
+- Gestión de categorías con selección primaria
 
-#### Profile
-- Tabbed interface (Personal, Security, Preferences)
-- Avatar upload
-- Password change with validation
-- Language and theme preferences
-- Timezone selection
+#### Perfil
+- Interfaz con pestañas (Personal, Seguridad, Preferencias)
+- Carga de avatar
+- Cambio de contraseña con validación
+- Preferencias de idioma y tema
+- Selección de zona horaria
 
-#### Error Pages
-- Animated entrance
-- Contextual icons and messages
-- Navigation actions (back/home)
-- Contact support link
+#### Páginas de Error
+- Entrada animada
+- Iconos y mensajes contextuales
+- Acciones de navegación (atrás/inicio)
+- Enlace de contacto con soporte
 
-## Technology Stack
+## Stack Tecnológico
 
-- **Vue.js 3.5+** - Composition API with `<script setup>`
-- **Tailwind CSS 4.0** - Utility-first styling
-- **Pinia** - State management
-- **Vue Router** - Client-side routing
-- **Vue i18n** - Internationalization
-- **@vueuse/motion** - Animations
-- **Font Awesome** - Icons
-- **Axios** - HTTP client
+- **Vue.js 3.5+** - Composition API con `<script setup>`
+- **Tailwind CSS 4.0** - Estilado utility-first
+- **Pinia** - Gestión de estado
+- **Vue Router** - Enrutamiento del lado del cliente
+- **Vue i18n** - Internacionalización
+- **@vueuse/motion** - Animaciones
+- **Font Awesome** - Iconos
+- **Axios** - Cliente HTTP
 
-## File Structure
+## Estructura de Archivos
 
 ```
 resources/js/
@@ -194,31 +194,31 @@ resources/js/
         └── 500.vue
 ```
 
-## Next Steps
+## Próximos Pasos
 
-1. **Create i18n Translation Files**
-   - Add translation keys for all `$t()` calls
-   - Support for 10 languages (EN, ES, FR, DE, IT, PT, ZH, JA, AR, RU)
+1. **Crear Archivos de Traducción i18n**
+   - Agregar claves de traducción para todas las llamadas `$t()`
+   - Soporte para 10 idiomas (EN, ES, FR, DE, IT, PT, ZH, JA, AR, RU)
 
-2. **Add Additional Pages** (if needed)
-   - Groups management pages
-   - Categories management pages
-   - Roles management pages
-   - Settings pages
+2. **Agregar Páginas Adicionales** (si es necesario)
+   - Páginas de gestión de grupos
+   - Páginas de gestión de categorías
+   - Páginas de gestión de roles
+   - Páginas de configuración
 
 3. **Testing**
-   - Unit tests for components
-   - Integration tests for pages
-   - E2E tests for critical flows
+   - Tests unitarios para componentes
+   - Tests de integración para páginas
+   - Tests E2E para flujos críticos
 
-4. **Optimization**
-   - Code splitting for routes
-   - Lazy loading for heavy components
-   - Image optimization for avatars
+4. **Optimización**
+   - Code splitting para rutas
+   - Carga diferida para componentes pesados
+   - Optimización de imágenes para avatares
 
-## Usage Examples
+## Ejemplos de Uso
 
-### Import and Use Components
+### Importar y Usar Componentes
 
 ```vue
 <script setup>
@@ -228,14 +228,14 @@ import Card from '@/components/ui/Card.vue';
 </script>
 
 <template>
-  <Card title="Example">
+  <Card title="Ejemplo">
     <Input v-model="email" label="Email" type="email" />
-    <Button variant="primary" @click="submit">Submit</Button>
+    <Button variant="primary" @click="submit">Enviar</Button>
   </Card>
 </template>
 ```
 
-### Using Stores
+### Usando Stores
 
 ```javascript
 import { useAuthStore } from '@/stores/auth';
@@ -244,31 +244,30 @@ import { useThemeStore } from '@/stores/theme';
 const authStore = useAuthStore();
 const themeStore = useThemeStore();
 
-// Check permissions
+// Verificar permisos
 if (authStore.can('users.create')) {
-  // Show create button
+  // Mostrar botón de crear
 }
 
-// Change theme
+// Cambiar tema
 themeStore.setTheme('dark');
 ```
 
-## Notes
+## Notas
 
-- All components are production-ready with complete functionality
-- No placeholders or TODOs
-- All text uses i18n for easy localization
-- Dark mode fully supported across all components
-- Responsive design works on mobile, tablet, and desktop
-- Accessibility features included (ARIA labels, keyboard navigation)
-- Loading states prevent user confusion
-- Error handling provides clear feedback
-- Permission checks ensure security
+- Todos los componentes están listos para producción con funcionalidad completa
+- Sin placeholders ni TODOs
+- Todo el texto usa i18n para fácil localización
+- Modo oscuro totalmente soportado en todos los componentes
+- Diseño responsive funciona en móvil, tablet y escritorio
+- Características de accesibilidad incluidas (etiquetas ARIA, navegación por teclado)
+- Estados de carga previenen confusión del usuario
+- Manejo de errores proporciona retroalimentación clara
+- Verificaciones de permisos aseguran la seguridad
 
 ---
 
-**Total Components:** 28 Vue files
-**Total Lines of Code:** ~9,500+ lines
-**Development Status:** ✅ Complete
-**Production Ready:** ✅ Yes
-
+**Total de Componentes:** 28 archivos Vue
+**Total de Líneas de Código:** ~9,500+ líneas
+**Estado de Desarrollo:** ✅ Completo
+**Listo para Producción:** ✅ Sí

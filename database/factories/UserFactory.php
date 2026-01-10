@@ -2,6 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Enums\EmailType;
+use App\Enums\UserStatus;
+use App\Models\Group;
+use App\Models\Theme;
+use App\Models\UserEmail;
+use App\Models\UserPreference;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -23,13 +29,43 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $name = fake()->name();
+        $username = strtolower(str_replace(' ', '.', $name)) . rand(1, 999);
+
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'name' => $name,
+            'username' => $username,
             'password' => static::$password ??= Hash::make('password'),
+            'avatar' => null,
+            'status' => UserStatus::ACTIVE,
+            'group_id' => Group::inRandomOrder()->first()?->id,
             'remember_token' => Str::random(10),
         ];
+    }
+
+    /**
+     * Configure the model factory with relationships.
+     */
+    public function configure(): static
+    {
+        return $this->afterCreating(function ($user) {
+            // Create primary email
+            UserEmail::create([
+                'user_id' => $user->id,
+                'email' => fake()->unique()->safeEmail(),
+                'type' => EmailType::PRIMARY,
+                'is_primary' => true,
+                'verified_at' => now(),
+            ]);
+
+            // Create user preferences
+            UserPreference::create([
+                'user_id' => $user->id,
+                'locale' => 'en',
+                'theme_id' => Theme::where('is_default', true)->first()?->id,
+                'timezone' => 'UTC',
+            ]);
+        });
     }
 
     /**
@@ -37,8 +73,11 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
+        return $this->afterCreating(function ($user) {
+            // Update the primary email to be unverified
+            $user->emails()->where('is_primary', true)->update([
+                'verified_at' => null,
+            ]);
+        });
     }
 }

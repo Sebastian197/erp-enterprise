@@ -9,10 +9,15 @@ use App\Models\User;
 use App\Models\UserPreference;
 use App\Policies\CategoryPolicy;
 use App\Policies\GroupPolicy;
+use App\Policies\PermissionPolicy;
 use App\Policies\PreferencePolicy;
+use App\Policies\RolePolicy;
 use App\Policies\ThemePolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 /**
  * Authorization Service Provider
@@ -32,6 +37,8 @@ class AuthServiceProvider extends ServiceProvider
         Category::class => CategoryPolicy::class,
         Theme::class => ThemePolicy::class,
         UserPreference::class => PreferencePolicy::class,
+        Permission::class => PermissionPolicy::class,
+        Role::class => RolePolicy::class,
     ];
 
     /**
@@ -40,5 +47,28 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerPolicies();
+
+        // Centralized authorization hook
+        Gate::before(function (User $user, string $ability) {
+            // 1. Super Admin bypass (existing behavior)
+            if ($user->hasRole('Super Admin')) {
+                return true;
+            }
+
+            // 2. Privileged groups system (NEW)
+            // Users in "Administradores" or "Webmaster" groups have automatic full access
+            // unless explicitly denied
+            if ($user->isPrivilegedGroup()) {
+                // Check if permission is explicitly denied (negative permission)
+                if ($user->hasExplicitDenyPermission($ability)) {
+                    return false; // Explicitly denied
+                }
+
+                return true; // Granted by privileged group
+            }
+
+            // 3. Fall through to policies and normal permission checks
+            return null;
+        });
     }
 }

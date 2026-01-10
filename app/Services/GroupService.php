@@ -2,6 +2,9 @@
 
 namespace App\Services;
 
+use App\Events\GroupCreatedEvent;
+use App\Events\GroupDeletedEvent;
+use App\Events\GroupUpdatedEvent;
 use App\Models\Group;
 use App\Repositories\GroupRepository;
 use Illuminate\Database\Eloquent\Collection;
@@ -47,11 +50,19 @@ class GroupService
      */
     public function create(array $data): Group
     {
-        return $this->groupRepository->create([
+        $group = $this->groupRepository->create([
             'name' => $data['name'],
             'description' => $data['description'] ?? null,
             'is_active' => $data['is_active'] ?? true,
         ]);
+
+        // Reload with relationships for broadcasting
+        $group = $group->fresh()->load(['users', 'categories']);
+
+        // Dispatch broadcast event
+        event(new GroupCreatedEvent($group));
+
+        return $group;
     }
 
     /**
@@ -66,7 +77,15 @@ class GroupService
         $allowedFields = ['name', 'description', 'is_active'];
         $updateData = array_intersect_key($data, array_flip($allowedFields));
 
-        return $this->groupRepository->update($group, $updateData);
+        $updatedGroup = $this->groupRepository->update($group, $updateData);
+
+        // Reload with relationships for broadcasting
+        $updatedGroup = $updatedGroup->fresh()->load(['users', 'categories']);
+
+        // Dispatch broadcast event
+        event(new GroupUpdatedEvent($updatedGroup));
+
+        return $updatedGroup;
     }
 
     /**
@@ -88,6 +107,19 @@ class GroupService
             throw new \Exception('Cannot delete group with assigned categories.');
         }
 
-        return $this->groupRepository->delete($group);
+        // Capture data before deletion
+        $groupData = [
+            'id' => $group->id,
+            'name' => $group->name,
+        ];
+
+        $result = $this->groupRepository->delete($group);
+
+        if ($result) {
+            // Dispatch broadcast event
+            event(new GroupDeletedEvent($groupData));
+        }
+
+        return $result;
     }
 }

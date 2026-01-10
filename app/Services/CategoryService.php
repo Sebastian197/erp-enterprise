@@ -2,6 +2,9 @@
 
 namespace App\Services;
 
+use App\Events\CategoryCreatedEvent;
+use App\Events\CategoryDeletedEvent;
+use App\Events\CategoryUpdatedEvent;
 use App\Models\Category;
 use App\Models\CategoryCost;
 use App\Repositories\CategoryCostRepository;
@@ -51,12 +54,20 @@ class CategoryService
      */
     public function create(array $data): Category
     {
-        return $this->categoryRepository->create([
+        $category = $this->categoryRepository->create([
             'group_id' => $data['group_id'],
             'name' => $data['name'],
             'description' => $data['description'] ?? null,
             'is_active' => $data['is_active'] ?? true,
         ]);
+
+        // Reload with relationships for broadcasting
+        $category = $category->fresh()->load(['group', 'users']);
+
+        // Dispatch broadcast event
+        event(new CategoryCreatedEvent($category));
+
+        return $category;
     }
 
     /**
@@ -71,7 +82,15 @@ class CategoryService
         $allowedFields = ['group_id', 'name', 'description', 'is_active'];
         $updateData = array_intersect_key($data, array_flip($allowedFields));
 
-        return $this->categoryRepository->update($category, $updateData);
+        $updatedCategory = $this->categoryRepository->update($category, $updateData);
+
+        // Reload with relationships for broadcasting
+        $updatedCategory = $updatedCategory->fresh()->load(['group', 'users']);
+
+        // Dispatch broadcast event
+        event(new CategoryUpdatedEvent($updatedCategory));
+
+        return $updatedCategory;
     }
 
     /**
@@ -83,7 +102,14 @@ class CategoryService
      */
     public function delete(Category $category): bool
     {
-        return DB::transaction(function () use ($category) {
+        // Capture data before deletion
+        $categoryData = [
+            'id' => $category->id,
+            'name' => $category->name,
+            'group_id' => $category->group_id,
+        ];
+
+        $result = DB::transaction(function () use ($category) {
             // Check if category has assigned users
             if ($category->users()->count() > 0) {
                 throw new \Exception('Cannot delete category with assigned users.');
@@ -96,6 +122,13 @@ class CategoryService
 
             return $this->categoryRepository->delete($category);
         });
+
+        if ($result) {
+            // Dispatch broadcast event after successful deletion
+            event(new CategoryDeletedEvent($categoryData));
+        }
+
+        return $result;
     }
 
     /**

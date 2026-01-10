@@ -177,6 +177,8 @@
     "select": "選択",
     "actions": "アクション",
     "status": "ステータス",
+    "active": "アクティブ",
+    "inactive": "非アクティブ",
     "date": "日付",
     "time": "時刻",
     "success": "成功",
@@ -378,6 +380,88 @@
       "title": "アカウント",
       "subtitle": "プロフィール情報",
       "view_profile": "完全なプロフィールを表示"
+    }
+  },
+  "groups": {
+    "title": "グループ",
+    "subtitle": "従業員グループとチーム組織を管理",
+    "create": "グループ作成",
+    "search_placeholder": "グループを検索...",
+    "filter_by_status": "ステータスでフィルター",
+    "create": {
+      "title": "グループ作成",
+      "subtitle": "従業員を整理するための新しいグループを追加"
+    },
+    "edit": {
+      "title": "グループ編集",
+      "subtitle": "グループ情報を更新"
+    },
+    "show": {
+      "title": "グループ詳細",
+      "users": "このグループのユーザー",
+      "categories": "このグループのカテゴリー",
+      "no_users": "このグループに割り当てられたユーザーはいません",
+      "no_categories": "このグループにカテゴリーはありません",
+      "users_count": "総ユーザー数",
+      "categories_count": "総カテゴリー数",
+      "created_at": "作成日"
+    },
+    "form": {
+      "basic_info": "基本情報",
+      "name": "グループ名",
+      "name_placeholder": "グループ名を入力してください",
+      "description": "説明",
+      "description_placeholder": "グループの説明を入力してください",
+      "is_active": "アクティブ"
+    },
+    "delete_confirmation": {
+      "title": "グループ削除",
+      "message": "「{name}」を削除してもよろしいですか？この操作は元に戻せません。"
+    }
+  },
+  "categories": {
+    "title": "カテゴリー",
+    "subtitle": "従業員カテゴリーと分類を管理",
+    "create": "カテゴリー作成",
+    "search_placeholder": "カテゴリーを検索...",
+    "filter_by_group": "グループでフィルター",
+    "filter_by_status": "ステータスでフィルター",
+    "create": {
+      "title": "カテゴリー作成",
+      "subtitle": "従業員を分類するための新しいカテゴリーを追加"
+    },
+    "edit": {
+      "title": "カテゴリー編集",
+      "subtitle": "カテゴリー情報を更新"
+    },
+    "show": {
+      "title": "カテゴリー詳細",
+      "group": "グループ",
+      "users": "このカテゴリーのユーザー",
+      "no_users": "このカテゴリーに割り当てられたユーザーはいません",
+      "users_count": "総ユーザー数",
+      "created_at": "作成日",
+      "costs": "コスト情報"
+    },
+    "form": {
+      "basic_info": "基本情報",
+      "group": "グループ",
+      "name": "カテゴリー名",
+      "name_placeholder": "カテゴリー名を入力してください",
+      "description": "説明",
+      "description_placeholder": "カテゴリーの説明を入力してください",
+      "is_active": "アクティブ"
+    },
+    "costs": {
+      "title": "コスト情報",
+      "hourly_rate_pvp": "時間単価 PVP",
+      "hourly_rate_pc": "時間単価 PC",
+      "daily_rate_pvp": "日単価 PVP",
+      "daily_rate_pc": "日単価 PC"
+    },
+    "delete_confirmation": {
+      "title": "カテゴリー削除",
+      "message": "「{name}」を削除してもよろしいですか？この操作は元に戻せません。"
     }
   }
 }

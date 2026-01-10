@@ -158,6 +158,7 @@ export function useWebSocket() {
 
     /**
      * Auto-connect on mount if authenticated
+     * Note: Connection is shared across all components, so we don't disconnect on unmount
      */
     onMounted(() => {
         if (authStore.isAuthenticated) {
@@ -166,12 +167,20 @@ export function useWebSocket() {
     });
 
     /**
-     * Auto-disconnect on unmount
+     * Cleanup listeners on unmount but keep connection alive
+     * WebSocket connection should persist across component lifecycle
      */
     onUnmounted(() => {
-        if (connected.value) {
-            wsDisconnect();
-        }
+        // Only stop the listeners registered by this component
+        // Don't disconnect the shared WebSocket connection
+        listeners.value.forEach(({ channel, event }) => {
+            try {
+                stopListening(channel, event);
+            } catch (error) {
+                console.warn('Error stopping listener on unmount:', error);
+            }
+        });
+        listeners.value = [];
     });
 
     return {
