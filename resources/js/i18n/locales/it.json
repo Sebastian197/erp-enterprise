@@ -244,7 +244,13 @@
   "table": {
     "no_data": "Nessun dato disponibile",
     "no_results": "Nessun risultato trovato",
-    "loading": "Caricamento dati..."
+    "loading": "Caricamento dati...",
+    "actions": "Azioni",
+    "showing": "Mostrando",
+    "to": "a",
+    "of": "di",
+    "results": "risultati",
+    "select_item": "Seleziona elemento"
   },
   "footer": {
     "privacy": "Privacy",

@@ -244,7 +244,13 @@
   "table": {
     "no_data": "暂无数据",
     "no_results": "未找到结果",
-    "loading": "正在加载数据..."
+    "loading": "正在加载数据...",
+    "actions": "操作",
+    "showing": "显示",
+    "to": "到",
+    "of": "共",
+    "results": "结果",
+    "select_item": "选择项目"
   },
   "footer": {
     "privacy": "隐私",

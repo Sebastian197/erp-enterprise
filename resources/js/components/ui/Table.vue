@@ -1,8 +1,83 @@
 <template>
   <div class="w-full">
-    <!-- Table Container -->
-    <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
-      <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+    <!-- Mobile Card View (< 640px) -->
+    <div class="block sm:hidden space-y-4">
+      <!-- Loading State Mobile -->
+      <template v-if="loading">
+        <div
+          v-for="i in perPage"
+          :key="`mobile-loading-${i}`"
+          class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-4 space-y-3"
+        >
+          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
+          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-3/4"></div>
+          <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-1/2"></div>
+        </div>
+      </template>
+
+      <!-- Data Cards Mobile -->
+      <template v-else-if="data.length > 0">
+        <div
+          v-for="(row, index) in data"
+          :key="row.id || index"
+          class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-4 space-y-3 hover:shadow-md transition-shadow"
+        >
+          <!-- Checkbox for mobile -->
+          <div v-if="selectable" class="flex items-center pb-2 border-b border-gray-200 dark:border-gray-700">
+            <input
+              type="checkbox"
+              :checked="isSelected(row)"
+              @change="toggleSelect(row)"
+              class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary focus:ring-2 mr-2"
+            />
+            <span class="text-sm text-gray-500 dark:text-gray-400">{{ $t('table.select_item') }}</span>
+          </div>
+
+          <!-- Mobile Card Content -->
+          <div class="space-y-2">
+            <div
+              v-for="column in columns"
+              :key="column.key"
+              class="flex justify-between items-start"
+            >
+              <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase min-w-[100px]">
+                {{ column.label }}
+              </span>
+              <div class="text-sm text-gray-900 dark:text-white text-right flex-1">
+                <slot :name="`cell-${column.key}`" :row="row" :value="row[column.key]">
+                  {{ formatValue(row[column.key], column) }}
+                </slot>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions for mobile -->
+          <div v-if="$slots.actions" class="pt-3 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex items-center justify-end space-x-2">
+              <slot name="actions" :row="row"></slot>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <!-- Empty State Mobile -->
+      <div
+        v-else
+        class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-12"
+      >
+        <div class="flex flex-col items-center justify-center space-y-3">
+          <i class="fas fa-inbox text-4xl text-gray-300 dark:text-gray-600"></i>
+          <p class="text-gray-500 dark:text-gray-400 text-center">
+            {{ emptyMessage || $t('table.no_data') }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop/Tablet Table View (>= 640px) -->
+    <div class="hidden sm:block overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+      <div class="inline-block min-w-full align-middle">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
         <!-- Table Header -->
         <thead class="bg-gray-50 dark:bg-gray-800">
           <tr>
@@ -132,15 +207,16 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
 
     <!-- Pagination -->
     <div
       v-if="pagination && pagination.last_page > 1"
-      class="flex items-center justify-between mt-4 px-4"
+      class="flex flex-col sm:flex-row items-center justify-between mt-4 px-2 sm:px-4 space-y-3 sm:space-y-0"
     >
       <!-- Info -->
-      <div class="text-sm text-gray-700 dark:text-gray-300">
+      <div class="text-xs sm:text-sm text-gray-700 dark:text-gray-300 text-center sm:text-left">
         {{ $t('table.showing') }}
         <span class="font-medium">{{ pagination.from || 0 }}</span>
         {{ $t('table.to') }}
@@ -151,12 +227,12 @@
       </div>
 
       <!-- Pagination Controls -->
-      <div class="flex items-center space-x-2">
+      <div class="flex items-center space-x-1 sm:space-x-2">
         <!-- Previous Button -->
         <button
           @click="changePage(pagination.current_page - 1)"
           :disabled="pagination.current_page === 1"
-          class="px-3 py-2 text-sm rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          class="px-2 sm:px-3 py-2 text-xs sm:text-sm rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           <i class="fas fa-chevron-left"></i>
         </button>
@@ -167,7 +243,7 @@
             v-if="page !== '...'"
             @click="changePage(page)"
             :class="[
-              'px-3 py-2 text-sm rounded-md border transition-colors',
+              'px-2 sm:px-3 py-2 text-xs sm:text-sm rounded-md border transition-colors min-w-[32px] sm:min-w-[36px]',
               page === pagination.current_page
                 ? 'border-primary bg-primary text-white'
                 : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700',
@@ -175,14 +251,14 @@
           >
             {{ page }}
           </button>
-          <span v-else class="px-2 text-gray-500">...</span>
+          <span v-else class="px-1 sm:px-2 text-gray-500 text-xs sm:text-sm">...</span>
         </template>
 
         <!-- Next Button -->
         <button
           @click="changePage(pagination.current_page + 1)"
           :disabled="pagination.current_page === pagination.last_page"
-          class="px-3 py-2 text-sm rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          class="px-2 sm:px-3 py-2 text-xs sm:text-sm rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           <i class="fas fa-chevron-right"></i>
         </button>

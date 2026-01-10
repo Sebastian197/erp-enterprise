@@ -244,7 +244,13 @@
   "table": {
     "no_data": "データがありません",
     "no_results": "結果が見つかりません",
-    "loading": "データを読み込んでいます..."
+    "loading": "データを読み込んでいます...",
+    "actions": "アクション",
+    "showing": "表示中",
+    "to": "から",
+    "of": "件中",
+    "results": "件",
+    "select_item": "項目を選択"
   },
   "footer": {
     "privacy": "プライバシー",
