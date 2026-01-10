@@ -5,7 +5,7 @@
         <Button @click="router.back()" variant="ghost" icon="fas fa-arrow-left" size="sm" />
         <h1 class="text-3xl font-bold text-gray-900 dark:text-white">{{ $t('users.show.title') }}</h1>
       </div>
-      <Button v-if="can('users.update')" @click="router.push(`/users/${user?.id}/edit`)" variant="primary" icon="fas fa-edit">{{ $t('common.edit') }}</Button>
+      <Button v-if="can('users.update')" @click="router.push({ name: 'hrm.employees.edit', params: { id: user?.id } })" variant="primary" icon="fas fa-edit">{{ $t('common.edit') }}</Button>
     </div>
 
     <Loading v-if="loading" type="skeleton" />
@@ -130,7 +130,7 @@ const fetchUser = async () => {
     user.value = response.data;
   } catch (error) {
     console.error('Failed to fetch user:', error);
-    router.push('/users');
+    router.push({ name: 'hrm.employees.index' });
   } finally {
     loading.value = false;
   }

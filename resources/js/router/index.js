@@ -18,17 +18,16 @@ const ResetPassword = () => import('@/pages/auth/ResetPassword.vue');
 // Dashboard
 const Dashboard = () => import('@/pages/dashboard/Index.vue');
 
-// Users
-const UsersIndex = () => import('@/pages/users/Index.vue');
-const UsersCreate = () => import('@/pages/users/Create.vue');
-const UsersEdit = () => import('@/pages/users/Edit.vue');
-const UsersShow = () => import('@/pages/users/Show.vue');
+// Employees (anteriormente Users)
+const EmployeesIndex = () => import('@/pages/users/Index.vue');
+const EmployeesCreate = () => import('@/pages/users/Create.vue');
+const EmployeesEdit = () => import('@/pages/users/Edit.vue');
+const EmployeesShow = () => import('@/pages/users/Show.vue');
 
 // Profile
 const Profile = () => import('@/pages/profile/Index.vue');
 
 // HRM
-const HRMEmployees = () => import('@/pages/hrm/employees/Index.vue');
 const HRMDepartments = () => import('@/pages/hrm/departments/Index.vue');
 const HRMPayroll = () => import('@/pages/hrm/payroll/Index.vue');
 const HRMAttendance = () => import('@/pages/hrm/attendance/Index.vue');
@@ -125,63 +124,6 @@ const routes = [
                 },
             },
 
-            // Users routes
-            {
-                path: 'users',
-                name: 'users',
-                redirect: { name: 'users.index' },
-                meta: {
-                    title: 'Users',
-                    requiresAuth: true,
-                    permissions: ['users.view'],
-                    icon: 'fa-users',
-                },
-                children: [
-                    {
-                        path: '',
-                        name: 'users.index',
-                        component: UsersIndex,
-                        meta: {
-                            title: 'Users List',
-                            requiresAuth: true,
-                            permissions: ['users.view'],
-                        },
-                    },
-                    {
-                        path: 'create',
-                        name: 'users.create',
-                        component: UsersCreate,
-                        meta: {
-                            title: 'Create User',
-                            requiresAuth: true,
-                            permissions: ['users.create'],
-                        },
-                    },
-                    {
-                        path: ':id',
-                        name: 'users.show',
-                        component: UsersShow,
-                        meta: {
-                            title: 'View User',
-                            requiresAuth: true,
-                            permissions: ['users.view'],
-                        },
-                        props: true,
-                    },
-                    {
-                        path: ':id/edit',
-                        name: 'users.edit',
-                        component: UsersEdit,
-                        meta: {
-                            title: 'Edit User',
-                            requiresAuth: true,
-                            permissions: ['users.update'],
-                        },
-                        props: true,
-                    },
-                ],
-            },
-
             // Profile route
             {
                 path: 'profile',
@@ -205,14 +147,60 @@ const routes = [
                     icon: 'fa-user-tie',
                 },
                 children: [
+                    // Employees routes (CRUD completo)
                     {
                         path: 'employees',
                         name: 'hrm.employees',
-                        component: HRMEmployees,
+                        redirect: { name: 'hrm.employees.index' },
                         meta: {
                             title: 'hrm.employees',
                             requiresAuth: true,
+                            permissions: ['users.view'],
                         },
+                        children: [
+                            {
+                                path: '',
+                                name: 'hrm.employees.index',
+                                component: EmployeesIndex,
+                                meta: {
+                                    title: 'hrm.employees',
+                                    requiresAuth: true,
+                                    permissions: ['users.view'],
+                                },
+                            },
+                            {
+                                path: 'create',
+                                name: 'hrm.employees.create',
+                                component: EmployeesCreate,
+                                meta: {
+                                    title: 'hrm.employees_create',
+                                    requiresAuth: true,
+                                    permissions: ['users.create'],
+                                },
+                            },
+                            {
+                                path: ':id',
+                                name: 'hrm.employees.show',
+                                component: EmployeesShow,
+                                meta: {
+                                    title: 'hrm.employees_show',
+                                    requiresAuth: true,
+                                    permissions: ['users.view'],
+                                },
+                                props: true,
+                            },
+                            {
+                                path: ':id/edit',
+                                name: 'hrm.employees.edit',
+                                component: EmployeesEdit,
+                                meta: {
+                                    title: 'hrm.employees_edit',
+                                    requiresAuth: true,
+                                    permissions: ['users.update'],
+                                },
+                                props: true,
+                            },
+                        ],
                     },
                     {
                         path: 'departments',

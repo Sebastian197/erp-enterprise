@@ -115,7 +115,7 @@ const fetchUser = async () => {
     });
   } catch (error) {
     console.error('Failed to fetch user:', error);
-    router.push('/users');
+    router.push({ name: 'hrm.employees.index' });
   } finally {
     loadingUser.value = false;
   }
@@ -141,7 +141,7 @@ const handleSubmit = async () => {
     loading.value = true;
     Object.keys(errors).forEach(key => errors[key] = '');
     await api.put(API_ENDPOINTS.USERS.UPDATE(route.params.id), form);
-    router.push('/users');
+    router.push({ name: 'hrm.employees.index' });
   } catch (error) {
     if (error.response?.data?.errors) {
       Object.assign(errors, error.response.data.errors);
@@ -159,7 +159,7 @@ const deleteUser = async () => {
   try {
     deleting.value = true;
     await api.delete(API_ENDPOINTS.USERS.DESTROY(route.params.id));
-    router.push('/users');
+    router.push({ name: 'hrm.employees.index' });
   } catch (error) {
     console.error('Failed to delete user:', error);
   } finally {

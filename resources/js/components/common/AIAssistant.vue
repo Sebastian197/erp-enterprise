@@ -176,7 +176,7 @@ const getContextualHelp = () => {
         t('ai_assistant.help.dashboard.feature3'),
       ],
     },
-    '/users': {
+    '/hrm/employees': {
       title: t('ai_assistant.help.users.title'),
       description: t('ai_assistant.help.users.description'),
       features: [
@@ -185,7 +185,7 @@ const getContextualHelp = () => {
         t('ai_assistant.help.users.feature3'),
       ],
     },
-    '/groups': {
+    '/hrm/masters/groups': {
       title: t('ai_assistant.help.groups.title'),
       description: t('ai_assistant.help.groups.description'),
       features: [
@@ -193,7 +193,7 @@ const getContextualHelp = () => {
         t('ai_assistant.help.groups.feature2'),
       ],
     },
-    '/categories': {
+    '/hrm/masters/categories': {
       title: t('ai_assistant.help.categories.title'),
       description: t('ai_assistant.help.categories.description'),
       features: [
@@ -201,7 +201,7 @@ const getContextualHelp = () => {
         t('ai_assistant.help.categories.feature2'),
       ],
     },
-    '/roles': {
+    '/webmaster/roles': {
       title: t('ai_assistant.help.roles.title'),
       description: t('ai_assistant.help.roles.description'),
       features: [
@@ -359,10 +359,10 @@ const sendMessage = async () => {
  */
 const getCurrentModule = () => {
   const path = route.path;
-  if (path.includes('/users')) return 'users';
-  if (path.includes('/groups')) return 'groups';
-  if (path.includes('/categories')) return 'categories';
-  if (path.includes('/roles')) return 'roles';
+  if (path.includes('/hrm/employees')) return 'users';
+  if (path.includes('/hrm/masters/groups')) return 'groups';
+  if (path.includes('/hrm/masters/categories')) return 'categories';
+  if (path.includes('/webmaster/roles')) return 'roles';
   if (path.includes('/profile')) return 'profile';
   if (path.includes('/settings')) return 'settings';
   return 'dashboard';

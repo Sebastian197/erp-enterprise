@@ -197,7 +197,7 @@ const handleSubmit = async () => {
     Object.keys(errors).forEach(key => errors[key] = '');
 
     await api.post(API_ENDPOINTS.USERS.STORE, form);
-    router.push('/users');
+    router.push({ name: 'hrm.employees.index' });
   } catch (error) {
     if (error.response?.data?.errors) {
       Object.assign(errors, error.response.data.errors);
