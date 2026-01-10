@@ -13,7 +13,7 @@
 
       <Button
         v-if="can('users.create')"
-        @click="router.push('/users/create')"
+        @click="async () => await router.push('/users/create')"
         variant="primary"
         icon="fas fa-plus"
       >
@@ -55,7 +55,7 @@
     </Card>
 
     <!-- Users Table -->
-    <Card>
+    <Card flush>
       <Table
         :columns="columns"
         :data="users"
@@ -131,7 +131,7 @@
           <div class="flex items-center justify-end space-x-2">
             <button
               v-if="can('users.view')"
-              @click="router.push(`/users/${row.id}`)"
+              @click="async () => await router.push(`/users/${row.id}`)"
               class="p-2 text-gray-600 dark:text-gray-400 hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors"
               :title="$t('users.view')"
             >
@@ -139,7 +139,7 @@
             </button>
             <button
               v-if="can('users.update')"
-              @click="router.push(`/users/${row.id}/edit`)"
+              @click="async () => await router.push(`/users/${row.id}/edit`)"
               class="p-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded transition-colors"
               :title="$t('users.edit')"
             >
@@ -227,14 +227,13 @@
 import { ref, reactive, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
+import { useUsers } from '@/composables/useUsers';
 import Card from '@/components/ui/Card.vue';
 import Table from '@/components/ui/Table.vue';
 import Input from '@/components/ui/Input.vue';
 import Select from '@/components/ui/Select.vue';
 import Button from '@/components/ui/Button.vue';
 import Modal from '@/components/ui/Modal.vue';
-import api from '@/utils/api';
-import { API_ENDPOINTS } from '@/utils/constants';
 
 /**
  * Users Index Page
@@ -245,11 +244,20 @@ import { API_ENDPOINTS } from '@/utils/constants';
 const router = useRouter();
 const authStore = useAuthStore();
 
-// State
-const loading = ref(true);
-const deleting = ref(false);
-const users = ref([]);
-const pagination = ref(null);
+// Composable para gestión de usuarios
+const {
+  users,
+  loading,
+  deleting,
+  pagination,
+  groupOptions,
+  fetchUsers,
+  deleteUser: deleteUserApi,
+  bulkDeleteUsers,
+  fetchGroups,
+} = useUsers();
+
+// Local state
 const selectedUsers = ref([]);
 const showDeleteModal = ref(false);
 const userToDelete = ref(null);
@@ -273,10 +281,6 @@ const columns = [
 ];
 
 // Filter options
-const groupOptions = ref([
-  { value: null, label: 'All Groups' },
-]);
-
 const statusOptions = [
   { value: null, label: 'All Statuses' },
   { value: 'active', label: 'Active' },
@@ -284,34 +288,15 @@ const statusOptions = [
 ];
 
 /**
- * Fetch users
+ * Fetch users with current filters
  */
-const fetchUsers = async (page = 1) => {
-  try {
-    loading.value = true;
-    const response = await api.get(API_ENDPOINTS.USERS.INDEX, {
-      params: {
-        page,
-        search: filters.search,
-        group: filters.group,
-        status: filters.status,
-      },
-    });
-
-    users.value = response.data.data;
-    pagination.value = {
-      current_page: response.data.current_page,
-      last_page: response.data.last_page,
-      per_page: response.data.per_page,
-      total: response.data.total,
-      from: response.data.from,
-      to: response.data.to,
-    };
-  } catch (error) {
-    console.error('Failed to fetch users:', error);
-  } finally {
-    loading.value = false;
-  }
+const loadUsers = (page = 1) => {
+  fetchUsers({
+    page,
+    search: filters.search,
+    group: filters.group,
+    status: filters.status,
+  });
 };
 
 /**
@@ -321,7 +306,7 @@ let searchTimeout;
 const debouncedSearch = () => {
   clearTimeout(searchTimeout);
   searchTimeout = setTimeout(() => {
-    fetchUsers();
+    loadUsers();
   }, 500);
 };
 
@@ -337,7 +322,7 @@ const handleSort = ({ key, order }) => {
  * Handle page change
  */
 const handlePageChange = (page) => {
-  fetchUsers(page);
+  loadUsers(page);
 };
 
 /**
@@ -360,14 +345,11 @@ const confirmDelete = (user) => {
  */
 const deleteUser = async () => {
   try {
-    deleting.value = true;
-    await api.delete(API_ENDPOINTS.USERS.DESTROY(userToDelete.value.id));
+    await deleteUserApi(userToDelete.value.id);
     showDeleteModal.value = false;
-    fetchUsers(pagination.value.current_page);
+    loadUsers(pagination.value.current_page);
   } catch (error) {
     console.error('Failed to delete user:', error);
-  } finally {
-    deleting.value = false;
   }
 };
 
@@ -378,36 +360,17 @@ const bulkDelete = async () => {
   if (!confirm('Are you sure you want to delete selected users?')) return;
 
   try {
-    await Promise.all(
-      selectedUsers.value.map(user =>
-        api.delete(API_ENDPOINTS.USERS.DESTROY(user.id))
-      )
-    );
+    await bulkDeleteUsers(selectedUsers.value);
     selectedUsers.value = [];
-    fetchUsers(pagination.value.current_page);
+    loadUsers(pagination.value.current_page);
   } catch (error) {
     console.error('Failed to bulk delete users:', error);
   }
 };
 
-/**
- * Fetch groups for filter
- */
-const fetchGroups = async () => {
-  try {
-    const response = await api.get(API_ENDPOINTS.GROUPS.INDEX);
-    groupOptions.value = [
-      { value: null, label: 'All Groups' },
-      ...response.data.data.map(g => ({ value: g.id, label: g.name })),
-    ];
-  } catch (error) {
-    console.error('Failed to fetch groups:', error);
-  }
-};
-
 // Lifecycle
 onMounted(() => {
-  fetchUsers();
+  loadUsers();
   fetchGroups();
 });
 </script>

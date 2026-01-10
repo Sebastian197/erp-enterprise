@@ -49,9 +49,9 @@
       leave-from-class="opacity-100 translate-y-0"
       leave-to-class="opacity-0 -translate-y-2"
     >
-      <div v-if="!isCollapsed" class="px-6 py-4">
+      <div v-if="!isCollapsed" :class="flush ? '' : 'px-6 py-4'">
         <!-- Loading State -->
-        <div v-if="loading" class="space-y-3">
+        <div v-if="loading" class="space-y-3" :class="flush && 'px-6 py-4'">
           <div class="h-4 bg-themed-tertiary rounded animate-pulse"></div>
           <div class="h-4 bg-themed-tertiary rounded animate-pulse w-5/6"></div>
           <div class="h-4 bg-themed-tertiary rounded animate-pulse w-4/6"></div>
@@ -101,6 +101,10 @@ defineProps({
     default: false,
   },
   hoverable: {
+    type: Boolean,
+    default: false,
+  },
+  flush: {
     type: Boolean,
     default: false,
   },

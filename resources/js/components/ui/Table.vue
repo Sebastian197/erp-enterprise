@@ -75,7 +75,7 @@
     </div>
 
     <!-- Desktop/Tablet Table View (>= 640px) -->
-    <div class="hidden sm:block overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+    <div class="hidden sm:block overflow-x-auto sm:rounded-lg border-0 sm:border border-gray-200 dark:border-gray-700 shadow-sm">
       <div class="inline-block min-w-full align-middle">
         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
         <!-- Table Header -->
@@ -213,7 +213,7 @@
     <!-- Pagination -->
     <div
       v-if="pagination && pagination.last_page > 1"
-      class="flex flex-col sm:flex-row items-center justify-between mt-4 px-2 sm:px-4 space-y-3 sm:space-y-0"
+      class="flex flex-col sm:flex-row items-center justify-between mt-4 px-4 sm:px-6 space-y-3 sm:space-y-0"
     >
       <!-- Info -->
       <div class="text-xs sm:text-sm text-gray-700 dark:text-gray-300 text-center sm:text-left">

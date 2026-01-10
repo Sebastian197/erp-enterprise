@@ -8,7 +8,7 @@
       </div>
       <Button
         v-if="can('groups.create')"
-        @click="router.push('/hrm/masters/groups/create')"
+        @click="async () => await router.push('/hrm/masters/groups/create')"
         variant="primary"
         icon="fas fa-plus"
       >
@@ -37,7 +37,7 @@
     </Card>
 
     <!-- Groups Table -->
-    <Card>
+    <Card flush>
       <Table
         :columns="columns"
         :data="groups"
@@ -99,7 +99,7 @@
           <div class="flex items-center justify-end space-x-2">
             <button
               v-if="can('groups.view')"
-              @click="router.push(`/hrm/masters/groups/${row.id}`)"
+              @click="async () => await router.push(`/hrm/masters/groups/${row.id}`)"
               class="p-2 text-gray-600 hover:text-primary rounded transition-colors dark:text-gray-400 dark:hover:text-primary"
               :title="$t('common.view')"
             >
@@ -107,7 +107,7 @@
             </button>
             <button
               v-if="can('groups.update')"
-              @click="router.push(`/hrm/masters/groups/${row.id}/edit`)"
+              @click="async () => await router.push(`/hrm/masters/groups/${row.id}/edit`)"
               class="p-2 text-gray-600 hover:text-blue-600 rounded transition-colors dark:text-gray-400 dark:hover:text-blue-500"
               :title="$t('common.edit')"
             >
@@ -175,6 +175,7 @@ import { ref, reactive, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 import { useNotificationStore } from '@/stores/notification';
+import { useGroups } from '@/composables/useGroups';
 import { useWebSocket } from '@/composables/useWebSocket';
 import Card from '@/components/ui/Card.vue';
 import Table from '@/components/ui/Table.vue';
@@ -182,19 +183,23 @@ import Input from '@/components/ui/Input.vue';
 import Select from '@/components/ui/Select.vue';
 import Button from '@/components/ui/Button.vue';
 import Modal from '@/components/ui/Modal.vue';
-import api from '@/utils/api';
-import { API_ENDPOINTS } from '@/utils/constants';
 
 const router = useRouter();
 const authStore = useAuthStore();
 const notificationStore = useNotificationStore();
 const { listenPrivate, stop } = useWebSocket();
 
-// State
-const loading = ref(true);
-const deleting = ref(false);
-const groups = ref([]);
-const pagination = ref(null);
+// Composable para gestión de grupos
+const {
+  groups,
+  loading,
+  deleting,
+  pagination,
+  fetchGroups: fetchGroupsApi,
+  deleteGroup: deleteGroupApi,
+  bulkDeleteGroups,
+} = useGroups();
+
 const selectedGroups = ref([]);
 const showDeleteModal = ref(false);
 const groupToDelete = ref(null);
@@ -204,10 +209,8 @@ const filters = reactive({
   is_active: null,
 });
 
-// Computed
 const can = (permission) => authStore.can(permission);
 
-// Table columns
 const columns = [
   { key: 'name', label: 'Name', sortable: true },
   { key: 'description', label: 'Description', sortable: false },
@@ -217,133 +220,74 @@ const columns = [
   { key: 'created_at', label: 'Created', sortable: true },
 ];
 
-// Filter options
 const statusOptions = [
   { value: null, label: 'All Statuses' },
   { value: true, label: 'Active' },
   { value: false, label: 'Inactive' },
 ];
 
-/**
- * Fetch groups
- */
-const fetchGroups = async (page = 1) => {
-  try {
-    loading.value = true;
-    const response = await api.get(API_ENDPOINTS.GROUPS.INDEX, {
-      params: {
-        page,
-        search: filters.search,
-        is_active: filters.is_active,
-      },
-    });
-
-    groups.value = response.data.data;
-
-    if (response.data.current_page) {
-      pagination.value = {
-        current_page: response.data.current_page,
-        last_page: response.data.last_page,
-        per_page: response.data.per_page,
-        total: response.data.total,
-        from: response.data.from,
-        to: response.data.to,
-      };
-    }
-  } catch (error) {
-    console.error('Failed to fetch groups:', error);
+const loadGroups = (page = 1) => {
+  fetchGroupsApi({
+    page,
+    search: filters.search,
+    is_active: filters.is_active,
+  }).catch(() => {
     notificationStore.error('Failed to fetch groups');
-  } finally {
-    loading.value = false;
-  }
+  });
 };
 
-/**
- * Debounced search (500ms delay)
- */
 let searchTimeout;
 const debouncedSearch = () => {
   clearTimeout(searchTimeout);
   searchTimeout = setTimeout(() => {
-    fetchGroups();
+    loadGroups();
   }, 500);
 };
 
-/**
- * Handle sort
- */
 const handleSort = ({ key, order }) => {
   console.log('Sort:', key, order);
-  // Implement sorting logic if needed
 };
 
-/**
- * Handle page change
- */
 const handlePageChange = (page) => {
-  fetchGroups(page);
+  loadGroups(page);
 };
 
-/**
- * Handle selection change
- */
 const handleSelectionChange = (selected) => {
   selectedGroups.value = selected;
 };
 
-/**
- * Confirm delete
- */
 const confirmDelete = (group) => {
   groupToDelete.value = group;
   showDeleteModal.value = true;
 };
 
-/**
- * Delete group
- */
 const deleteGroup = async () => {
   try {
-    deleting.value = true;
-    await api.delete(API_ENDPOINTS.GROUPS.DESTROY(groupToDelete.value.id));
+    await deleteGroupApi(groupToDelete.value.id);
     showDeleteModal.value = false;
     notificationStore.success('Group deleted successfully');
-    fetchGroups(pagination.value?.current_page || 1);
+    loadGroups(pagination.value?.current_page || 1);
   } catch (error) {
-    console.error('Failed to delete group:', error);
     const message = error.response?.data?.message || 'Failed to delete group';
     notificationStore.error(message);
-  } finally {
-    deleting.value = false;
   }
 };
 
-/**
- * Bulk delete
- */
 const bulkDelete = async () => {
   if (!confirm(`Are you sure you want to delete ${selectedGroups.value.length} groups?`)) {
     return;
   }
 
   try {
-    await Promise.all(
-      selectedGroups.value.map((group) =>
-        api.delete(API_ENDPOINTS.GROUPS.DESTROY(group.id))
-      )
-    );
+    await bulkDeleteGroups(selectedGroups.value);
     selectedGroups.value = [];
     notificationStore.success('Groups deleted successfully');
-    fetchGroups(pagination.value?.current_page || 1);
+    loadGroups(pagination.value?.current_page || 1);
   } catch (error) {
-    console.error('Failed to bulk delete groups:', error);
     notificationStore.error('Failed to delete groups');
   }
 };
 
-/**
- * Format date
- */
 const formatDate = (date) => {
   if (!date) return '-';
   return new Date(date).toLocaleDateString('en-US', {
@@ -353,39 +297,31 @@ const formatDate = (date) => {
   });
 };
 
-/**
- * Setup WebSocket listeners for real-time updates
- */
 const setupWebSocketListeners = () => {
-  // Listen to admin channel for group events
   listenPrivate('admin', '.group.created', (event) => {
     notificationStore.success(`Group "${event.group.name}" created`);
-    fetchGroups(pagination.value?.current_page || 1);
+    loadGroups(pagination.value?.current_page || 1);
   });
 
   listenPrivate('admin', '.group.updated', (event) => {
     notificationStore.info(`Group "${event.group.name}" updated`);
-    fetchGroups(pagination.value?.current_page || 1);
+    loadGroups(pagination.value?.current_page || 1);
   });
 
   listenPrivate('admin', '.group.deleted', (event) => {
     notificationStore.warning(`Group "${event.group.name}" deleted`);
-    fetchGroups(pagination.value?.current_page || 1);
+    loadGroups(pagination.value?.current_page || 1);
   });
 };
 
-/**
- * Cleanup WebSocket listeners
- */
 const cleanupWebSocketListeners = () => {
   stop('admin', '.group.created');
   stop('admin', '.group.updated');
   stop('admin', '.group.deleted');
 };
 
-// Lifecycle
 onMounted(() => {
-  fetchGroups();
+  loadGroups();
   setupWebSocketListeners();
 });
 

@@ -8,7 +8,7 @@
       </div>
       <Button
         v-if="can('categories.create')"
-        @click="router.push('/hrm/masters/categories/create')"
+        @click="async () => await router.push('/hrm/masters/categories/create')"
         variant="primary"
         icon="fas fa-plus"
       >
@@ -43,7 +43,7 @@
     </Card>
 
     <!-- Categories Table -->
-    <Card>
+    <Card flush>
       <Table
         :columns="columns"
         :data="categories"
@@ -105,7 +105,7 @@
           <div class="flex items-center justify-end space-x-2">
             <button
               v-if="can('categories.view')"
-              @click="router.push(`/hrm/masters/categories/${row.id}`)"
+              @click="async () => await router.push(`/hrm/masters/categories/${row.id}`)"
               class="p-2 text-gray-600 hover:text-primary rounded transition-colors dark:text-gray-400"
               :title="$t('common.view')"
             >
@@ -113,7 +113,7 @@
             </button>
             <button
               v-if="can('categories.update')"
-              @click="router.push(`/hrm/masters/categories/${row.id}/edit`)"
+              @click="async () => await router.push(`/hrm/masters/categories/${row.id}/edit`)"
               class="p-2 text-gray-600 hover:text-blue-600 rounded transition-colors dark:text-gray-400"
               :title="$t('common.edit')"
             >
@@ -177,6 +177,7 @@ import { ref, reactive, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 import { useNotificationStore } from '@/stores/notification';
+import { useCategories } from '@/composables/useCategories';
 import { useWebSocket } from '@/composables/useWebSocket';
 import Card from '@/components/ui/Card.vue';
 import Table from '@/components/ui/Table.vue';
@@ -184,18 +185,25 @@ import Input from '@/components/ui/Input.vue';
 import Select from '@/components/ui/Select.vue';
 import Button from '@/components/ui/Button.vue';
 import Modal from '@/components/ui/Modal.vue';
-import api from '@/utils/api';
-import { API_ENDPOINTS } from '@/utils/constants';
 
 const router = useRouter();
 const authStore = useAuthStore();
 const notificationStore = useNotificationStore();
 const { listenPrivate, stop } = useWebSocket();
 
-const loading = ref(true);
-const deleting = ref(false);
-const categories = ref([]);
-const pagination = ref(null);
+// Composable para gestión de categorías
+const {
+  categories,
+  loading,
+  deleting,
+  pagination,
+  groupOptions,
+  fetchCategories: fetchCategoriesApi,
+  deleteCategory: deleteCategoryApi,
+  bulkDeleteCategories,
+  fetchGroups,
+} = useCategories();
+
 const selectedCategories = ref([]);
 const showDeleteModal = ref(false);
 const categoryToDelete = ref(null);
@@ -217,63 +225,28 @@ const columns = [
   { key: 'created_at', label: 'Created', sortable: true },
 ];
 
-const groupOptions = ref([{ value: null, label: 'All Groups' }]);
-
 const statusOptions = [
   { value: null, label: 'All Statuses' },
   { value: true, label: 'Active' },
   { value: false, label: 'Inactive' },
 ];
 
-const fetchCategories = async (page = 1) => {
-  try {
-    loading.value = true;
-    const response = await api.get(API_ENDPOINTS.CATEGORIES.INDEX, {
-      params: {
-        page,
-        search: filters.search,
-        group_id: filters.group_id,
-        is_active: filters.is_active,
-      },
-    });
-
-    categories.value = response.data.data;
-
-    if (response.data.current_page) {
-      pagination.value = {
-        current_page: response.data.current_page,
-        last_page: response.data.last_page,
-        per_page: response.data.per_page,
-        total: response.data.total,
-        from: response.data.from,
-        to: response.data.to,
-      };
-    }
-  } catch (error) {
-    console.error('Failed to fetch categories:', error);
+const loadCategories = (page = 1) => {
+  fetchCategoriesApi({
+    page,
+    search: filters.search,
+    group_id: filters.group_id,
+    is_active: filters.is_active,
+  }).catch(() => {
     notificationStore.error('Failed to fetch categories');
-  } finally {
-    loading.value = false;
-  }
-};
-
-const fetchGroups = async () => {
-  try {
-    const response = await api.get(API_ENDPOINTS.GROUPS.INDEX);
-    groupOptions.value = [
-      { value: null, label: 'All Groups' },
-      ...response.data.data.map(g => ({ value: g.id, label: g.name })),
-    ];
-  } catch (error) {
-    console.error('Failed to fetch groups:', error);
-  }
+  });
 };
 
 let searchTimeout;
 const debouncedSearch = () => {
   clearTimeout(searchTimeout);
   searchTimeout = setTimeout(() => {
-    fetchCategories();
+    loadCategories();
   }, 500);
 };
 
@@ -282,7 +255,7 @@ const handleSort = ({ key, order }) => {
 };
 
 const handlePageChange = (page) => {
-  fetchCategories(page);
+  loadCategories(page);
 };
 
 const handleSelectionChange = (selected) => {
@@ -296,16 +269,12 @@ const confirmDelete = (category) => {
 
 const deleteCategory = async () => {
   try {
-    deleting.value = true;
-    await api.delete(API_ENDPOINTS.CATEGORIES.DESTROY(categoryToDelete.value.id));
+    await deleteCategoryApi(categoryToDelete.value.id);
     showDeleteModal.value = false;
     notificationStore.success('Category deleted successfully');
-    fetchCategories(pagination.value?.current_page || 1);
+    loadCategories(pagination.value?.current_page || 1);
   } catch (error) {
-    console.error('Failed to delete category:', error);
     notificationStore.error(error.response?.data?.message || 'Failed to delete category');
-  } finally {
-    deleting.value = false;
   }
 };
 
@@ -315,16 +284,11 @@ const bulkDelete = async () => {
   }
 
   try {
-    await Promise.all(
-      selectedCategories.value.map((category) =>
-        api.delete(API_ENDPOINTS.CATEGORIES.DESTROY(category.id))
-      )
-    );
+    await bulkDeleteCategories(selectedCategories.value);
     selectedCategories.value = [];
     notificationStore.success('Categories deleted successfully');
-    fetchCategories(pagination.value?.current_page || 1);
+    loadCategories(pagination.value?.current_page || 1);
   } catch (error) {
-    console.error('Failed to bulk delete categories:', error);
     notificationStore.error('Failed to delete categories');
   }
 };
@@ -341,17 +305,17 @@ const formatDate = (date) => {
 const setupWebSocketListeners = () => {
   listenPrivate('admin', '.category.created', (event) => {
     notificationStore.success(`Category "${event.category.name}" created`);
-    fetchCategories(pagination.value?.current_page || 1);
+    loadCategories(pagination.value?.current_page || 1);
   });
 
   listenPrivate('admin', '.category.updated', (event) => {
     notificationStore.info(`Category "${event.category.name}" updated`);
-    fetchCategories(pagination.value?.current_page || 1);
+    loadCategories(pagination.value?.current_page || 1);
   });
 
   listenPrivate('admin', '.category.deleted', (event) => {
     notificationStore.warning(`Category "${event.category.name}" deleted`);
-    fetchCategories(pagination.value?.current_page || 1);
+    loadCategories(pagination.value?.current_page || 1);
   });
 };
 
@@ -362,7 +326,7 @@ const cleanupWebSocketListeners = () => {
 };
 
 onMounted(() => {
-  fetchCategories();
+  loadCategories();
   fetchGroups();
   setupWebSocketListeners();
 });
