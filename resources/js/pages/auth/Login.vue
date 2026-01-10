@@ -166,7 +166,7 @@ const handleSubmit = async () => {
       remember: form.remember,
     });
 
-    router.push('/dashboard');
+    await router.push('/dashboard');
   } catch (error) {
     console.error('Login error:', error);
     errorMessage.value = error.response?.data?.message || 'Credenciales inválidas. Por favor verifica tu nombre de usuario y contraseña.';

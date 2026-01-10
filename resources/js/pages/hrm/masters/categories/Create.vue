@@ -67,21 +67,26 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue';
+import { reactive, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useNotificationStore } from '@/stores/notification';
+import { useCategories } from '@/composables/useCategories';
 import Card from '@/components/ui/Card.vue';
 import Input from '@/components/ui/Input.vue';
 import Select from '@/components/ui/Select.vue';
 import Button from '@/components/ui/Button.vue';
-import api from '@/utils/api';
-import { API_ENDPOINTS } from '@/utils/constants';
 
 const router = useRouter();
 const notificationStore = useNotificationStore();
 
-const loading = ref(false);
-const groupOptions = ref([]);
+// Composable para gestión de categorías
+const {
+  loading,
+  errors,
+  groupOptions,
+  createCategory,
+  fetchGroups,
+} = useCategories();
 
 const form = reactive({
   group_id: null,
@@ -90,34 +95,15 @@ const form = reactive({
   is_active: true,
 });
 
-const errors = reactive({});
-
-const fetchGroups = async () => {
-  try {
-    const response = await api.get(API_ENDPOINTS.GROUPS.INDEX);
-    groupOptions.value = response.data.data.map(g => ({ value: g.id, label: g.name }));
-  } catch (error) {
-    console.error('Failed to fetch groups:', error);
-  }
-};
-
 const handleSubmit = async () => {
   try {
-    loading.value = true;
-    Object.keys(errors).forEach(key => delete errors[key]);
-
-    await api.post(API_ENDPOINTS.CATEGORIES.STORE, form);
-
+    await createCategory(form);
     notificationStore.success('Category created successfully');
-    router.push('/hrm/masters/categories');
+    await router.push('/hrm/masters/categories');
   } catch (error) {
-    if (error.response?.status === 422) {
-      Object.assign(errors, error.response.data.errors);
-    } else {
+    if (error.response?.status !== 422) {
       notificationStore.error(error.response?.data?.message || 'Failed to create category');
     }
-  } finally {
-    loading.value = false;
   }
 };
 

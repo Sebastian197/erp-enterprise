@@ -52,7 +52,7 @@ api.interceptors.response.use(
     (response) => {
         return response;
     },
-    (error) => {
+    async (error) => {
         if (!error.response) {
             // Network error
             console.error('Network error:', error);
@@ -71,7 +71,7 @@ api.interceptors.response.use(
                 localStorage.removeItem('auth_user');
 
                 if (router.currentRoute.value.name !== 'login') {
-                    router.push({
+                    await router.push({
                         name: 'login',
                         query: { redirect: router.currentRoute.value.fullPath },
                     });
@@ -80,7 +80,7 @@ api.interceptors.response.use(
 
             case 403:
                 // Forbidden - redirect to forbidden page
-                router.push({ name: 'forbidden' });
+                await router.push({ name: 'forbidden' });
                 break;
 
             case 404:

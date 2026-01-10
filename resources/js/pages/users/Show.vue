@@ -5,7 +5,7 @@
         <Button @click="router.back()" variant="ghost" icon="fas fa-arrow-left" size="sm" />
         <h1 class="text-3xl font-bold text-gray-900 dark:text-white">{{ $t('users.show.title') }}</h1>
       </div>
-      <Button v-if="can('users.update')" @click="router.push({ name: 'hrm.employees.edit', params: { id: user?.id } })" variant="primary" icon="fas fa-edit">{{ $t('common.edit') }}</Button>
+      <Button v-if="can('users.update')" @click="async () => await router.push({ name: 'hrm.employees.edit', params: { id: user?.id } })" variant="primary" icon="fas fa-edit">{{ $t('common.edit') }}</Button>
     </div>
 
     <Loading v-if="loading" type="skeleton" />
@@ -105,34 +105,33 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
+import { useUsers } from '@/composables/useUsers';
 import Card from '@/components/ui/Card.vue';
 import Button from '@/components/ui/Button.vue';
 import Loading from '@/components/ui/Loading.vue';
-import api from '@/utils/api';
-import { API_ENDPOINTS } from '@/utils/constants';
 
 const router = useRouter();
 const route = useRoute();
 const authStore = useAuthStore();
 
-const loading = ref(true);
-const user = ref({});
+// Composable para gestión de usuarios
+const {
+  user,
+  loading,
+  fetchUser: fetchUserApi,
+} = useUsers();
 
 const can = (permission) => authStore.can(permission);
 
-const fetchUser = async () => {
+const loadUser = async () => {
   try {
-    loading.value = true;
-    const response = await api.get(API_ENDPOINTS.USERS.SHOW(route.params.id));
-    user.value = response.data;
+    await fetchUserApi(route.params.id);
   } catch (error) {
     console.error('Failed to fetch user:', error);
-    router.push({ name: 'hrm.employees.index' });
-  } finally {
-    loading.value = false;
+    await router.push({ name: 'hrm.employees.index' });
   }
 };
 
@@ -141,6 +140,6 @@ const formatDate = (date) => {
 };
 
 onMounted(() => {
-  fetchUser();
+  loadUser();
 });
 </script>

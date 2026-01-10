@@ -139,7 +139,7 @@
           </div>
 
           <button
-            @click="router.push('/profile')"
+            @click="async () => await router.push('/profile')"
             class="w-full px-4 py-2 bg-themed-tertiary hover:bg-themed-tertiary/80 text-themed-primary rounded-lg font-medium transition-all"
           >
             {{ $t('settings.account.view_profile') }}
@@ -167,7 +167,7 @@ const userEmail = computed(() => authStore.userEmail);
 /**
  * Navigate to dashboard in edit mode
  */
-const goToEditDashboard = () => {
-  router.push('/dashboard?edit=true');
+const goToEditDashboard = async () => {
+  await router.push('/dashboard?edit=true');
 };
 </script>

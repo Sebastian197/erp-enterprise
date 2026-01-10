@@ -216,7 +216,7 @@ const handleNotificationClick = async (notification) => {
 
   // Navigate to notification link if available
   if (notification.data.link) {
-    router.push(notification.data.link);
+    await router.push(notification.data.link);
     isOpen.value = false;
   }
 };
@@ -257,8 +257,8 @@ const markAllAsRead = async () => {
 /**
  * Navigate to notifications page
  */
-const goToNotifications = () => {
-  router.push('/notifications');
+const goToNotifications = async () => {
+  await router.push('/notifications');
   isOpen.value = false;
 };
 

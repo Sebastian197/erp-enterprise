@@ -8,7 +8,7 @@
       </div>
       <Button
         v-if="can('groups.update') && group"
-        @click="router.push(`/hrm/masters/groups/${group.id}/edit`)"
+        @click="async () => await router.push(`/hrm/masters/groups/${group.id}/edit`)"
         variant="primary"
         icon="fas fa-edit"
       >
@@ -137,37 +137,35 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 import { useNotificationStore } from '@/stores/notification';
+import { useGroups } from '@/composables/useGroups';
 import Card from '@/components/ui/Card.vue';
 import Button from '@/components/ui/Button.vue';
 import Loading from '@/components/ui/Loading.vue';
-import api from '@/utils/api';
-import { API_ENDPOINTS } from '@/utils/constants';
 
 const router = useRouter();
 const route = useRoute();
 const authStore = useAuthStore();
 const notificationStore = useNotificationStore();
 
-const loading = ref(true);
-const group = ref({});
+// Composable para gestión de grupos
+const {
+  group,
+  loading,
+  fetchGroup: fetchGroupApi,
+} = useGroups();
 
 const can = (permission) => authStore.can(permission);
 
-const fetchGroup = async () => {
+const loadGroup = async () => {
   try {
-    loading.value = true;
-    const response = await api.get(API_ENDPOINTS.GROUPS.SHOW(route.params.id));
-    group.value = response.data.data;
+    await fetchGroupApi(route.params.id);
   } catch (error) {
-    console.error('Failed to fetch group:', error);
     notificationStore.error('Failed to fetch group');
-    router.push('/hrm/masters/groups');
-  } finally {
-    loading.value = false;
+    await router.push('/hrm/masters/groups');
   }
 };
 
@@ -181,6 +179,6 @@ const formatDate = (date) => {
 };
 
 onMounted(() => {
-  fetchGroup();
+  loadGroup();
 });
 </script>

@@ -98,24 +98,31 @@ import { ref, reactive, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 import { useNotificationStore } from '@/stores/notification';
+import { useGroups } from '@/composables/useGroups';
 import Card from '@/components/ui/Card.vue';
 import Input from '@/components/ui/Input.vue';
 import Button from '@/components/ui/Button.vue';
 import Modal from '@/components/ui/Modal.vue';
 import Loading from '@/components/ui/Loading.vue';
-import api from '@/utils/api';
-import { API_ENDPOINTS } from '@/utils/constants';
 
 const router = useRouter();
 const route = useRoute();
 const authStore = useAuthStore();
 const notificationStore = useNotificationStore();
 
-const loading = ref(false);
+// Composable para gestión de grupos
+const {
+  group,
+  loading,
+  deleting,
+  errors,
+  fetchGroup: fetchGroupApi,
+  updateGroup,
+  deleteGroup: deleteGroupApi,
+} = useGroups();
+
 const loadingGroup = ref(true);
-const deleting = ref(false);
 const showDeleteModal = ref(false);
-const group = ref(null);
 
 const form = reactive({
   name: '',
@@ -123,26 +130,21 @@ const form = reactive({
   is_active: true,
 });
 
-const errors = reactive({});
-
 const can = (permission) => authStore.can(permission);
 
-const fetchGroup = async () => {
+const loadGroup = async () => {
   try {
     loadingGroup.value = true;
-    const response = await api.get(API_ENDPOINTS.GROUPS.SHOW(route.params.id));
-    group.value = response.data.data;
+    const data = await fetchGroupApi(route.params.id);
 
-    // Populate form
     Object.assign(form, {
-      name: response.data.data.name,
-      description: response.data.data.description || '',
-      is_active: response.data.data.is_active,
+      name: data.name,
+      description: data.description || '',
+      is_active: data.is_active,
     });
   } catch (error) {
-    console.error('Failed to fetch group:', error);
     notificationStore.error('Failed to fetch group');
-    router.push('/hrm/masters/groups');
+    await router.push('/hrm/masters/groups');
   } finally {
     loadingGroup.value = false;
   }
@@ -150,24 +152,13 @@ const fetchGroup = async () => {
 
 const handleSubmit = async () => {
   try {
-    loading.value = true;
-
-    // Clear previous errors
-    Object.keys(errors).forEach(key => delete errors[key]);
-
-    await api.put(API_ENDPOINTS.GROUPS.UPDATE(route.params.id), form);
-
+    await updateGroup(route.params.id, form);
     notificationStore.success('Group updated successfully');
-    router.push('/hrm/masters/groups');
+    await router.push('/hrm/masters/groups');
   } catch (error) {
-    if (error.response?.status === 422) {
-      // Validation errors
-      Object.assign(errors, error.response.data.errors);
-    } else {
+    if (error.response?.status !== 422) {
       notificationStore.error(error.response?.data?.message || 'Failed to update group');
     }
-  } finally {
-    loading.value = false;
   }
 };
 
@@ -177,15 +168,11 @@ const confirmDelete = () => {
 
 const deleteGroup = async () => {
   try {
-    deleting.value = true;
-    await api.delete(API_ENDPOINTS.GROUPS.DESTROY(route.params.id));
+    await deleteGroupApi(route.params.id);
     notificationStore.success('Group deleted successfully');
-    router.push('/hrm/masters/groups');
+    await router.push('/hrm/masters/groups');
   } catch (error) {
-    console.error('Failed to delete group:', error);
     notificationStore.error(error.response?.data?.message || 'Failed to delete group');
-  } finally {
-    deleting.value = false;
   }
 };
 

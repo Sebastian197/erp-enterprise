@@ -7,7 +7,7 @@
       </div>
       <Button
         v-if="can('categories.update') && category"
-        @click="router.push(`/hrm/masters/categories/${category.id}/edit`)"
+        @click="async () => await router.push(`/hrm/masters/categories/${category.id}/edit`)"
         variant="primary"
         icon="fas fa-edit"
       >
@@ -133,37 +133,35 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 import { useNotificationStore } from '@/stores/notification';
+import { useCategories } from '@/composables/useCategories';
 import Card from '@/components/ui/Card.vue';
 import Button from '@/components/ui/Button.vue';
 import Loading from '@/components/ui/Loading.vue';
-import api from '@/utils/api';
-import { API_ENDPOINTS } from '@/utils/constants';
 
 const router = useRouter();
 const route = useRoute();
 const authStore = useAuthStore();
 const notificationStore = useNotificationStore();
 
-const loading = ref(true);
-const category = ref({});
+// Composable para gestión de categorías
+const {
+  category,
+  loading,
+  fetchCategory: fetchCategoryApi,
+} = useCategories();
 
 const can = (permission) => authStore.can(permission);
 
-const fetchCategory = async () => {
+const loadCategory = async () => {
   try {
-    loading.value = true;
-    const response = await api.get(API_ENDPOINTS.CATEGORIES.SHOW(route.params.id));
-    category.value = response.data.data;
+    await fetchCategoryApi(route.params.id);
   } catch (error) {
-    console.error('Failed to fetch category:', error);
     notificationStore.error('Failed to fetch category');
-    router.push('/hrm/masters/categories');
-  } finally {
-    loading.value = false;
+    await router.push('/hrm/masters/categories');
   }
 };
 
@@ -185,6 +183,6 @@ const formatCurrency = (value) => {
 };
 
 onMounted(() => {
-  fetchCategory();
+  loadCategory();
 });
 </script>

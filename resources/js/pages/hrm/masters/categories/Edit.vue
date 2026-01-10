@@ -95,26 +95,34 @@ import { ref, reactive, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 import { useNotificationStore } from '@/stores/notification';
+import { useCategories } from '@/composables/useCategories';
 import Card from '@/components/ui/Card.vue';
 import Input from '@/components/ui/Input.vue';
 import Select from '@/components/ui/Select.vue';
 import Button from '@/components/ui/Button.vue';
 import Modal from '@/components/ui/Modal.vue';
 import Loading from '@/components/ui/Loading.vue';
-import api from '@/utils/api';
-import { API_ENDPOINTS } from '@/utils/constants';
 
 const router = useRouter();
 const route = useRoute();
 const authStore = useAuthStore();
 const notificationStore = useNotificationStore();
 
-const loading = ref(false);
+// Composable para gestión de categorías
+const {
+  category,
+  loading,
+  deleting,
+  errors,
+  groupOptions,
+  fetchCategory: fetchCategoryApi,
+  updateCategory,
+  deleteCategory: deleteCategoryApi,
+  fetchGroups,
+} = useCategories();
+
 const loadingCategory = ref(true);
-const deleting = ref(false);
 const showDeleteModal = ref(false);
-const category = ref(null);
-const groupOptions = ref([]);
 
 const form = reactive({
   group_id: null,
@@ -123,35 +131,22 @@ const form = reactive({
   is_active: true,
 });
 
-const errors = reactive({});
-
 const can = (permission) => authStore.can(permission);
 
-const fetchGroups = async () => {
-  try {
-    const response = await api.get(API_ENDPOINTS.GROUPS.INDEX);
-    groupOptions.value = response.data.data.map(g => ({ value: g.id, label: g.name }));
-  } catch (error) {
-    console.error('Failed to fetch groups:', error);
-  }
-};
-
-const fetchCategory = async () => {
+const loadCategory = async () => {
   try {
     loadingCategory.value = true;
-    const response = await api.get(API_ENDPOINTS.CATEGORIES.SHOW(route.params.id));
-    category.value = response.data.data;
+    const data = await fetchCategoryApi(route.params.id);
 
     Object.assign(form, {
-      group_id: response.data.data.group_id,
-      name: response.data.data.name,
-      description: response.data.data.description || '',
-      is_active: response.data.data.is_active,
+      group_id: data.data.group_id,
+      name: data.data.name,
+      description: data.data.description || '',
+      is_active: data.data.is_active,
     });
   } catch (error) {
-    console.error('Failed to fetch category:', error);
     notificationStore.error('Failed to fetch category');
-    router.push('/hrm/masters/categories');
+    await router.push('/hrm/masters/categories');
   } finally {
     loadingCategory.value = false;
   }
@@ -159,21 +154,13 @@ const fetchCategory = async () => {
 
 const handleSubmit = async () => {
   try {
-    loading.value = true;
-    Object.keys(errors).forEach(key => delete errors[key]);
-
-    await api.put(API_ENDPOINTS.CATEGORIES.UPDATE(route.params.id), form);
-
+    await updateCategory(route.params.id, form);
     notificationStore.success('Category updated successfully');
-    router.push('/hrm/masters/categories');
+    await router.push('/hrm/masters/categories');
   } catch (error) {
-    if (error.response?.status === 422) {
-      Object.assign(errors, error.response.data.errors);
-    } else {
+    if (error.response?.status !== 422) {
       notificationStore.error(error.response?.data?.message || 'Failed to update category');
     }
-  } finally {
-    loading.value = false;
   }
 };
 
@@ -183,20 +170,16 @@ const confirmDelete = () => {
 
 const deleteCategory = async () => {
   try {
-    deleting.value = true;
-    await api.delete(API_ENDPOINTS.CATEGORIES.DESTROY(route.params.id));
+    await deleteCategoryApi(route.params.id);
     notificationStore.success('Category deleted successfully');
-    router.push('/hrm/masters/categories');
+    await router.push('/hrm/masters/categories');
   } catch (error) {
-    console.error('Failed to delete category:', error);
     notificationStore.error(error.response?.data?.message || 'Failed to delete category');
-  } finally {
-    deleting.value = false;
   }
 };
 
 onMounted(() => {
   fetchGroups();
-  fetchCategory();
+  loadCategory();
 });
 </script>

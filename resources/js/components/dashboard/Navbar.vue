@@ -229,9 +229,9 @@ const closeUserMenu = () => {
 /**
  * Handle search
  */
-const handleSearch = () => {
+const handleSearch = async () => {
   if (searchQuery.value.trim()) {
-    router.push({
+    await router.push({
       name: 'search',
       query: { q: searchQuery.value },
     });
@@ -246,7 +246,7 @@ const handleLogout = async () => {
   try {
     loggingOut.value = true;
     await authStore.logout();
-    router.push('/auth/login');
+    await router.push('/auth/login');
   } catch (error) {
     console.error('Logout error:', error);
   } finally {

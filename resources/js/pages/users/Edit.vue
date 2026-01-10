@@ -58,24 +58,35 @@
 import { ref, reactive, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
+import { useUsers } from '@/composables/useUsers';
 import Card from '@/components/ui/Card.vue';
 import Input from '@/components/ui/Input.vue';
 import Select from '@/components/ui/Select.vue';
 import Button from '@/components/ui/Button.vue';
 import Modal from '@/components/ui/Modal.vue';
 import Loading from '@/components/ui/Loading.vue';
-import api from '@/utils/api';
-import { API_ENDPOINTS } from '@/utils/constants';
 
 const router = useRouter();
 const route = useRoute();
 const authStore = useAuthStore();
 
-const loading = ref(false);
+// Composable para gestión de usuarios
+const {
+  user,
+  loading,
+  deleting,
+  errors,
+  groupOptions,
+  categoryOptions,
+  roleOptions,
+  fetchUser: fetchUserApi,
+  updateUser,
+  deleteUser: deleteUserApi,
+  fetchOptions,
+} = useUsers();
+
 const loadingUser = ref(true);
-const deleting = ref(false);
 const showDeleteModal = ref(false);
-const user = ref(null);
 
 const form = reactive({
   name: '',
@@ -87,7 +98,6 @@ const form = reactive({
   role_ids: [],
 });
 
-const errors = reactive({});
 const can = (permission) => authStore.can(permission);
 
 const statusOptions = [
@@ -95,59 +105,33 @@ const statusOptions = [
   { value: 'inactive', label: 'Inactive' },
 ];
 
-const groupOptions = ref([]);
-const categoryOptions = ref([]);
-const roleOptions = ref([]);
-
-const fetchUser = async () => {
+const loadUser = async () => {
   try {
     loadingUser.value = true;
-    const response = await api.get(API_ENDPOINTS.USERS.SHOW(route.params.id));
-    user.value = response.data;
+    const data = await fetchUserApi(route.params.id);
     Object.assign(form, {
-      name: response.data.name,
-      username: response.data.username,
-      email: response.data.email,
-      status: response.data.status,
-      group_id: response.data.group?.id,
-      category_ids: response.data.categories?.map(c => c.id) || [],
-      role_ids: response.data.roles?.map(r => r.id) || [],
+      name: data.name,
+      username: data.username,
+      email: data.email,
+      status: data.status,
+      group_id: data.group?.id,
+      category_ids: data.categories?.map(c => c.id) || [],
+      role_ids: data.roles?.map(r => r.id) || [],
     });
   } catch (error) {
     console.error('Failed to fetch user:', error);
-    router.push({ name: 'hrm.employees.index' });
+    await router.push({ name: 'hrm.employees.index' });
   } finally {
     loadingUser.value = false;
   }
 };
 
-const fetchOptions = async () => {
-  try {
-    const [groups, categories, roles] = await Promise.all([
-      api.get(API_ENDPOINTS.GROUPS.INDEX),
-      api.get(API_ENDPOINTS.CATEGORIES.INDEX),
-      api.get(API_ENDPOINTS.ROLES.INDEX),
-    ]);
-    groupOptions.value = groups.data.data.map(g => ({ value: g.id, label: g.name }));
-    categoryOptions.value = categories.data.data.map(c => ({ value: c.id, label: c.name }));
-    roleOptions.value = roles.data.data.map(r => ({ value: r.id, label: r.name }));
-  } catch (error) {
-    console.error('Failed to fetch options:', error);
-  }
-};
-
 const handleSubmit = async () => {
   try {
-    loading.value = true;
-    Object.keys(errors).forEach(key => errors[key] = '');
-    await api.put(API_ENDPOINTS.USERS.UPDATE(route.params.id), form);
-    router.push({ name: 'hrm.employees.index' });
+    await updateUser(route.params.id, form);
+    await router.push({ name: 'hrm.employees.index' });
   } catch (error) {
-    if (error.response?.data?.errors) {
-      Object.assign(errors, error.response.data.errors);
-    }
-  } finally {
-    loading.value = false;
+    console.error('Failed to update user:', error);
   }
 };
 
@@ -157,18 +141,15 @@ const confirmDelete = () => {
 
 const deleteUser = async () => {
   try {
-    deleting.value = true;
-    await api.delete(API_ENDPOINTS.USERS.DESTROY(route.params.id));
-    router.push({ name: 'hrm.employees.index' });
+    await deleteUserApi(route.params.id);
+    await router.push({ name: 'hrm.employees.index' });
   } catch (error) {
     console.error('Failed to delete user:', error);
-  } finally {
-    deleting.value = false;
   }
 };
 
 onMounted(() => {
-  fetchUser();
+  loadUser();
   fetchOptions();
 });
 </script>

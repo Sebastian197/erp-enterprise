@@ -107,7 +107,7 @@
             <div class="flex flex-wrap gap-3 justify-start">
               <button
                 v-if="can('users.create')"
-                @click="router.push('/users/create')"
+                @click="async () => await router.push('/users/create')"
                 :title="$t('dashboard.quick_actions.create_user')"
                 class="quick-action-btn bg-themed-tertiary rounded-lg border-2 border-dashed border-themed hover:border-themed-hover hover:scale-105 transition-all group"
               >
@@ -119,7 +119,7 @@
 
               <button
                 v-if="can('groups.create')"
-                @click="router.push('/groups/create')"
+                @click="async () => await router.push('/groups/create')"
                 :title="$t('dashboard.quick_actions.create_group')"
                 class="quick-action-btn bg-themed-tertiary rounded-lg border-2 border-dashed border-themed hover:border-themed-hover hover:scale-105 transition-all group"
               >
@@ -131,7 +131,7 @@
 
               <button
                 v-if="can('categories.create')"
-                @click="router.push('/categories/create')"
+                @click="async () => await router.push('/categories/create')"
                 :title="$t('dashboard.quick_actions.create_category')"
                 class="quick-action-btn bg-themed-tertiary rounded-lg border-2 border-dashed border-themed hover:border-themed-hover hover:scale-105 transition-all group"
               >
@@ -142,7 +142,7 @@
               </button>
 
               <button
-                @click="router.push('/settings')"
+                @click="async () => await router.push('/settings')"
                 :title="$t('dashboard.quick_actions.settings')"
                 class="quick-action-btn bg-themed-tertiary rounded-lg border-2 border-dashed border-themed hover:border-themed-hover hover:scale-105 transition-all group"
               >
@@ -330,17 +330,17 @@ const saveAndExit = async () => {
   // Update original layout with saved changes
   originalLayout.value = JSON.parse(JSON.stringify(layout.value));
   // Navigate back to settings
-  router.push('/settings');
+  await router.push('/settings');
 };
 
 /**
  * Cancel edit mode and discard changes
  */
-const cancelEdit = () => {
+const cancelEdit = async () => {
   // Restore original layout
   layout.value = JSON.parse(JSON.stringify(originalLayout.value));
   // Navigate back to settings
-  router.push('/settings');
+  await router.push('/settings');
 };
 
 /**

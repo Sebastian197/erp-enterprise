@@ -306,8 +306,8 @@ const visibleMenuItems = computed(() => {
  * Navigate to route
  * @param {string} route - Route path
  */
-const navigateTo = (routePath) => {
-  router.push(routePath);
+const navigateTo = async (routePath) => {
+  await router.push(routePath);
 };
 
 /**

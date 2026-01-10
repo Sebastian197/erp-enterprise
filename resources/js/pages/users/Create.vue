@@ -152,20 +152,29 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue';
+import { reactive, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
+import { useUsers } from '@/composables/useUsers';
 import Card from '@/components/ui/Card.vue';
 import Input from '@/components/ui/Input.vue';
 import Select from '@/components/ui/Select.vue';
 import Button from '@/components/ui/Button.vue';
-import api from '@/utils/api';
-import { API_ENDPOINTS } from '@/utils/constants';
 
 const router = useRouter();
 const authStore = useAuthStore();
 
-const loading = ref(false);
+// Composable para gestión de usuarios
+const {
+  loading,
+  errors,
+  groupOptions,
+  categoryOptions,
+  roleOptions,
+  createUser,
+  fetchOptions,
+} = useUsers();
+
 const form = reactive({
   name: '',
   username: '',
@@ -178,8 +187,6 @@ const form = reactive({
   role_ids: [],
 });
 
-const errors = reactive({});
-
 const can = (permission) => authStore.can(permission);
 
 const statusOptions = [
@@ -187,39 +194,12 @@ const statusOptions = [
   { value: 'inactive', label: 'Inactive' },
 ];
 
-const groupOptions = ref([]);
-const categoryOptions = ref([]);
-const roleOptions = ref([]);
-
 const handleSubmit = async () => {
   try {
-    loading.value = true;
-    Object.keys(errors).forEach(key => errors[key] = '');
-
-    await api.post(API_ENDPOINTS.USERS.STORE, form);
-    router.push({ name: 'hrm.employees.index' });
+    await createUser(form);
+    await router.push({ name: 'hrm.employees.index' });
   } catch (error) {
-    if (error.response?.data?.errors) {
-      Object.assign(errors, error.response.data.errors);
-    }
-  } finally {
-    loading.value = false;
-  }
-};
-
-const fetchOptions = async () => {
-  try {
-    const [groups, categories, roles] = await Promise.all([
-      api.get(API_ENDPOINTS.GROUPS.INDEX),
-      api.get(API_ENDPOINTS.CATEGORIES.INDEX),
-      api.get(API_ENDPOINTS.ROLES.INDEX),
-    ]);
-
-    groupOptions.value = groups.data.data.map(g => ({ value: g.id, label: g.name }));
-    categoryOptions.value = categories.data.data.map(c => ({ value: c.id, label: c.name }));
-    roleOptions.value = roles.data.data.map(r => ({ value: r.id, label: r.name }));
-  } catch (error) {
-    console.error('Failed to fetch options:', error);
+    console.error('Failed to create user:', error);
   }
 };
 

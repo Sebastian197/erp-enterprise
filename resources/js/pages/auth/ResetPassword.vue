@@ -229,7 +229,7 @@ const handleSubmit = async () => {
     });
 
     // Redirect to login with success message
-    router.push({
+    await router.push({
       name: 'login',
       query: { reset: 'success' },
     });

@@ -9,7 +9,7 @@
       <p class="text-gray-600 dark:text-gray-400 mb-8 max-w-md">{{ $t('errors.403.message') }}</p>
       <div class="flex items-center justify-center space-x-4">
         <Button @click="router.back()" variant="ghost" icon="fas fa-arrow-left">{{ $t('errors.go_back') }}</Button>
-        <Button @click="router.push('/dashboard')" variant="primary" icon="fas fa-home">{{ $t('errors.go_home') }}</Button>
+        <Button @click="async () => await router.push('/dashboard')" variant="primary" icon="fas fa-home">{{ $t('errors.go_home') }}</Button>
       </div>
     </div>
   </div>

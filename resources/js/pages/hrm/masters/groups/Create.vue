@@ -65,19 +65,23 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { useNotificationStore } from '@/stores/notification';
+import { useGroups } from '@/composables/useGroups';
 import Card from '@/components/ui/Card.vue';
 import Input from '@/components/ui/Input.vue';
 import Button from '@/components/ui/Button.vue';
-import api from '@/utils/api';
-import { API_ENDPOINTS } from '@/utils/constants';
 
 const router = useRouter();
 const notificationStore = useNotificationStore();
 
-const loading = ref(false);
+// Composable para gestión de grupos
+const {
+  loading,
+  errors,
+  createGroup,
+} = useGroups();
 
 const form = reactive({
   name: '',
@@ -85,28 +89,15 @@ const form = reactive({
   is_active: true,
 });
 
-const errors = reactive({});
-
 const handleSubmit = async () => {
   try {
-    loading.value = true;
-
-    // Clear previous errors
-    Object.keys(errors).forEach(key => delete errors[key]);
-
-    await api.post(API_ENDPOINTS.GROUPS.STORE, form);
-
+    await createGroup(form);
     notificationStore.success('Group created successfully');
-    router.push('/hrm/masters/groups');
+    await router.push('/hrm/masters/groups');
   } catch (error) {
-    if (error.response?.status === 422) {
-      // Validation errors
-      Object.assign(errors, error.response.data.errors);
-    } else {
+    if (error.response?.status !== 422) {
       notificationStore.error(error.response?.data?.message || 'Failed to create group');
     }
-  } finally {
-    loading.value = false;
   }
 };
 </script>

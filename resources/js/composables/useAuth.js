@@ -39,7 +39,7 @@ export function useAuth() {
     const login = async (credentials) => {
         try {
             await authStore.login(credentials);
-            router.push({ name: 'dashboard' });
+            await router.push({ name: 'dashboard' });
         } catch (err) {
             throw err;
         }
@@ -52,10 +52,10 @@ export function useAuth() {
     const logout = async () => {
         try {
             await authStore.logout();
-            router.push({ name: 'login' });
+            await router.push({ name: 'login' });
         } catch (err) {
             console.error('Logout error:', err);
-            router.push({ name: 'login' });
+            await router.push({ name: 'login' });
         }
     };
 
@@ -67,7 +67,7 @@ export function useAuth() {
     const register = async (userData) => {
         try {
             await authStore.register(userData);
-            router.push({ name: 'dashboard' });
+            await router.push({ name: 'dashboard' });
         } catch (err) {
             throw err;
         }
